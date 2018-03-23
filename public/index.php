@@ -1,9 +1,11 @@
 <?php
 session_start();
 require_once('./conf/top.php');
+require('view/connexionView.php');
 ?>
 <body>
 <?php
+/*
 if(!empty($_GET['page'])){
 
     switch($_GET['page']){
@@ -16,6 +18,6 @@ if(!empty($_GET['page'])){
 }else{
 
 }
-
+*/
 ?>
 </body>
