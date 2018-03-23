@@ -35,11 +35,11 @@ class DB {
 	}
 
 	/**
-	 * @const bool Sert à indiquer si l'on souhaite utiliser un fetchAll() sur le résultat de la requete. C'est la valeur par défaut du paramètre $fetchAll de DB::query().
+	 * @var bool Sert à indiquer si l'on souhaite utiliser un fetchAll() sur le résultat de la requete. C'est la valeur par défaut du paramètre $fetchAll de DB::query().
 	 */
 	const FETCH_ALL = true;
 	/**
-	 * @const bool Sert à indiquer que l'on souhaite utiliser un fetch() sur le résultat de la requête : cela a pour conséquence de ne récupérer que la 1ère ligne de résultat.
+	 * @var bool Sert à indiquer que l'on souhaite utiliser un fetch() sur le résultat de la requête : cela a pour conséquence de ne récupérer que la 1ère ligne de résultat.
 	 */
 	const FETCH_ONE = false;
 
@@ -49,7 +49,7 @@ class DB {
 	 * Permet de préparer et executer une requete SQL de type SELECT et d'en récupérer directement le résultat sous forme de tableau associatif.
 	 * Exemple d'appel : $usersList = DB::getInstance()->query('Select * from user where id > :id', array(':id'=>12), DB::FETCH_ALL);
 	 * @param string $sql : Requête SQL (uniquement SELECT) à executer, avec des points d'interrogation "?" ou des variables nommées ":nomvariable" si besoin de variable dans la requête.
-	 * @param array $values : Contient les valeurs à attribuer aux inconnues de la requête SQL. En cas d'utilisation des "?", le tableau contient simplement les valeurs sans index particulier. En cas d'utilisation de variables nommées comme par exemple ":foo" il faut utiliser un tableau associatif. Exemple : array('foo'=>'bar') .
+	 * @param array $values : Contient les valeurs à attribuer aux inconnues de la requête SQL. En cas d'utilisation des "?", le tableau contient simplement les valeurs sans index particulier. En cas d'utilisation de variables nommées comme par exemple ":foo" il faut utiliser un tableau associatif. Exemple : array('foo'=>'bar').
 	 * @param bool $fetchAll : Choix de la fonction fetch à utiliser. DB::FETCH_ALL (valeur par défaut) indique que l'on récupère plusieurs lignes de résultats, DB::FETCH_ONE indique que l'on récupère une seule ligne (la 1ère).
 	 * @return array
 	 */
