@@ -26,3 +26,18 @@ function randomString(int $l){
   }
   return $rand;
  }
+
+
+
+ /**
+  * Genere une chaine de caracteres qui peut servir pour le lien URL d'un article par exemple.
+  * @param string $string
+  * @return null|string|string[]
+  */
+function create_slug(string $string){
+	if(!empty($string)){
+		$slug=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
+		return $slug;
+	}
+
+}

@@ -7,8 +7,21 @@ require_once('./conf/top.php');
 
 ?><head>
 	<meta charset="UTF-8" />
-</head><?php
+</head>
+<body>
+	<pre>
+<?php // <pre> pour les var_dump..
 
 DB::getInstance();
+$user = new User(1);
+var_dump($user);
 
-var_dump(DB::getInstance()->query('select * from test',array()));
+
+
+
+
+
+?>
+</pre>
+
+</body>
