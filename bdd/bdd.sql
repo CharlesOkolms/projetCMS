@@ -29,7 +29,7 @@ CREATE TABLE user (
 	admin           BOOL                        NOT NULL DEFAULT FALSE,
 	password        CHAR(60)                    NOT NULL,
 	created         DATETIME                    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	lastupdated     DATETIME                             DEFAULT CURRENT_TIMESTAMP,
+	last_updated    DATETIME                             DEFAULT CURRENT_TIMESTAMP,
 	id_user_updater INT UNSIGNED, -- valeur par défaut à régler en trigger pour mettre l'id du user
 	deleted         DATETIME,
 	id_user_deleter INT UNSIGNED
@@ -159,43 +159,43 @@ CREATE TABLE picture_tag (
 #------------------------------------------------------------
 
 ALTER TABLE user
-	ADD CONSTRAINT fk_user_id_user_1 FOREIGN KEY (id_user_updater) REFERENCES user (id_user);
+	ADD CONSTRAINT fk_user_id_user_updater      FOREIGN KEY (id_user_updater)   REFERENCES user (id_user);
 ALTER TABLE user
-	ADD CONSTRAINT fk_user_id_user_2 FOREIGN KEY (id_user_deleter) REFERENCES user (id_user);
+	ADD CONSTRAINT fk_user_id_user_deleter      FOREIGN KEY (id_user_deleter)   REFERENCES user (id_user);
 ALTER TABLE article
-	ADD CONSTRAINT fk_article_id_user FOREIGN KEY (id_user_writer) REFERENCES user (id_user);
+	ADD CONSTRAINT fk_article_id_user_writer    FOREIGN KEY (id_user_writer)    REFERENCES user (id_user);
 ALTER TABLE article
-	ADD CONSTRAINT fk_article_id_user_1 FOREIGN KEY (id_user_publisher) REFERENCES user (id_user);
+	ADD CONSTRAINT fk_article_id_user_publisher FOREIGN KEY (id_user_publisher) REFERENCES user (id_user);
 ALTER TABLE article
-	ADD CONSTRAINT fk_article_id_user_2 FOREIGN KEY (id_user_deleter) REFERENCES user (id_user);
+	ADD CONSTRAINT fk_article_id_user_deleter   FOREIGN KEY (id_user_deleter)   REFERENCES user (id_user);
 ALTER TABLE page
-	ADD CONSTRAINT fk_page_id_user FOREIGN KEY (id_user_creator) REFERENCES user (id_user);
+	ADD CONSTRAINT fk_page_id_user_creator      FOREIGN KEY (id_user_creator)   REFERENCES user (id_user);
 ALTER TABLE page
-	ADD CONSTRAINT fk_page_id_template FOREIGN KEY (id_template) REFERENCES template (id_template);
+	ADD CONSTRAINT fk_page_id_template          FOREIGN KEY (id_template)       REFERENCES template (id_template);
 ALTER TABLE page
-	ADD CONSTRAINT fk_page_id_style FOREIGN KEY (id_style) REFERENCES style (id_style);
+	ADD CONSTRAINT fk_page_id_style             FOREIGN KEY (id_style)          REFERENCES style (id_style);
 ALTER TABLE template
-	ADD CONSTRAINT fk_template_id_user FOREIGN KEY (id_user_creator) REFERENCES user (id_user);
+	ADD CONSTRAINT fk_template_id_user_creator  FOREIGN KEY (id_user_creator)   REFERENCES user (id_user);
 ALTER TABLE gallery
-	ADD CONSTRAINT fk_gallery_id_user FOREIGN KEY (id_user_creator) REFERENCES user (id_user);
+	ADD CONSTRAINT fk_gallery_id_user_creator   FOREIGN KEY (id_user_creator)   REFERENCES user (id_user);
 ALTER TABLE gallery
-	ADD CONSTRAINT fk_gallery_id_user_1 FOREIGN KEY (id_user_editor) REFERENCES user (id_user);
+	ADD CONSTRAINT fk_gallery_id_user_editor    FOREIGN KEY (id_user_editor)    REFERENCES user (id_user);
 ALTER TABLE picture
-	ADD CONSTRAINT fk_picture_id_user FOREIGN KEY (id_user_uploader) REFERENCES user (id_user);
+	ADD CONSTRAINT fk_picture_id_user_uploader  FOREIGN KEY (id_user_uploader)  REFERENCES user (id_user);
 ALTER TABLE picture
-	ADD CONSTRAINT fk_picture_id_gallery FOREIGN KEY (id_gallery) REFERENCES gallery (id_gallery);
+	ADD CONSTRAINT fk_picture_id_gallery        FOREIGN KEY (id_gallery)        REFERENCES gallery (id_gallery);
 ALTER TABLE page_article
-	ADD CONSTRAINT fk_page_article_id_article FOREIGN KEY (id_article) REFERENCES article (id_article);
+	ADD CONSTRAINT fk_page_article_id_article   FOREIGN KEY (id_article)        REFERENCES article (id_article);
 ALTER TABLE page_article
-	ADD CONSTRAINT fk_page_article_id_page FOREIGN KEY (id_page) REFERENCES page (id_page);
+	ADD CONSTRAINT fk_page_article_id_page      FOREIGN KEY (id_page)           REFERENCES page (id_page);
 ALTER TABLE article_tag
-	ADD CONSTRAINT fk_article_tag_id_article FOREIGN KEY (id_article) REFERENCES article (id_article);
+	ADD CONSTRAINT fk_article_tag_id_article    FOREIGN KEY (id_article)        REFERENCES article (id_article);
 ALTER TABLE article_tag
-	ADD CONSTRAINT fk_article_tag_id_tag FOREIGN KEY (id_tag) REFERENCES tag (id_tag);
+	ADD CONSTRAINT fk_article_tag_id_tag        FOREIGN KEY (id_tag)            REFERENCES tag (id_tag);
 ALTER TABLE picture_tag
-	ADD CONSTRAINT fk_picture_tag_id_tag FOREIGN KEY (id_tag) REFERENCES tag (id_tag);
+	ADD CONSTRAINT fk_picture_tag_id_tag        FOREIGN KEY (id_tag)            REFERENCES tag (id_tag);
 ALTER TABLE picture_tag
-	ADD CONSTRAINT fk_picture_tag_id_picture FOREIGN KEY (id_picture) REFERENCES picture (id_picture);
+	ADD CONSTRAINT fk_picture_tag_id_picture    FOREIGN KEY (id_picture)        REFERENCES picture (id_picture);
 
 
 #------------------------------------------------------------
@@ -204,6 +204,6 @@ ALTER TABLE picture_tag
 
 
 INSERT INTO `user` (`id_user`, `nickname`, `firstname`, `lastname`, `email`, `writer`, `publisher`, `admin`, `password`,
-                    `created`, `lastupdated`, `id_user_updater`, `deleted`, `id_user_deleter`)
+                    `created`, `last_updated`, `id_user_updater`, `deleted`, `id_user_deleter`)
 VALUES (1, 'Charleclerc', 'Charles', 'Coulon', 'c.coulon@cs2i-bourgogne.com', 1, 1, 1,
            '$2y$10$nsv7Keji61EpNXDfJ5yzkOOUmJV2whe7wHxBUnTRHvQ03r2wFDlIu', '2018-03-24 18:19:28', NULL, NULL, NULL, NULL);
