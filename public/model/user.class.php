@@ -31,7 +31,9 @@ class User {
 	}
 
 	/**
-	 * @return bool : Retourne TRUE en cas de succès, FALSE sinon.
+	 * Charge les informations de l'utilisateur depuis la BDD vers l'objet User courant.
+	 *
+	 * @return bool : Retourne TRUE en cas de succès, FALSE si aucun id n'est indiqué dans l'objet.
 	 */
 	private function load() : bool {
 		if ( empty($this->getId()) ) {
@@ -39,11 +41,11 @@ class User {
 		}
 
 		$sql = 'SELECT
-					id,	nickname, firstname, lastname, email, created, updated, deleted
+					id_user, nickname, firstname, lastname, email, created, last_updated, deleted
 				FROM
 					user
 				WHERE
-					id = :user_id';
+					id_user = :user_id';
 
 		$values = array('user_id' => $this->getId());
 		$result = DB::getInstance()->query($sql, $values, false);
@@ -54,9 +56,18 @@ class User {
 		return true;
 	}
 
+	/**
+	 * Enregistre l'utilisateur dans la base de données
+	 * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+	 *               0 => SQLSTATE ,	1 => ErrorCode ,	2 => Message
+	 */
+	public function insertIntoDatabase() : mixed {
 
-	public function insertIntoDatabase() {
-		$sql = 'INSERT INTO user (id, lastname, firstname, password, nickname, email, writer, publisher, admin)
+		if ( !empty($this->getId()) ) {
+			return ['message' => "id_user déjà existant"];
+		}
+
+		$sql = 'INSERT INTO user (id_user, lastname, firstname, password, nickname, email, writer, publisher, admin)
 			VALUES(:id, :lastname, :firstname, :password, :nickname, :email, :writer, :publisher, :admin);';
 
 		$values = array(
@@ -71,19 +82,49 @@ class User {
 			'admin'     => $this->admin,
 		);
 
-		$req = DB::getInstance()->action($sql, $values);
+		$req = DB::getInstance()->action($sql, $values); // return lastInsertId() ou errorInfo()
 
-		return $req; // TRUE ou PDO::errorInfo()
+		if ( is_string($req) ) { // on a recuperé l'id
+			$this->setId((int)$req);
+			return true;
+		}
+
+		return $req; // PDO::errorInfo()
 	}
 
 	/**
-	 * Met à jour l'utilisateur en base de donées avec les données inscrites dans l'objet
+	 * Met à jour l'utilisateur en base de donées avec les données inscrites dans l'objet courant.
 	 *
-	 * @return bool
+	 * @return mixed    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
 	 */
-	public function updateDatabase() : bool {
-		// à faire, bien sûr
-		return false;
+	public function updateDatabase() : mixed {
+
+		$sql = 'UPDATE user
+				SET firstname = :first, lastname = :last, email = :email, writer = :w, publisher = :p, admin = :a
+				WHERE id_user = :id AND nickname = :nick';
+
+		$values = array(
+			'id'    => $this->getId(),
+			'nick'  => $this->getNickname(),
+			'first' => $this->getFirstname(),
+			'last'  => $this->getLastname(),
+			'email' => $this->getEmail(),
+			'w'     => $this->isWriter(),
+			'p'     => $this->isPublisher(),
+			'a'     => $this->isAdmin()
+		);
+
+		$req = DB::getInstance()->action($sql, $values);
+
+		if ( $req === 1 ) {
+			return true;
+		}
+		// alors c'est une erreur MySQL
+		$error = ['SQLSTATE'     => $req[0],
+				  'errorCode'    => $req[1],
+				  'errorMessage' => $req[2]];
+		return $error;
+
 	}
 
 
@@ -96,7 +137,7 @@ class User {
 	 * @return bool|string		TRUE si la connexion a réussi, un message d'erreur sinon.
 	 */
 	public function login(string $nickname, string $password) : mixed {
-		$sql    = 'SELECT id, nickname, password FROM user WHERE LOWER(nickname) = LOWER(:nickname);';
+		$sql    = 'SELECT id_user, nickname, password FROM user WHERE LOWER(nickname) = LOWER(:nickname);';
 		$values = ['nickname' => $nickname];
 		$user   = DB::getInstance()->query($sql, $values, DB::FETCH_ONE);
 
