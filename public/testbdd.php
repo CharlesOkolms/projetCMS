@@ -4,9 +4,9 @@
 require_once('./conf/top.php');
 
 
-
-?><head>
-	<meta charset="UTF-8" />
+?>
+<head>
+    <meta charset="UTF-8"/>
 </head>
 <body>
 	<pre>
@@ -15,10 +15,6 @@ require_once('./conf/top.php');
 DB::getInstance();
 $user = new User(1);
 var_dump($user);
-
-
-
-
 
 
 ?>
