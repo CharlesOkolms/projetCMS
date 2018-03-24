@@ -79,17 +79,60 @@ class DB {
 	 *                       variables nommées ":nomvariable" si besoin de variable dans la requête.
 	 * @param array  $values : Contient les valeurs à attribuer aux inconnues de la requête SQL. En cas d'utilisation
 	 *                       des "?", le tableau contient simplement les valeurs sans index particulier.
-	 * @return array|bool : Retourne les information de l'erreur dans le cas où une erreur survient, TRUE sinon.
+	 * @return mixed 		 : Retourne les informations de l'erreur dans le cas où une erreur survient, le dernier id
+	 *                       inséré pour un INSERT ou le nombre de lignes affectées pour un UPDATE ou encore FALSE si
+	 *                       la requete n'est ni un INSERT ni un UPDATE.
 	 */
-	public function action(string $sql, array $values) {
+	public function action(string $sql, array $values) : mixed {
+		$sql  = trim($sql);
+		$type = strtoupper(substr($sql, 0, 6));
+
+		switch ($type) {
+			case 'INSERT':
+			case 'UPDATE':
+			break;
+			default: // si ce n'est ni un update ni un insert on annule l'action et on retourne false
+				return false;
+			break;
+		}
+
 		$pdostatement = $this->getDb()->prepare($sql, $values);
 		$executed     = $pdostatement->execute($values);
+
 		if ( !$executed ) {
-			$executed = $this->getDb()->errorInfo();
+			return $this->getDb()->errorInfo(); // si execute renvoie false, on retourne les erreurs MySQL
 		}
-		return $executed;
+
+		switch ($type) {
+			case 'INSERT':
+				return DB::getInstance()->lastInsertId(); // si c'était un INSERT, on retourne le dernier id inséré
+			break;
+			case 'UPDATE':
+				return $pdostatement->rowCount(); // si c'était un UPDATE, on retourne le nombre de lignes affectées
+			break;
+		}
 	}
 
+	/**
+	 * @return bool TRUE en cas de succès, FALSE sinon.
+	 */
+	public function beginTransaction() : bool {
+		return $this->getDb()->beginTransaction();
+	}
+
+	/**
+	 * @return bool TRUE en cas de succès, FALSE sinon.
+	 */
+	public function commit() : bool {
+		return $this->getDb()->commit();
+	}
+
+	/**
+	 * @return bool TRUE en cas de succès, FALSE sinon.
+	 */
+	public function rollback() : bool {
+		return $this->getDb()->rollback();
+	}
 
 	/**
 	 * @return PDO : L'objet de connexion PDO
@@ -101,9 +144,9 @@ class DB {
 	/**
 	 * Retourne le dernier id que l'on a inséré en base de données par le biais de cette connexion.
 	 *
-	 * @return int : Le dernier id enregistré dans la base de données par cette connexion PDO.
+	 * @return string : Le dernier id enregistré dans la base de données par cette connexion PDO.
 	 */
-	public function lastInsertId() : int {
+	public function lastInsertId() : string {
 		return $this->getDb()->lastInsertId();
 	}
 }
