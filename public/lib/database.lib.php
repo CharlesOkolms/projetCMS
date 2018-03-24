@@ -5,6 +5,16 @@ class DB {
 	private $db;
 
 	/**
+	 * @var string Définit le format dans lequel les dates+heures (type DateTime) sont obtenues de la base de données
+	 */
+	const DATETIME_FORMAT = 'Y-m-d H:i:s';
+
+	/**
+	 * @var string Définit le format dans lequel les dates (type Date) sont obtenues de la base de données
+	 */
+	const DATE_FORMAT = 'Y-m-d';
+
+	/**
 	 * DB constructor.
 	 */
 	private function __construct() {
@@ -36,6 +46,7 @@ class DB {
 		return self::$instance;
 	}
 
+
 	/**
 	 * @var bool Sert à indiquer si l'on souhaite utiliser un fetchAll() sur le résultat de la requete. C'est la valeur
 	 *      par défaut du paramètre $fetchAll de DB::query().
@@ -46,7 +57,6 @@ class DB {
 	 *      conséquence de ne récupérer que la 1ère ligne de résultat.
 	 */
 	const FETCH_ONE = false;
-
 
 	/**
 	 * Permet de préparer et executer une requete SQL de type SELECT et d'en récupérer directement le résultat sous
@@ -79,7 +89,7 @@ class DB {
 	 *                       variables nommées ":nomvariable" si besoin de variable dans la requête.
 	 * @param array  $values : Contient les valeurs à attribuer aux inconnues de la requête SQL. En cas d'utilisation
 	 *                       des "?", le tableau contient simplement les valeurs sans index particulier.
-	 * @return mixed 		 : Retourne les informations de l'erreur dans le cas où une erreur survient, le dernier id
+	 * @return mixed         : Retourne les informations de l'erreur dans le cas où une erreur survient, le dernier id
 	 *                       inséré pour un INSERT ou le nombre de lignes affectées pour un UPDATE ou encore FALSE si
 	 *                       la requete n'est ni un INSERT ni un UPDATE.
 	 */
@@ -109,6 +119,9 @@ class DB {
 			break;
 			case 'UPDATE':
 				return $pdostatement->rowCount(); // si c'était un UPDATE, on retourne le nombre de lignes affectées
+			break;
+			default:
+				return true;
 			break;
 		}
 	}

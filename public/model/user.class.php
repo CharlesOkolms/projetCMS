@@ -10,8 +10,8 @@ class User {
 	protected $email = '';
 
 	protected $created = '';
-	protected $updated = '';
-	protected $deleted = '';
+	protected $updated = null;
+	protected $deleted = null;
 
 	protected $writer = false;
 	protected $publisher = false;
@@ -165,7 +165,18 @@ class User {
 	 */
 	private function set(array $array) {
 		foreach ( $array as $prop => $value ) {
-			$this->$prop = $value;
+			switch ($prop) {
+				case 'id_user':
+					$property = 'Id';
+				break;
+				case 'last_updated':
+					$property = 'Updated';
+				break;
+				default:
+					$property = ucfirst($prop);
+				break;
+			}
+			$this->{'set' . $property}($value);
 		}
 	}
 
@@ -176,12 +187,41 @@ class User {
 	public function setFirstname(string $firstname) : void 	{$this->firstname 	= $firstname;}
 	public function setLastname(string $lastname) 	: void 	{$this->lastname 	= $lastname;}
 	public function setEmail(string $email) 		: void 	{$this->email 		= $email;}
-	public function setCreated(string $created) 	: void 	{$this->created 	= $created;}
-	public function setUpdated(string $updated) 	: void 	{$this->updated 	= $updated;}
-	public function setDeleted(string $deleted) 	: void 	{$this->deleted 	= $deleted;}
-	public function setWriter(bool $writer) 		: void 	{$this->writer 		= $writer;}
-	public function setPublisher(bool $publisher) 	: void 	{$this->publisher 	= $publisher;}
-	public function setAdmin(bool $admin) 			: void 	{$this->admin 		= $admin;}
+	public function setCreated(string $created, $format = DB::DATETIME_FORMAT) 	: bool 	{
+		if(!validateDate($created, $format)){
+			return false;
+		}else{
+			$created = DateTime::createFromFormat($format,$created);
+			$created = $created->format(DB::DATETIME_FORMAT);
+		}
+		$this->created 	= $created;
+		return true;
+	}
+	public function setUpdated(?string $updated, $format = DB::DATETIME_FORMAT) 	: bool 	{
+		if(!validateDate($updated, $format)){
+			return false;
+		}else{
+			$updated = DateTime::createFromFormat($format,$updated);
+			$updated = $updated->format(DB::DATETIME_FORMAT);
+		}
+		$this->updated 	= $updated;
+		return true;
+	}
+	public function setDeleted(?string $deleted, $format = DB::DATETIME_FORMAT) 	: bool 	{
+		if(!validateDate($deleted, $format)){
+			return false;
+		}else{
+			$deleted = DateTime::createFromFormat($format,$deleted);
+			$deleted = $deleted->format(DB::DATETIME_FORMAT);
+		}
+		$this->deleted 	= $deleted;
+		return true;
+	}
+
+	public function setWriter(bool $writer) 		: void 	{$this->writer 		= (bool)$writer;}
+	public function setPublisher(bool $publisher) 	: void 	{$this->publisher 	= (bool)$publisher;}
+	public function setAdmin(bool $admin) 			: void 	{$this->admin 		= (bool)$admin;}
+
 
 
 	/*********************/
@@ -190,7 +230,7 @@ class User {
 	public function getId() {return $this->id;}
 	public function getNickname() : string 	{return $this->nickname;}
 	public function getPassword() : string 	{return $this->password;}
-	public function getFirstname() : string {return $this->firstname;}
+	public function getFirstname(): string  {return $this->firstname;}
 	public function getLastname() : string 	{return $this->lastname;}
 	public function getEmail() 	 : string 	{return $this->email;}
 	public function getCreated() : string 	{return $this->created;}
