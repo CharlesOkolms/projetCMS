@@ -58,8 +58,9 @@ class User {
 
 	/**
 	 * Enregistre l'utilisateur dans la base de données
+	 *
 	 * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
-	 *               0 => SQLSTATE ,	1 => ErrorCode ,	2 => Message
+	 *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
 	 */
 	public function insertIntoDatabase() : mixed {
 
@@ -132,9 +133,9 @@ class User {
 	 * Fonction permettant de connecter un utilisateur. Si la connexion est possible, charge les données dans l'objet
 	 * courant.
 	 *
-	 * @param string $nickname	Pseudonyme de l'utilisateur.
-	 * @param string $password	Mot de passe (secret) de l'utilisateur.
-	 * @return bool|string		TRUE si la connexion a réussi, un message d'erreur sinon.
+	 * @param string $nickname Pseudonyme de l'utilisateur.
+	 * @param string $password Mot de passe (secret) de l'utilisateur.
+	 * @return bool|string        TRUE si la connexion a réussi, un message d'erreur sinon.
 	 */
 	public function login(string $nickname, string $password) : mixed {
 		$sql    = 'SELECT id_user, nickname, password FROM user WHERE LOWER(nickname) = LOWER(:nickname);';
@@ -180,41 +181,46 @@ class User {
 		}
 	}
 
-	private function setId(int $id) : void {$this->id = $id;}
+	private function setId(int $id) : void { $this->id = $id; }
+	public function setNickname(string $nickname) : void { $this->nickname = $nickname; }
+	public function setPassword(string $password) : void { $this->password = $password; }
+	public function setFirstname(string $firstname) : void { $this->firstname = $firstname; }
+	public function setLastname(string $lastname) : void { $this->lastname = $lastname; }
+	public function setEmail(string $email) : void { $this->email = $email; }
 
-	public function setNickname(string $nickname) 	: void 	{$this->nickname 	= $nickname;}
-	public function setPassword(string $password) 	: void 	{$this->password 	= $password;}
-	public function setFirstname(string $firstname) : void 	{$this->firstname 	= $firstname;}
-	public function setLastname(string $lastname) 	: void 	{$this->lastname 	= $lastname;}
-	public function setEmail(string $email) 		: void 	{$this->email 		= $email;}
-	public function setCreated(string $created, $format = DB::DATETIME_FORMAT) 	: bool 	{
-		if(!validateDate($created, $format)){
+	public function setCreated(string $created, $format = DB::DATETIME_FORMAT) : bool {
+		if ( !validateDate($created, $format) ) {
 			return false;
-		}else{
-			$created = DateTime::createFromFormat($format,$created);
+		}
+		else {
+			$created = DateTime::createFromFormat($format, $created);
 			$created = $created->format(DB::DATETIME_FORMAT);
 		}
-		$this->created 	= $created;
+		$this->created = $created;
 		return true;
 	}
-	public function setUpdated(?string $updated, $format = DB::DATETIME_FORMAT) 	: bool 	{
-		if(!validateDate($updated, $format)){
+
+	public function setUpdated(?string $updated, $format = DB::DATETIME_FORMAT) : bool {
+		if ( !validateDate($updated, $format) ) {
 			return false;
-		}else{
-			$updated = DateTime::createFromFormat($format,$updated);
+		}
+		else {
+			$updated = DateTime::createFromFormat($format, $updated);
 			$updated = $updated->format(DB::DATETIME_FORMAT);
 		}
-		$this->updated 	= $updated;
+		$this->updated = $updated;
 		return true;
 	}
-	public function setDeleted(?string $deleted, $format = DB::DATETIME_FORMAT) 	: bool 	{
-		if(!validateDate($deleted, $format)){
+
+	public function setDeleted(?string $deleted, $format = DB::DATETIME_FORMAT) : bool {
+		if ( !validateDate($deleted, $format) ) {
 			return false;
-		}else{
-			$deleted = DateTime::createFromFormat($format,$deleted);
+		}
+		else {
+			$deleted = DateTime::createFromFormat($format, $deleted);
 			$deleted = $deleted->format(DB::DATETIME_FORMAT);
 		}
-		$this->deleted 	= $deleted;
+		$this->deleted = $deleted;
 		return true;
 	}
 

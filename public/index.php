@@ -5,19 +5,20 @@ require('view/connexionView.php');
 ?>
 <body>
 <?php
-/*
-if(!empty($_GET['page'])){
 
-    switch($_GET['page']){
-        default:
-            include_once(REL_CTRLS.$_GET['page'].'Controller.php');
-            break;
-    }
+if ( !empty($_GET['page']) ) {
 
+	switch ($_GET['page']) {
+		default:
+			include_once controller($_GET['page']);
+		break;
+	}
 
-}else{
 
 }
-*/
+else {
+	// do nothing
+}
+
 ?>
 </body>

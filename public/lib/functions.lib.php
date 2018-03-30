@@ -44,3 +44,45 @@ function create_slug(string $string) {
 	}
 
 }
+
+
+/**
+ * Permet de rediriger vers une page
+ *
+ * @param $page
+ */
+function goToPage($page) : void {
+	header('Location:./index.php?page=' . $page);
+}
+
+// si $view est à false (pas d'argument) retourne le chemin de la vue par défaut associée
+// à la page courante
+/**
+ * @param bool $pageOrElement
+ * @return string
+ */
+// WORK IN PROGRESS
+//function view($pageOrElement = false) : string {
+//	$page = $pageOrElement; // pour rendre la suite + lisible
+//	global $thisPage;
+//	global $defaultView;
+//	global $thisPage;
+//
+//	if ( $page === false ) {
+//		if ( !empty($_GET['page']) ) {
+//			return PATH_VIEW . $defaultView[$_GET['page']];
+//		}
+//		return PATH_VIEW . $defaultView[$thisPage];
+//	}
+//	elseif ( is_string($page) ) {
+//		if ( !empty($defaultView[$page]) ) {
+//			return PATH_VIEW . $defaultView[$page];
+//		}
+//		return (file_exists(PATH_VIEW . $page . '.php')) ? PATH_VIEW . $page . '.php' : null;
+//	}
+//	return '';
+//}
+//
+// + DEFAULT CONTROLLER
+
+

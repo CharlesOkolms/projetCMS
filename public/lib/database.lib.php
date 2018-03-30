@@ -31,7 +31,7 @@ class DB {
 	 * DB destructor.
 	 */
 	public function __destruct() {
-		self::$instance = NULL;
+		self::$instance = null;
 	}
 
 	/**
