@@ -80,7 +80,7 @@ class User {
 			'email'     => $this->email,
 			'writer'    => $this->writer,
 			'publisher' => $this->publisher,
-			'admin'     => $this->admin,
+			'admin'     => $this->admin
 		);
 
 		$req = DB::getInstance()->action($sql, $values); // return lastInsertId() ou errorInfo()
