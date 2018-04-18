@@ -16,4 +16,5 @@ foreach ( glob(PATH_MODEL . "*.php") as $filename ) {
 /* chemin par defaut */
 // pour chaque page, indique la suivante
 const NEXTPAGE = array();
-?>
+
+const CONTROLLERS = array('nompage' => PATH_CONTROLLER.'page.php'); // à mettre à jour à chaque ajout de page
