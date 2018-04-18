@@ -12,5 +12,3 @@ const PATH_LIB        = './lib/';            // lien relatif des librairies php
 const PATH_MODEL      = './model/';        // lien relatif des modeles
 const PATH_VIEW       = './view/';            // lien relatif des vues
 const PATH_CONTROLLER = './controller/'; // lien relatif des controleurs
-
-?>

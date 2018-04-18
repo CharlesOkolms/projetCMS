@@ -155,9 +155,9 @@ class User {
 
 
 
-	/*********************/
-	/****** SETTERS ******/
-	/*********************/
+	/***********************************************************************/
+	/******************************* SETTERS *******************************/
+	/***********************************************************************/
 
 	/**
 	 * Setter global de User : A modifier pour utiliser les setters individuels
@@ -188,7 +188,7 @@ class User {
 	public function setLastname(string $lastname) : void { $this->lastname = $lastname; }
 	public function setEmail(string $email) : void { $this->email = $email; }
 
-	public function setCreated(string $created, $format = DB::DATETIME_FORMAT) : bool {
+	private function setCreated(string $created, $format = DB::DATETIME_FORMAT) : bool {
 		if ( !validateDate($created, $format) ) {
 			return false;
 		}
@@ -200,7 +200,7 @@ class User {
 		return true;
 	}
 
-	public function setUpdated(?string $updated, $format = DB::DATETIME_FORMAT) : bool {
+	private function setUpdated(?string $updated, $format = DB::DATETIME_FORMAT) : bool {
 		if ( !validateDate($updated, $format) ) {
 			return false;
 		}
@@ -230,10 +230,11 @@ class User {
 
 
 
-	/*********************/
-	/****** GETTERS ******/
-	/*********************/
-	public function getId() {return $this->id;}
+	/***********************************************************************/
+	/******************************* GETTERS *******************************/
+	/***********************************************************************/
+
+	public function getId() : int {return $this->id;}
 	public function getNickname() : string 	{return $this->nickname;}
 	public function getPassword() : string 	{return $this->password;}
 	public function getFirstname(): string  {return $this->firstname;}
