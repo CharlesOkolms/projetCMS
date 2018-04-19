@@ -13,7 +13,6 @@ function validateDate($date, $format = 'Y-m-d') {
 	return $d && $d->format($format) == $date;
 }
 
-
 /**
  * Génère une string random de la longueur demandée.
  *
@@ -29,7 +28,6 @@ function randomString(int $l) {
 	}
 	return $rand;
 }
-
 
 /**
  * Genere une chaine de caracteres qui peut servir pour le lien URL d'un article par exemple.
@@ -62,27 +60,39 @@ function goToPage($page) : void {
  * @return string
  */
 // WORK IN PROGRESS
-//function view($pageOrElement = false) : string {
-//	$page = $pageOrElement; // pour rendre la suite + lisible
-//	global $thisPage;
-//	global $defaultView;
-//	global $thisPage;
-//
-//	if ( $page === false ) {
-//		if ( !empty($_GET['page']) ) {
-//			return PATH_VIEW . $defaultView[$_GET['page']];
-//		}
-//		return PATH_VIEW . $defaultView[$thisPage];
-//	}
-//	elseif ( is_string($page) ) {
-//		if ( !empty($defaultView[$page]) ) {
-//			return PATH_VIEW . $defaultView[$page];
-//		}
-//		return (file_exists(PATH_VIEW . $page . '.php')) ? PATH_VIEW . $page . '.php' : null;
-//	}
-//	return '';
-//}
-//
-// + DEFAULT CONTROLLER
+function view($pageOrElement = false) : string {
+	$page = $pageOrElement; // pour rendre la suite + lisible
 
+	if ( $page === false ) {
+		return PATH_VIEW.VIEWS[CURRENT_PAGE];
+	}
+	elseif ( is_string($page) ) {
+		if ( !empty(VIEWS[$page]) ) {
+			return PATH_VIEW.VIEWS[$page];
+		}
+		return (file_exists(PATH_VIEW.$page.'.view.php')) ? PATH_VIEW.$page.'.view.php' : PATH_VIEW.'null.php';
+	}
+	return PATH_VIEW.'null.php';
+}
+
+/**
+ * Permet d'obtenir le chemin vers le controleur ayant le nom demandé.
+ *
+ * @param bool $name
+ * @return string
+ */
+function controller($name = false) : string {
+	$page = $name; // pour rendre la suite + lisible
+
+	if ( $page === false ) {
+		return PATH_CONTROLLER.CONTROLLERS[CURRENT_PAGE];
+	}
+	elseif ( is_string($page) ) {
+		if ( !empty(CONTROLLERS[$page]) ) {
+			return PATH_CONTROLLER.CONTROLLERS[$page];
+		}
+		return (file_exists(PATH_CONTROLLER.$page.'.controller.php')) ? PATH_CONTROLLER.$page.'.controller.php' : PATH_CONTROLLER.'null.php';
+	}
+	return PATH_CONTROLLER.'null.php';
+}
 

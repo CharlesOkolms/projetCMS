@@ -1,24 +1,19 @@
 <?php
 session_start();
 require_once('./conf/top.php');
-require('view/connexionView.php');
 ?>
 <body>
 <?php
 
-if ( !empty($_GET['page']) ) {
-
-	switch ($_GET['page']) {
-		default:
-			include_once controller($_GET['page']);
-		break;
-	}
-
-
-}
-else {
-	// do nothing
-}
+    if(CURRENT_PAGE !== 'accueil'){
+		require_once controller(CURRENT_PAGE);
+    }
+//    elseif(CURRENT_PAGE == 'connexion'){
+    else{
+        if(!defined('CURRENT_USER')){
+			require('view/connexionView.php'); // renommer le fichier en .view.php et cette ligne est à remplacer par : require view('connexion');
+		}
+    }
 
 ?>
 </body>
