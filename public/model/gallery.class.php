@@ -1,12 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
+ * Created with PhpStorm.
  * User: CharlesOkolms
  * Date: 16/04/2018
  * Time: 11:54
  */
 
-class gallery {
+class Gallery {
 
 	protected $id;
 	protected $title = '';
