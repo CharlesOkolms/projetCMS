@@ -13,7 +13,7 @@ class tag{
 
 
     /**
-     * article constructor.
+     * tag constructor.
      * @param int $id : id en base de données du tag
      */
     public function __construct(int $id = -1)
@@ -27,7 +27,7 @@ class tag{
 
 
     /**
-     *  Charge les informations de l'article depuis la BDD vers l'objet Tag courant.
+     *  Charge les informations du tag depuis la BDD vers l'objet Tag courant.
      *
      * @return bool : Retourne TRUE en cas de succès, FALSE si aucun id n'est indiqué dans l'objet.
      */
