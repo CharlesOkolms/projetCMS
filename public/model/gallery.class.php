@@ -23,7 +23,7 @@ class Gallery {
 	 *
 	 * @param int $id id facultatif de la galerie à charger. Si id est null, aucune galerie n'est chargée.
 	 */
-	public function __construct(?int $id) {
+	public function __construct(int $id=-1) {
 		if ( !empty($id) & $id != -1 ) {
 			$this->setId((int)$id);
 			$this->load();
