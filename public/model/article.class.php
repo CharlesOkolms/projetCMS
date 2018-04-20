@@ -1,9 +1,17 @@
 <?php
 
+/**
+ * Created by PhpStorm.
+ * User: Thomas
+ * Date: 18/04/2018
+ * Time: 09:24
+ */
+
+
 class article{
     protected $id;
     protected $title        = ''    ;
-    protected $content     = ''    ;
+    protected $content      = ''    ;
     protected $headerphoto  = ''    ;
     protected $attachment   = ''    ;
 
