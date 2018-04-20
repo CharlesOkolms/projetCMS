@@ -67,7 +67,7 @@ function view($pageOrElement = false) : string {
 		return PATH_VIEW.VIEWS[CURRENT_PAGE];
 	}
 	elseif ( is_string($page) ) {
-		if ( !empty(VIEWS[$page]) ) {
+		if ( in_array($page, VIEWS) ) {
 			return PATH_VIEW.VIEWS[$page];
 		}
 		return (file_exists(PATH_VIEW.$page.'.view.php')) ? PATH_VIEW.$page.'.view.php' : PATH_VIEW.'null.php';
@@ -88,7 +88,7 @@ function controller($name = false) : string {
 		return PATH_CONTROLLER.CONTROLLERS[CURRENT_PAGE];
 	}
 	elseif ( is_string($page) ) {
-		if ( !empty(CONTROLLERS[$page]) ) {
+		if ( in_array($page, CONTROLLERS) ) {
 			return PATH_CONTROLLER.CONTROLLERS[$page];
 		}
 		return (file_exists(PATH_CONTROLLER.$page.'.controller.php')) ? PATH_CONTROLLER.$page.'.controller.php' : PATH_CONTROLLER.'null.php';
