@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('./conf/top.php');
-require('./view/templates/header.view.php');
+require('./view/templates/head.php');
 ?>
 <body>
 <?php
@@ -19,5 +19,5 @@ require('./view/templates/header.view.php');
 ?>
 </body>
 <?php
-require('./view/templates/footer.view.php');
+require('./view/templates/end.php');
 ?>
