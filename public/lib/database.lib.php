@@ -35,11 +35,11 @@ class DB {
 	}
 
 	/**
-	 * Singleton (une seule et unique instance PDO pour tout le script)
+	 * Singleton (une seule et unique instance PDO pour tout le script) donc on doit retrouver l'instance à utiliser
 	 *
 	 * @return DB : L'instance de la classe DB. (on ne peut instancier qu'une seule fois cette classe)
 	 */
-	static function getInstance() {
+	public static function getInstance() {
 		if ( is_null(self::$instance) ) {
 			self::$instance = new DB;
 		}
