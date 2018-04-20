@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('./conf/top.php');
+require('./view/templates/header.view.php');
 ?>
 <body>
 <?php
@@ -11,9 +12,12 @@ require_once('./conf/top.php');
 //    elseif(CURRENT_PAGE == 'connexion'){
     else{
         if(!defined('CURRENT_USER')){
-			require('view/connexionView.php'); // renommer le fichier en .view.php et cette ligne est à remplacer par : require view('connexion');
+			require('./view/connexionView.php'); // renommer le fichier en .view.php et cette ligne est à remplacer par : require view('connexion');
 		}
     }
 
 ?>
 </body>
+<?php
+require('./view/templates/footer.view.php');
+?>

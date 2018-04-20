@@ -1,17 +1,9 @@
-<style>
-    .connexion {
-        border-left: 2px solid black;
-        border-right: 2px solid black;
-        border-top: 2px solid black;
-        border-bottom: 2px solid black;
-        text-align: center;
-    }
-</style>
+
 
 <!-- Ici débute le formulaire -->
 <form id="formAddUser" class="login" method="POST">
 
-        <!-- TextBox pseudo -->
+    <!-- TextBox pseudo -->
     <div class="connexion">
         <h1 class="card-title pricing-card-title">Se connecter</h1>
         <div class="form-group textBox">
