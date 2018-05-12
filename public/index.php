@@ -1,8 +1,7 @@
 <?php
 session_start();
 require_once('./conf/top.php');
-
-require_once(PATH_VIEW.'templates/head.php');
+require('./view/templates/head.php');
 ?>
 <body>
 <?php
@@ -13,7 +12,8 @@ require_once(PATH_VIEW.'templates/head.php');
 //    elseif(CURRENT_PAGE == 'connexion'){
     else{
         if(!defined('CURRENT_USER')){ // on checke si la constante "CURRENT_USER" est définie (c'est le cas si l'utilisateur est connecté)
-			require(PATH_VIEW.'connexionView.php'); // renommer le fichier en .view.php et cette ligne est à remplacer par : require view('connexion');
+            require('./view/templates/header.view.php');
+            require('./view/connexionView.php'); // renommer le fichier en .view.php et cette ligne est à remplacer par : require view('connexion');
 		}
     }
 
