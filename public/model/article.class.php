@@ -53,7 +53,7 @@ class article{
                         written,
                         published,
                         deleted,
-                        premium,
+                        premium
 		        FROM    article
 				WHERE   id_article = :article_id';
 
