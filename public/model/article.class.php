@@ -78,7 +78,7 @@ class article{
             return ['message' => "id_article déjà existant"];
         }
 
-        $sql = 'INSERT INTO article 
+		$sql = 'INSERT INTO article 
                                     (
                                       id_article
                                     , title
@@ -205,8 +205,8 @@ class article{
     private function setId          (int $id)               : void { $this->id = $id;                   }
     public  function setTitle       (string $title)         : void { $this->title = $title;             }
     public  function setContent     (string $content)       : void { $this->content = $content;         }
-    public  function setHeaderphoto (string $headerphoto)   : void { $this->headerphoto = $headerphoto; }
-    public  function setAttachment  (string $attachment)    : void { $this->attachment = $attachment;   }
+    public  function setHeaderphoto ($headerphoto)   : void { $this->headerphoto = $headerphoto; }
+    public  function setAttachment  ($attachment)    : void { $this->attachment = $attachment;   }
     public  function setPremium     (bool $premium)         : void { $this->premium = $premium;         }
 
     public function setWritten      (string $written, $format = DB::DATETIME_FORMAT) : bool {
@@ -222,7 +222,7 @@ class article{
     }
 
 
-    public function setPublished      (string $published, $format = DB::DATETIME_FORMAT) : bool {
+    public function setPublished      ($published, $format = DB::DATETIME_FORMAT) : bool {
         if ( !validateDate($published, $format) ) {
             return false;
         }
@@ -235,7 +235,7 @@ class article{
     }
 
 
-    public function setDeleted      (string $deleted, $format = DB::DATETIME_FORMAT) : bool {
+    public function setDeleted      ($deleted, $format = DB::DATETIME_FORMAT) : bool {
         if ( !validateDate($deleted, $format) ) {
             return false;
         }

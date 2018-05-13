@@ -200,7 +200,7 @@ class User {
 		return true;
 	}
 
-	private function setUpdated(string $updated = '', $format = DB::DATETIME_FORMAT) : bool {
+	private function setUpdated($updated = '', $format = DB::DATETIME_FORMAT) : bool {
 		if ( !validateDate($updated, $format) ) {
 			return false;
 		}
@@ -212,7 +212,7 @@ class User {
 		return true;
 	}
 
-	public function setDeleted(string $deleted='', $format = DB::DATETIME_FORMAT) : bool {
+	public function setDeleted($deleted='', $format = DB::DATETIME_FORMAT) : bool {
 		if ( !validateDate($deleted, $format) ) {
 			return false;
 		}

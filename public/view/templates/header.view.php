@@ -1,20 +1,13 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Max
- * Date: 18/04/2018
- * Time: 14:18
- */
-
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <!--Import style-->
-    <link type="text/css" rel="stylesheet" href="style/bootstrap.css"  media="screen,projection"/>
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta charset="utf-8">
-
-</head>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+        </ul>
+    </div>
+</nav>
