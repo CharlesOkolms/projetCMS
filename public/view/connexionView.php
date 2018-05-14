@@ -27,13 +27,13 @@
             </div>
         </form>-->
 
-        <form class="form-signin">
+        <form class="form-signin" method="post" action="index.php?page=connexion">
             <img class="mb-4" src="style/img/logo.png" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
             <label for="inputEmail" class="sr-only">Email</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="">
+            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" required="" autofocus="">
             <label for="inputPassword" class="sr-only">Mot de passe</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required="">
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" required="">
             <!--<div class="checkbox mb-3">
                 <label>
                     <input type="checkbox" value="remember-me"> Remember me
