@@ -11,10 +11,12 @@
 
     $verif = $user->login($email, $password);
 
-    if($verif == true)
+    if($verif == true) {
+        $_SESSION['user'] = $user->getId();
         goToPage('dashboard');
-    else
+    }
+    else {
         goToPage('accueil');
-
+    }
 
 ?>
