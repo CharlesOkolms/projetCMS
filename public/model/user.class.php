@@ -11,6 +11,7 @@ class User {
 
 	protected $created = '';
 	protected $updated = null;
+	protected $updater = null; // id de l'utilisateur ayant modifié celui-ci
 	protected $deleted = null;
 
 	protected $writer = false;
@@ -170,6 +171,9 @@ class User {
 				case 'id_user':
 					$property = 'Id';
 				break;
+				case 'id_user_updater':
+					$property = 'Updater';
+				break;
 				case 'last_updated':
 					$property = 'Updated';
 				break;
@@ -211,6 +215,7 @@ class User {
 		$this->updated = $updated;
 		return true;
 	}
+	public function setUpdater($updater) : void { $this->updater = (int)$updater; }
 
 	public function setDeleted($deleted='', $format = DB::DATETIME_FORMAT) : bool {
 		if ( !validateDate($deleted, $format) ) {
@@ -246,5 +251,36 @@ class User {
 	public function isWriter()	 : bool 	{return $this->writer;}
 	public function isPublisher(): bool 	{return $this->publisher;}
 	public function isAdmin() 	 : bool 	{return $this->admin;}
+
+
+	/**
+	 * @return array
+	 */
+	public static function getAll() : array {
+
+		$sql = 'SELECT 
+						id_user,
+						nickname,
+						firstname,
+						lastname,
+						email,
+						writer,
+						publisher,
+						admin,
+						created,
+						last_updated AS updated,
+						id_user_updater AS updater
+                FROM user';
+
+		$req = DB::getInstance()->query($sql, [], DB::FETCH_ALL);
+		$users = [];
+		foreach($req as $i => $ligne){
+			$users[$ligne['id_user']] = new User();
+			$users[$ligne['id_user']]->set($ligne);
+		}
+
+		return $users; // liste ou PDO::errorInfo()
+	}
+
 
 }
