@@ -75,7 +75,7 @@ class DB {
 	 * @return array
 	 */
 	public function query(string $sql, array $values, bool $fetchAll = DB::FETCH_ALL) : array {
-		$pdostatement = $this->getDb()->prepare($sql, $values);
+		$pdostatement = $this->getDb()->prepare($sql);
 		$pdostatement->execute($values);
 		$result = ($fetchAll == DB::FETCH_ALL) ? $pdostatement->fetchAll(PDO::FETCH_ASSOC) : $pdostatement->fetch(PDO::FETCH_ASSOC);
 		return $result;
