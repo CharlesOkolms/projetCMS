@@ -53,10 +53,10 @@ class tag{
     /**
      * Enregistre le tag dans la base de données
      *
-     * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+     * @return TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
      *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
      */
-    public function insertIntoDatabase() : mixed {
+    public function insertIntoDatabase() {
 
         if ( !empty($this->getId()) ) {
             return ['message' => "id_tag déjà existant"];
@@ -93,9 +93,9 @@ class tag{
     /**
      * Met à jour le tag en base de donées avec les données inscrites dans l'objet courant.
      *
-     * @return mixed    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+     * @return     TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
      */
-    public function updateDatabase() : mixed {
+    public function updateDatabase() {
 
         $sql = 'UPDATE    tag
 				SET       label         = :label
@@ -150,8 +150,8 @@ class tag{
     }
 
 
-    private function setId          (int $id)               :void  { $this->id = $id;                   }
-    public  function setLabel       (string $label)         :void  { $this->label = $label;             }
+    private function setId          (int $id)                 { $this->id = $id;                   }
+    public  function setLabel       (string $label)           { $this->label = $label;             }
 
 
 

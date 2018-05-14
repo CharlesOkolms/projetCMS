@@ -13,10 +13,12 @@ class article{
     protected $title        = ''    ;
     protected $content      = ''    ;
     protected $headerphoto  = ''    ;
-    protected $attachment   = ''    ;
+	protected $attachment   = '';
 
-    protected $written      = false ;
-    protected $published    = null  ;
+	protected $writer       = '';
+
+	protected $written      = false;
+	protected $published    = NULL;
     protected $deleted      = null  ;
     protected $premium      = false ;
 
@@ -69,52 +71,53 @@ class article{
     /**
     * Enregistre l'article dans la base de données
     *
-    * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+    * @return TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
     *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
     */
-    public function insertIntoDatabase() : mixed {
+    public function insertIntoDatabase() {
 
         if ( !empty($this->getId()) ) {
             return ['message' => "id_article déjà existant"];
         }
 
-		$sql = 'INSERT INTO article 
-                                    (
-                                      id_article
-                                    , title
+		$sql = 'INSERT INTO article (
+                                     title
                                     , content
                                     , headerphoto
                                     , attachment
                                     , premium
                                     , written
                                     , published
-                                    , deleted
+                                    , id_user_writer
                                     )
-                                    
 			    VALUES              (
-			                          :id
-			                        , :title
+			                           :title
 			                        , :content
 			                        , :headerphoto
-			                        , :attachement
+			                        , :attachment
+			                        , :premium
 			                        , :written
 			                        , :published
-			                        , :deleted
-			                        , :premium
+			                        , :writer
 			                        );';
 
 
-        $values = array (
-                          'id'            => 'DEFAULT'
-                        , 'title'         => $this->title
-                        , 'content'       => $this->content
-                        , 'headerphoto'   => $this->headerphoto
-                        , 'attachement'   => $this->attachment
-                        , 'written'       => $this->premium
-                        , 'published'     => $this->written
-                        , 'deleted'       => $this->published
-                        , 'premium'       => $this->deleted
-                        );
+		$headerphoto = (!empty($this->getHeaderPhoto()))?$this->getHeaderphoto():null;
+		$attachment = (!empty($this->getAttachment()))?$this->getAttachment():null;
+		$premium = ($this->isPremium())?true:false;
+		$written = (!empty($this->getWritten()))?$this->getWritten():null;
+		$published = (!empty($this->getPublished()))?$this->getPublished():null;
+
+		$values = array(
+			'title'         => $this->getTitle(),
+			'content'       => $this->getContent(),
+			'headerphoto'   => $headerphoto,
+			'attachment'    => $attachment,
+			'premium'       => $premium,
+			'written'       => $written,
+			'published'     => $published,
+            'writer'        => $this->getWriter()
+		);
 
         $req = DB::getInstance()->action($sql, $values); // return lastInsertId() ou errorInfo()
 
@@ -122,7 +125,6 @@ class article{
             $this->setId((int)$req);
             return true;
         }
-
         return $req; // PDO::errorInfo()
     }
 
@@ -130,9 +132,9 @@ class article{
     /**
     * Met à jour l'article en base de donées avec les données inscrites dans l'objet courant.
     *
-    * @return mixed    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+    * @return    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
     */
-    public function updateDatabase() : mixed {
+    public function updateDatabase() {
 
         $sql = 'UPDATE    article
 				SET       title         = :title
@@ -151,10 +153,10 @@ class article{
             'title'         => $this->getTitle(),
             'content'       => $this->getContent(),
             'headerphoto'   => $this->getHeaderPhoto(),
-            'premium'       => $this->getPremium(),
-            'written'       => $this->isWritten(),
-            'published'     => $this->isPublished(),
-            'deleted'       => $this->isDeleted()
+            'premium'       => $this->isPremium(),
+            'written'       => $this->getWritten(),
+            'published'     => $this->getPublished(),
+            'deleted'       => $this->getDeleted()
         );
 
         $req = DB::getInstance()->action($sql, $values);
@@ -202,12 +204,13 @@ class article{
 
 
 
-    private function setId          (int $id)               : void { $this->id = $id;                   }
-    public  function setTitle       (string $title)         : void { $this->title = $title;             }
-    public  function setContent     (string $content)       : void { $this->content = $content;         }
-    public  function setHeaderphoto ($headerphoto)   : void { $this->headerphoto = $headerphoto; }
-    public  function setAttachment  ($attachment)    : void { $this->attachment = $attachment;   }
-    public  function setPremium     (bool $premium)         : void { $this->premium = $premium;         }
+    private function setId          (int $id)                { $this->id = $id;                   }
+    public  function setTitle       (string $title)          { $this->title = $title;             }
+    public  function setContent     (string $content)        { $this->content = $content;         }
+    public  function setHeaderphoto ($headerphoto)    { $this->headerphoto = $headerphoto; }
+    public  function setAttachment  ($attachment)     { $this->attachment = $attachment;   }
+    public  function setPremium     (bool $premium)   { $this->premium = $premium;         }
+    public function setWriter       (int $writer)     { $this->writer = intval($writer);   }
 
     public function setWritten      (string $written, $format = DB::DATETIME_FORMAT) : bool {
         if ( !validateDate($written, $format) ) {
@@ -260,7 +263,9 @@ class article{
     public function getContent()    : string    { return $this->content; }
     public function getAttachment() : string    { return $this->attachment; }
     public function getHeaderphoto(): string    { return $this->headerphoto; }
+    public function getWriter()     : int       { return $this->writer; }
     public function isWritten()     : bool      { return $this->written; }
+    public function getWritten()    : string    { return $this->written; }
     public function getPublished()              { return $this->published; }
     public function getDeleted()                { return $this->deleted; }
     public function isPremium()     : bool      { return $this->premium; }

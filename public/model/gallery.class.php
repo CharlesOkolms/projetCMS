@@ -56,10 +56,10 @@ class Gallery {
 	/**
 	 * Enregistre la galerie dans la base de données
 	 *
-	 * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+	 * @return  TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
 	 *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
 	 */
-	public function insertIntoDatabase() : mixed {
+	public function insertIntoDatabase() {
 
 		if ( !empty($this->getId()) ) {
 			return ['message' => "id_gallery déjà existant"];
@@ -89,9 +89,9 @@ class Gallery {
 	 * Met à jour la galerie en base de donées avec les données inscrites dans l'objet courant.
 	 *
 	 * @param int $user_id
-	 * @return mixed    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+	 * @return     TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
 	 */
-	public function updateDatabase(int $user_id) : mixed {
+	public function updateDatabase(int $user_id) {
 
 		$sql = 'UPDATE gallery SET title = :title, description = :description, id_user_updator = :updator
 				WHERE id_gallery = :id';
@@ -159,14 +159,14 @@ class Gallery {
 	/******************************* GETTERS *******************************/
 	/***********************************************************************/
 
-	private function setId($id) 				: void 	{$this->id = $id;}
-	public function setTitle(string $title) : void 		{$this->title = $title;}
-	public function setDescription(string $desc) : void {$this->description = $desc;}
-	private function setCreator($creator) 	: void 		{$this->creator = $creator;}
-	private function setCreated(string $created) : void {$this->created = $created;}
-	private function setUpdated($updated) 	: void 		{$this->updated = $updated;}
-	private function setLastUpdator($lastUpdator) : void {$this->lastUpdator = $lastUpdator;}
-	private function setDeleted($deleted) 	: void 		{$this->deleted = $deleted;}
+	private function setId($id) 				 	{$this->id = $id;}
+	public function setTitle(string $title)  		{$this->title = $title;}
+	public function setDescription(string $desc)    {$this->description = $desc;}
+	private function setCreator($creator) 	 		{$this->creator = $creator;}
+	private function setCreated(string $created)    {$this->created = $created;}
+	private function setUpdated($updated) 	 		{$this->updated = $updated;}
+	private function setLastUpdator($lastUpdator)   {$this->lastUpdator = $lastUpdator;}
+	private function setDeleted($deleted) 	 		{$this->deleted = $deleted;}
 
 
 

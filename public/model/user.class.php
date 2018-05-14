@@ -11,6 +11,7 @@ class User {
 
 	protected $created = '';
 	protected $updated = null;
+	protected $updater = null; // id de l'utilisateur ayant modifié celui-ci
 	protected $deleted = null;
 
 	protected $writer = false;
@@ -59,10 +60,10 @@ class User {
 	/**
 	 * Enregistre l'utilisateur dans la base de données
 	 *
-	 * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+	 * @return  TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
 	 *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
 	 */
-	public function insertIntoDatabase() : mixed {
+	public function insertIntoDatabase() {
 
 		if ( !empty($this->getId()) ) {
 			return ['message' => "id_user déjà existant"];
@@ -96,9 +97,9 @@ class User {
 	/**
 	 * Met à jour l'utilisateur en base de donées avec les données inscrites dans l'objet courant.
 	 *
-	 * @return mixed    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+	 * @return     TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
 	 */
-	public function updateDatabase() : mixed {
+	public function updateDatabase() {
 
 		$sql = 'UPDATE user
 				SET firstname = :first, lastname = :last, email = :email, writer = :w, publisher = :p, admin = :a
@@ -137,18 +138,18 @@ class User {
 	 * @param string $password Mot de passe (secret) de l'utilisateur.
 	 * @return bool|string        TRUE si la connexion a réussi, un message d'erreur sinon.
 	 */
-	public function login(string $nickname, string $password) : mixed {
-		$sql    = 'SELECT id_user, nickname, password FROM user WHERE LOWER(nickname) = LOWER(:nickname);';
-		$values = ['nickname' => $nickname];
+	public function login(string $email, string $password) {
+		$sql    = 'SELECT id_user, email, password FROM user WHERE LOWER(email) = LOWER(:email);';
+		$values = ['email' => $email];
 		$user   = DB::getInstance()->query($sql, $values, DB::FETCH_ONE);
 
 		if ( password_verify($password, $user['password']) ) {
-			$this->id = $user['id'];
+			$this->id = $user['id_user'];
 			$this->load();
 			return true;
 		}
 		else {
-			return 'identifiants invalides';
+			return false;
 		}
 	}
 
@@ -170,6 +171,9 @@ class User {
 				case 'id_user':
 					$property = 'Id';
 				break;
+				case 'id_user_updater':
+					$property = 'Updater';
+				break;
 				case 'last_updated':
 					$property = 'Updated';
 				break;
@@ -181,12 +185,12 @@ class User {
 		}
 	}
 
-	private function setId(int $id) : void { $this->id = $id; }
-	public function setNickname(string $nickname) : void { $this->nickname = $nickname; }
-	public function setPassword(string $password) : void { $this->password = $password; }
-	public function setFirstname(string $firstname) : void { $this->firstname = $firstname; }
-	public function setLastname(string $lastname) : void { $this->lastname = $lastname; }
-	public function setEmail(string $email) : void { $this->email = $email; }
+	private function setId(int $id) { $this->id = $id; }
+	public function setNickname(string $nickname) { $this->nickname = $nickname; }
+	public function setPassword(string $password) { $this->password = $password; }
+	public function setFirstname(string $firstname) { $this->firstname = $firstname; }
+	public function setLastname(string $lastname)  { $this->lastname = $lastname; }
+	public function setEmail(string $email) { $this->email = $email; }
 
 	private function setCreated(string $created, $format = DB::DATETIME_FORMAT) : bool {
 		if ( !validateDate($created, $format) ) {
@@ -211,6 +215,7 @@ class User {
 		$this->updated = $updated;
 		return true;
 	}
+	public function setUpdater($updater) { $this->updater = (int)$updater; }
 
 	public function setDeleted($deleted='', $format = DB::DATETIME_FORMAT) : bool {
 		if ( !validateDate($deleted, $format) ) {
@@ -224,9 +229,9 @@ class User {
 		return true;
 	}
 
-	public function setWriter(bool $writer) 		: void 	{$this->writer 		= (bool)$writer;}
-	public function setPublisher(bool $publisher) 	: void 	{$this->publisher 	= (bool)$publisher;}
-	public function setAdmin(bool $admin) 			: void 	{$this->admin 		= (bool)$admin;}
+	public function setWriter(bool $writer) 		 	{$this->writer 		= (bool)$writer;}
+	public function setPublisher(bool $publisher) 	 	{$this->publisher 	= (bool)$publisher;}
+	public function setAdmin(bool $admin) 			 	{$this->admin 		= (bool)$admin;}
 
 
 
@@ -246,5 +251,36 @@ class User {
 	public function isWriter()	 : bool 	{return $this->writer;}
 	public function isPublisher(): bool 	{return $this->publisher;}
 	public function isAdmin() 	 : bool 	{return $this->admin;}
+
+
+	/**
+	 * @return array
+	 */
+	public static function getAll() : array {
+
+		$sql = 'SELECT 
+						id_user,
+						nickname,
+						firstname,
+						lastname,
+						email,
+						writer,
+						publisher,
+						admin,
+						created,
+						last_updated AS updated,
+						id_user_updater AS updater
+                FROM user';
+
+		$req = DB::getInstance()->query($sql, [], DB::FETCH_ALL);
+		$users = [];
+		foreach($req as $i => $ligne){
+			$users[$ligne['id_user']] = new User();
+			$users[$ligne['id_user']]->set($ligne);
+		}
+
+		return $users; // liste ou PDO::errorInfo()
+	}
+
 
 }
