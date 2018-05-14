@@ -78,7 +78,7 @@ class DB {
 		$pdostatement = $this->getDb()->prepare($sql);
 		$pdostatement->execute($values);
 		$result = ($fetchAll == DB::FETCH_ALL) ? $pdostatement->fetchAll(PDO::FETCH_ASSOC) : $pdostatement->fetch(PDO::FETCH_ASSOC);
-		return $result;
+		return ($result)?$result:$this->getDb()->errorInfo();
 	}
 
 	/**
