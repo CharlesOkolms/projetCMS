@@ -17,3 +17,12 @@
 	<div><span class="lbl">Prenom :</span> <span class="value"><?=$user->getFirstname()?></span></div>
 	<div><span class="lbl">E-mail :</span> <span class="value"><?=$user->getEmail()?></span>	</div>
 </div>
+
+<pre>
+<?php
+    print_r($gallery);
+
+    print_r($article);
+
+
+    ?>
