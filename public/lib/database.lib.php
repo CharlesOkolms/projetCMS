@@ -93,7 +93,7 @@ class DB {
 	 *                       inséré pour un INSERT ou le nombre de lignes affectées pour un UPDATE ou encore FALSE si
 	 *                       la requete n'est ni un INSERT ni un UPDATE.
 	 */
-	public function action(string $sql, array $values) : mixed {
+	public function action(string $sql, array $values) {
 		$sql  = trim($sql);
 		$type = strtoupper(substr($sql, 0, 6));
 
@@ -106,9 +106,8 @@ class DB {
 			break;
 		}
 
-		$pdostatement = $this->getDb()->prepare($sql, $values);
+		$pdostatement = $this->getDb()->prepare($sql);
 		$executed     = $pdostatement->execute($values);
-
 		if ( !$executed ) {
 			return $this->getDb()->errorInfo(); // si execute renvoie false, on retourne les erreurs MySQL
 		}
