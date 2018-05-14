@@ -149,7 +149,7 @@ class User {
 			return true;
 		}
 		else {
-			return 'identifiants invalides';
+			return false;
 		}
 	}
 
