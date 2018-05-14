@@ -49,7 +49,7 @@ function create_slug(string $string) {
  *
  * @param $page
  */
-function goToPage($page) : void {
+function goToPage($page) {
 	header('Location:./index.php?page=' . $page);
 }
 
@@ -95,4 +95,3 @@ function controller($name = false) : string {
 	}
 	return PATH_CONTROLLER.'null.php';
 }
-
