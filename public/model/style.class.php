@@ -53,10 +53,10 @@ class style{
     /**
      * Enregistre le style dans la base de données
      *
-     * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+     * @return TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
      *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
      */
-    public function insertIntoDatabase() : mixed {
+    public function insertIntoDatabase() {
 
         if ( !empty($this->getId()) ) {
             return ['message' => "id_style déjà existant"];
@@ -93,9 +93,9 @@ class style{
     /**
      * Met à jour le style en base de donées avec les données inscrites dans l'objet courant.
      *
-     * @return mixed    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+     * @return     TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
      */
-    public function updateDatabase() : mixed {
+    public function updateDatabase() {
 
         $sql = 'UPDATE    style
 				SET       name         = :name
@@ -151,8 +151,8 @@ class style{
 
 
 
-    public function setId       (int $id)        :void  { $this->id = $id;        }
-    public function setLabel    (string $label)  :void  { $this->label = $label;  }
+    public function setId       (int $id)          { $this->id = $id;        }
+    public function setLabel    (string $label)    { $this->label = $label;  }
 
 
 
