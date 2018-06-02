@@ -61,10 +61,10 @@ class Picture {
     /**
      * Enregistre la picture dans la base de données
      *
-     * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+     * @return  TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
      *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
      */
-    public function insertIntoDatabase() : mixed {
+    public function insertIntoDatabase() {
 
         if ( !empty($this->getId()) ) {
             return ['message' => "id_gallery déjà existant"];
@@ -113,9 +113,9 @@ class Picture {
      * Met à jour la picture en base de donées avec les données inscrites dans l'objet courant.
      *
      * @param int $picture_id
-     * @return mixed    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+     * @return     TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
      */
-    public function updateDatabase() : mixed {
+    public function updateDatabase() {
 
         $sql = 'UPDATE  picture
                 SET     name              = :nameP
@@ -174,9 +174,9 @@ class Picture {
 
 
 
-    public function setId           (int $id)                : void { $this->id = $id;                      }
-    public function setName         (string $name)           : void { $this->name = $name;                  }
-    public function setDescription  (string $description)    : void { $this->description = $description;    }
+    public function setId           (int $id)                 { $this->id = $id;                      }
+    public function setName         (string $name)            { $this->name = $name;                  }
+    public function setDescription  (string $description)     { $this->description = $description;    }
 
 
     public function setUploaded     (string $uploaded, $format = DB::DATETIME_FORMAT) : bool {

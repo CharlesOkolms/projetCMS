@@ -71,7 +71,7 @@ class article{
     /**
     * Enregistre l'article dans la base de données
     *
-    * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+    * @return TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
     *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
     */
     public function insertIntoDatabase() {
@@ -132,7 +132,7 @@ class article{
     /**
     * Met à jour l'article en base de donées avec les données inscrites dans l'objet courant.
     *
-    * @return mixed    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+    * @return    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
     */
     public function updateDatabase() {
 
@@ -204,13 +204,13 @@ class article{
 
 
 
-    private function setId          (int $id)               : void { $this->id = $id;                   }
-    public  function setTitle       (string $title)         : void { $this->title = $title;             }
-    public  function setContent     (string $content)       : void { $this->content = $content;         }
-    public  function setHeaderphoto ($headerphoto)   : void { $this->headerphoto = $headerphoto; }
-    public  function setAttachment  ($attachment)    : void { $this->attachment = $attachment;   }
-    public  function setPremium     (bool $premium)  : void { $this->premium = $premium;         }
-    public function setWriter       (int $writer)    : void { $this->writer = intval($writer);   }
+    private function setId          (int $id)                { $this->id = $id;                   }
+    public  function setTitle       (string $title)          { $this->title = $title;             }
+    public  function setContent     (string $content)        { $this->content = $content;         }
+    public  function setHeaderphoto ($headerphoto)    { $this->headerphoto = $headerphoto; }
+    public  function setAttachment  ($attachment)     { $this->attachment = $attachment;   }
+    public  function setPremium     (bool $premium)   { $this->premium = $premium;         }
+    public function setWriter       (int $writer)     { $this->writer = intval($writer);   }
 
     public function setWritten      (string $written, $format = DB::DATETIME_FORMAT) : bool {
         if ( !validateDate($written, $format) ) {
