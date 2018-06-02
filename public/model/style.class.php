@@ -7,9 +7,9 @@
  * Time: 10:06
  */
 
-class style{
+class Style{
     protected $id              ;
-    protected $label   = ''    ;
+    protected $name   = ''    ;
 
 
     /**
@@ -53,7 +53,7 @@ class style{
     /**
      * Enregistre le style dans la base de données
      *
-     * @return TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+     * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
      *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
      */
     public function insertIntoDatabase() {
@@ -62,22 +62,11 @@ class style{
             return ['message' => "id_style déjà existant"];
         }
 
-        $sql = 'INSERT INTO style 
-                                    (
-                                      id_style
-                                    , name
-                                    )
-                                    
-			    VALUES              (
-			                          :id
-			                        , :name
-			                        );';
+        $sql = 'INSERT INTO style (name)
+			    VALUES  (:name );';
 
 
-        $values = array (
-          'id'            => 'DEFAULT'
-        , 'label'         => $this->name
-        );
+        $values = array ( 'name' => $this->getName());
 
         $req = DB::getInstance()->action($sql, $values); // return lastInsertId() ou errorInfo()
 
@@ -93,7 +82,7 @@ class style{
     /**
      * Met à jour le style en base de donées avec les données inscrites dans l'objet courant.
      *
-     * @return     TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+     * @return   mixed  TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
      */
     public function updateDatabase() {
 
@@ -138,9 +127,6 @@ class style{
                 case 'id_style':
                     $property = 'Id';
                     break;
-                case 'last_updated':
-                    $property = 'Updated';
-                    break;
                 default:
                     $property = ucfirst($prop);
                     break;
@@ -152,7 +138,7 @@ class style{
 
 
     public function setId       (int $id)          { $this->id = $id;        }
-    public function setLabel    (string $label)    { $this->label = $label;  }
+    public function setName    (string $name)    { $this->name = $name;  }
 
 
 
@@ -162,7 +148,14 @@ class style{
     /*********************/
 
     private function getId()                { return $this->id; }
-    public  function getLabel(): string     { return $this->label; }
+    public  function getName(): string     { return $this->name; }
+
+
+
+	public static function getAll(){
+		$liste = DB::getInstance()->query('select * from style', [], DB::FETCH_ALL);
+		return $liste;
+	}
 
 }
 

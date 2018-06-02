@@ -60,7 +60,7 @@ class User {
 	/**
 	 * Enregistre l'utilisateur dans la base de données
 	 *
-	 * @return  TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+	 * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
 	 *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
 	 */
 	public function insertIntoDatabase() {
@@ -97,7 +97,7 @@ class User {
 	/**
 	 * Met à jour l'utilisateur en base de donées avec les données inscrites dans l'objet courant.
 	 *
-	 * @return     TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+	 * @return   mixed  TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
 	 */
 	public function updateDatabase() {
 
@@ -134,7 +134,7 @@ class User {
 	 * Fonction permettant de connecter un utilisateur. Si la connexion est possible, charge les données dans l'objet
 	 * courant.
 	 *
-	 * @param string $nickname Pseudonyme de l'utilisateur.
+	 * @param string $email Email de l'utilisateur.
 	 * @param string $password Mot de passe (secret) de l'utilisateur.
 	 * @return bool|string        TRUE si la connexion a réussi, un message d'erreur sinon.
 	 */
