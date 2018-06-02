@@ -42,7 +42,7 @@ class User {
 		}
 
 		$sql = 'SELECT
-					id_user, nickname, firstname, lastname, email, created, last_updated, deleted
+					id_user, nickname, firstname, lastname, email, created, last_updated, deleted, writer, publisher, admin
 				FROM
 					user
 				WHERE

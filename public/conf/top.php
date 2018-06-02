@@ -35,5 +35,5 @@ define('CURRENT_PAGE', $page);
 
 if(!empty($_SESSION['user'])){
 	define('CURRENT_USER_ID', intval($_SESSION['user']));
-	define('CURRENT_USER', new User(intval($_SESSION['user'])));
+	$CURRENT_USER = new User(intval($_SESSION['user']));
 }
