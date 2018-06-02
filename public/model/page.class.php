@@ -10,6 +10,7 @@ class Page {
 
 	protected $id;
 	protected $title = '';
+	protected $slug = '';
 	protected $template = ''; // id template
 	protected $style = ''; // id style
 	protected $creator; // id user
@@ -61,12 +62,13 @@ class Page {
 			return ['message' => "id_page déjà existant"];
 		}
 
-		$sql = 'INSERT INTO page(id_page, title, id_template, id_style, id_user_creator)
-			VALUES(:id,:title,:template,:style,:creator)';
+		$sql = 'INSERT INTO page(id_page, title, slug, id_template, id_style, id_user_creator)
+			VALUES(:id,:title,:slug, :template,:style,:creator)';
 
 		$values = array(
 			'id'          => 'DEFAULT',
 			'title'       => $this->getTitle(),
+			'slug'       => $this->getSlug(),
 			'template' => $this->getTemplate(),
 			'style' => $this->getStyle(),
 			'creator' => $this->getCreator()
@@ -147,19 +149,34 @@ class Page {
 	public function getStyle()		: int 		{return $this->style;}
 	public function getTemplate() 	: int 		{return $this->template;}
 	public function getcreator() 	: int 		{return $this->creator;}
+	public function getSlug() 	: string 		{return $this->slug;}
 
 
 
 	/***********************************************************************/
 	/******************************* GETTERS *******************************/
 	/***********************************************************************/
+	/**
+	 * @param int $id
+	 */
+	private function setId(int $id) 				{$this->id = $id;}
 
-	private function setId($id) 				 	{$this->id = $id;}
-	public function setTitle(string $title)  		{$this->title = $title;}
+	/** Set le titre de la page, ainsi que son slug (automatiquement)
+	 * @param string $title
+	 */
+	public function setTitle(string $title)  		{$this->title = $title;$this->slug = create_slug($title);}
 	public function setStyle(int $style)    		{$this->style = $style;}
 	public function setTemplate(int $template)		{$this->template = $template;}
 	public function setCreator(int $creator)		{$this->creator = $creator;}
 
 
-
+	public static function findPageId($slug) : int {
+		$select = 'select id_page from page where LOWER(slug) = LOWER(:slug)';
+		$val['slug'] = $slug;
+		$page = DB::getInstance()->query($select,$val,DB::FETCH_ONE);
+		if(!empty($page['id_page'])){
+			return $page['id_page'];
+		}
+		return false;
+	}
 }

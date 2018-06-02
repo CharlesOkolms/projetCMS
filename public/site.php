@@ -8,7 +8,8 @@ require('./view/templates/head.php');
 
 if(CURRENT_PAGE !== 'accueil'){
 	// chercher en BDD les articles liés à la page
-	var_dump(Article::getAll(1));
+    $idPage = Page::findPageId(CURRENT_PAGE);
+	var_dump(Article::getAll($idPage));
 }
 
 ?>
