@@ -1,6 +1,6 @@
 <?php
 
-if(!empty($_POST['article_add'])){
+if(!empty($_POST['article_add']) && $CURRENT_USER->isWriter()){
 	$title = strval($_POST['title']);
 	$content = strval($_POST['article']);
 
@@ -11,5 +11,8 @@ if(!empty($_POST['article_add'])){
 	$article->setWriter(CURRENT_USER_ID);
 	$res = $article->insertIntoDatabase();
 }
-
-include view('article_form');
+if($CURRENT_USER->isWriter()){
+	include view('article_form');
+}else{
+	echo "Vous n'avez pas les droits pour créer un article.";
+}
