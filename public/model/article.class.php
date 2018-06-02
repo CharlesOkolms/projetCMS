@@ -270,6 +270,12 @@ class article{
     public function getDeleted()                { return $this->deleted; }
     public function isPremium()     : bool      { return $this->premium; }
 
+
+    public static function getAll($page){
+
+        $liste = DB::getInstance()->query('select * from article inner join page_article pa on pa.id_article = article.id_article WHERE pa.id_page = :page', ['page' => $page], DB::FETCH_ALL);
+		return $liste;
+    }
+
 }
 
-?>
