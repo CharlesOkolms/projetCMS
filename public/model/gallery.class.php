@@ -9,8 +9,8 @@
 class Gallery {
 
 	protected $id;
-	protected $title = '';
-	protected $description = '';
+	protected $title = null;
+	protected $description = null;
 	protected $creator;
 
 	protected $created = '';
@@ -56,7 +56,7 @@ class Gallery {
 	/**
 	 * Enregistre la galerie dans la base de données
 	 *
-	 * @return  TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+	 * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
 	 *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
 	 */
 	public function insertIntoDatabase() {
@@ -65,18 +65,18 @@ class Gallery {
 			return ['message' => "id_gallery déjà existant"];
 		}
 
-		$sql = 'INSERT INTO gallery(id_gallery, title, description, id_user_creator)
-			VALUES(:id,:title,:description,:creator)';
+		$sql = 'INSERT INTO gallery(title, description, id_user_creator)
+			VALUES(:title,:description,:creator)';
 
 		$values = array(
-			'id'          => 'DEFAULT',
 			'title'       => $this->getTitle(),
-			'description' => $this->getDescription()
+			'description' => $this->getDescription(),
+			'creator'     => $this->getCreator()
 		);
 
 		$req = DB::getInstance()->action($sql, $values); // return lastInsertId() ou errorInfo()
 
-		if ( is_string($req) ) { // on a recuperé l'id
+		if ( is_numeric($req) ) { // on a recuperé l'id
 			$this->setId((int)$req);
 			return true;
 		}
@@ -89,7 +89,7 @@ class Gallery {
 	 * Met à jour la galerie en base de donées avec les données inscrites dans l'objet courant.
 	 *
 	 * @param int $user_id
-	 * @return     TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+	 * @return  mixed   TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
 	 */
 	public function updateDatabase(int $user_id) {
 
@@ -145,8 +145,8 @@ class Gallery {
 
 
 	public function getId() 		: int 		{return (int)$this->id;}
-	public function getTitle()		: string 	{return $this->title;}
-	public function getDescription(): string 	{return $this->description;}
+	public function getTitle()		{return $this->title;}
+	public function getDescription() 	{return $this->description;}
 	public function getCreator() 	: int 		{return $this->creator;}
 	public function getCreated() 	: string 	{return $this->created;}
 	public function getUpdated() 	: string 	{return $this->updated;}
@@ -162,7 +162,7 @@ class Gallery {
 	private function setId($id) 				 	{$this->id = $id;}
 	public function setTitle(string $title)  		{$this->title = $title;}
 	public function setDescription(string $desc)    {$this->description = $desc;}
-	private function setCreator($creator) 	 		{$this->creator = $creator;}
+	public function setCreator($creator) 	 		{$this->creator = $creator;}
 	private function setCreated(string $created)    {$this->created = $created;}
 	private function setUpdated($updated) 	 		{$this->updated = $updated;}
 	private function setLastUpdator($lastUpdator)   {$this->lastUpdator = $lastUpdator;}
