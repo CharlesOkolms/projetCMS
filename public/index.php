@@ -2,6 +2,10 @@
 session_start();
 require_once('./conf/top.php');
 require('./view/templates/head.php');
+if(!empty($CURRENT_USER) && CURRENT_PAGE !== 'accueil' && CURRENT_PAGE !== 'connexion'){
+	require('./view/templates/header.view.php');
+}
+
 ?>
 <body>
 <?php
