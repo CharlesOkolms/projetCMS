@@ -50,3 +50,20 @@ body {
     border-top-right-radius: 0;
 }
 
+
+
+/*  GALLERY & PICTURES */
+.picture_block{
+	border:1px solid darkgrey;
+	display: inline-block;
+	width:222px;
+	height:302px;
+}
+.picture_block > .picture_title{
+	height:1em;
+}
+.picture_block > img.picture {
+	display:flex;
+	max-width:220px;
+	max-height:300px;
+}
