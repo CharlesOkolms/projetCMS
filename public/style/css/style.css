@@ -55,10 +55,12 @@ h1 {
 }
 
 
+
+/*  AJOUTER ARTICLE */
 #article_add {
     width: 90%;
     margin-left: auto;
-    margin-top: 10%;
+    margin-top: 150px;
 }
 
 
@@ -129,6 +131,18 @@ h1 {
     resize: none;
 }
 
+
+
+/*  LISTE ARTICLE */
+#liste_article {
+    width: 90%;
+    margin-left: auto;
+    margin-top: 500px;
+}
+
+
+
+
 /*  GALLERY & PICTURES */
 .picture_block{
 	border:1px solid darkgrey;
@@ -144,3 +158,5 @@ h1 {
 	max-width:220px;
 	max-height:300px;
 }
+
+
