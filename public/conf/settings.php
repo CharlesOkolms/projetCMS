@@ -7,8 +7,9 @@ const DB_USER = '155773_bccpcms';
 const DB_PWD  = 'bccpcms';
 
 // Liens relatifs à public/index.php
-const PATH_ROOT       = './';                // lien de base dans lequel il y a l'index
-const PATH_LIB        = './lib/';            // lien relatif des librairies php
-const PATH_MODEL      = './model/';        // lien relatif des modeles
-const PATH_VIEW       = './view/';            // lien relatif des vues
-const PATH_CONTROLLER = './controller/'; // lien relatif des controleurs
+const PATH_ROOT       = './';				// lien de base dans lequel il y a l'index
+const PATH_LIB        = './lib/';			// lien relatif des librairies php
+const PATH_MODEL      = './model/';			// lien relatif des modeles
+const PATH_VIEW       = './view/';			// lien relatif des vues
+const PATH_CONTROLLER = './controller/'; 	// lien relatif des controleurs
+const PATH_PICTURE    = './picture/';		// lien relatif des images

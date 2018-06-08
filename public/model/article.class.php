@@ -271,9 +271,14 @@ class article{
     public function isPremium()     : bool      { return $this->premium; }
 
 
-    public static function getAll($page){
-
-        $liste = DB::getInstance()->query('select * from article inner join page_article pa on pa.id_article = article.id_article WHERE pa.id_page = :page', ['page' => $page], DB::FETCH_ALL);
+    public static function getAll($page = false){
+		$val = [];
+		$suppquery = ';';
+    	if($page){
+			$suppquery = "inner join page_article pa on pa.id_article = article.id_article WHERE pa.id_page = :page ;";
+			$val = ['page' => $page];
+		}
+        $liste = DB::getInstance()->query('select * from article'.$suppquery ,$val , DB::FETCH_ALL);
 		return $liste;
     }
 

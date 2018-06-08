@@ -25,7 +25,7 @@
 
         <ul class="list-unstyled components">
             <li class="active">
-                <a href="#homeSubmenu">Tableau de bord</a>
+                <a href="?page=dashboard">Tableau de bord</a>
                 <!--<ul class="collapse list-unstyled" id="homeSubmenu">
                     <li><a href="#">Home 1</a></li>
                     <li><a href="#">Home 2</a></li>
@@ -35,25 +35,25 @@
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li><a href="#">Les Pages</a></li>
-                    <li><a href="#">Créer une Page</a></li>
+                    <li><a href="?pages=pages_list">Les Pages</a></li>
+                    <li><a href="?page=page_add">Créer une Page</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#articleSubmenu" data-toggle="collapse" aria-expanded="false">Article</a>
                 <ul class="collapse list-unstyled" id="articleSubmenu">
-                    <li><a href="#">Les Articles</a></li>
-                    <li><a href="#">Créer un Article</a></li>
+                    <li><a href="?page=articles_list">Les Articles</a></li>
+                    <li><a href="?page=article_add">Créer un Article</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#">Médias</a>
+                <a href="?page=pictures_list">Médias</a>
             </li>
             <li>
-                <a href="#">Utilisateurs</a>
+                <a href="?page=users_list">Utilisateurs</a>
             </li>
             <li>
-                <a href="#">Paramètres</a>
+                <a href="?page=config">Paramètres</a>
             </li>
         </ul>
 
@@ -77,10 +77,8 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
+
+                        <li><a href="?action=logout">Déconnexion <span class="glyphicon glyphicon-off text-danger"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -120,3 +118,5 @@
         });
     });
 </script>
+
+<div id="pageContent">

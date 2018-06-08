@@ -28,5 +28,3 @@
         document.getElementById("editor").insertAdjacentHTML('beforeend', 'name="content"');
     });
 </script>
-
-

@@ -8,12 +8,13 @@
 
 class Picture {
 
-    protected $id               ;
-    protected $name         = '';
-    protected $description  = '';
-    protected $uploaded         ;
-    protected $uploador         ;
-    protected $idGallery        ;
+	protected $id;
+	protected $title = null;
+	protected $description = null;
+	protected $extension = null;
+	protected $uploaded;
+	protected $uploader;
+	protected $idGallery;
 
 
 
@@ -40,11 +41,10 @@ class Picture {
 
         $sql    = 'SELECT
 				        	id_picture
-				          , name
+				          , title
 				          , description
 				          , uploaded
 				          , id_user_uploader  AS uploador
-                          , id_gallery        AS idGallery
 				FROM
 					picture
 				WHERE
@@ -61,7 +61,7 @@ class Picture {
     /**
      * Enregistre la picture dans la base de données
      *
-     * @return  TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+     * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
      *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
      */
     public function insertIntoDatabase() {
@@ -70,32 +70,32 @@ class Picture {
             return ['message' => "id_gallery déjà existant"];
         }
 
-        $sql = 'INSERT INTO picture
+		$sql = 'INSERT INTO picture
                                       (
                                         id_picture
-                                      , name
+                                      , title
                                       , description
+                                      , extension
                                       , uploaded
                                       , id_user_uploader
-                                      , id_gallery
                                       )
 			    VALUES
 			                          (
 			                            :id
-			                          , :nameP
+			                          , :title
 			                          , :description
+			                          , :ext
 			                          , :uploaded
-			                          , :uploador
-			                          , :gallery
+			                          , :uploader
 			                          )';
 
-        $values = array(
+		$values = array(
             'id'          => 'DEFAULT',
-            'nameP'       => $this->getName(),
+            'title'       => $this->getTitle(),
             'description' => $this->getDescription(),
+            'extension' => $this->getExtension(),
             'uploaded'    => $this->getUploaded(),
-            'uploador'    => $this->getUploador(),
-            'gallery'     => $this->getGallery()
+            'uploader'    => $this->getUploader()
         );
 
         $req = DB::getInstance()->action($sql, $values); // return lastInsertId() ou errorInfo()
@@ -112,30 +112,27 @@ class Picture {
     /**
      * Met à jour la picture en base de donées avec les données inscrites dans l'objet courant.
      *
-     * @param int $picture_id
-     * @return     TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+     * @return  mixed   TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
      */
     public function updateDatabase() {
 
         $sql = 'UPDATE  picture
-                SET     name              = :nameP
+                SET     title              = :title
                       , description       = :description
                       , uploaded          = :uploaded
-                      , id_user_uploader  = :uploador
-                      , id_gallery        = :gallery
+                      , id_user_uploader  = :uploader
 				WHERE   id_picture = :id';
 
         $values = array(
             'id'          => $this->getId(),
-            'nameP'       => $this->getName(),
-            'uploaded'    => $this->getUploaded(),
-            'uploador'    => $this->getUploador(),
-            'gallery'     => $this->getGallery()
-        );
+            'title'       => $this->getTitle(),
+			'uploaded' => $this->getUploaded(),
+			'uploader' => $this->getUploader()
+		);
 
-        $req = DB::getInstance()->action($sql, $values);
+		$req = DB::getInstance()->action($sql, $values);
 
-        if ( $req === 1 ) {
+		if ( $req === 1 ) {
             $this->setUploaded(new DateTime());
             return true;
         }
@@ -173,16 +170,15 @@ class Picture {
     }
 
 
+	private function setId			(int $id) 				{ $this->id = $id; }
+	public function setTitle		(string $title) 		{ $this->title = $title; }
+	public function setDescription	(string $description) 	{ $this->description = $description; }
+	public function setExtension	(string $extension) 	{ $this->extension = strval($extension); }
 
-    public function setId           (int $id)                 { $this->id = $id;                      }
-    public function setName         (string $name)            { $this->name = $name;                  }
-    public function setDescription  (string $description)     { $this->description = $description;    }
-
-
-    public function setUploaded     (string $uploaded, $format = DB::DATETIME_FORMAT) : bool {
-        if ( !validateDate($uploaded, $format) ) {
-            return false;
-        }
+	public function setUploaded(string $uploaded, $format = DB::DATETIME_FORMAT) : bool {
+		if ( !validateDate($uploaded, $format) ) {
+			return false;
+		}
         else {
             $uploaded = DateTime::createFromFormat($format, $uploaded);
             $uploaded = $uploaded->format(DB::DATETIME_FORMAT);
@@ -191,36 +187,17 @@ class Picture {
         return true;
     }
 
-
-    public function setUploador     (string $uploador, $format = DB::DATETIME_FORMAT) : bool {
-        if ( !validateDate($uploador, $format) ) {
+    public function setUploader     (string $uploader, $format = DB::DATETIME_FORMAT) : bool {
+        if ( !validateDate($uploader, $format) ) {
             return false;
         }
         else {
-            $uploador = DateTime::createFromFormat($format, $uploador);
-            $uploador = $uploador->format(DB::DATETIME_FORMAT);
+            $uploader = DateTime::createFromFormat($format, $uploader);
+            $uploader = $uploader->format(DB::DATETIME_FORMAT);
         }
-        $this->uploador = $uploador;
+        $this->uploader = $uploader;
         return true;
     }
-
-
-
-    public function setIdGallery     (string $idGallery, $format = DB::DATETIME_FORMAT) : bool {
-        if ( !validateDate($idGallery, $format) ) {
-            return false;
-        }
-        else {
-            $idGallery = DateTime::createFromFormat($format, $idGallery);
-            $idGallery = $idGallery->format(DB::DATETIME_FORMAT);
-        }
-        $this->idGallery = $idGallery;
-        return true;
-
-    }
-
-
-
 
 
     /***********************************************************************/
@@ -228,11 +205,23 @@ class Picture {
     /***********************************************************************/
 
 
-    public function getId           ()          { return $this->id;              }
-    public function getName         (): string  { return $this->name;            }
-    public function getDescription  (): string  { return $this->description;     }
-    public function getUploaded     ()          { return $this->uploaded;        }
-    public function getUploador     ()          { return $this->uploador;        }
-    public function getIdGallery    ()          { return $this->idGallery;       }
+    public function getId           ()          { return $this->id;				}
+    public function getTitle		(): string  { return $this->title;			}
+    public function getDescription  (): string  { return $this->description;	}
+    public function getUploaded     ()          { return $this->uploaded;		}
+    public function getUploader     ()          { return $this->uploader;		}
+    public function getIdGallery    ()          { return $this->idGallery;		}
+	public function getExtension	() :string  { return $this->extension;		}
+
+	/** Obtiens la liste des images de la galerie.
+	 * @return array
+	 */
+    public static function getAll() : array {
+		$liste = DB::getInstance()->query('select id_picture as id, picture.* from picture WHERE deleted IS NULL ;', [], DB::FETCH_ALL);
+		return $liste;
+	}
+
+
+
 
 }
