@@ -69,11 +69,10 @@ class User {
 			return ['message' => "id_user déjà existant"];
 		}
 
-		$sql = 'INSERT INTO user (id_user, lastname, firstname, password, nickname, email, writer, publisher, admin)
-			VALUES(:id, :lastname, :firstname, :password, :nickname, :email, :writer, :publisher, :admin);';
+		$sql = 'INSERT INTO user ( lastname, firstname, password, nickname, email, writer, publisher, admin)
+			VALUES( :lastname, :firstname, :password, :nickname, :email, :writer, :publisher, :admin);';
 
 		$values = array(
-			'id'        => 'DEFAULT',
 			'lastname'  => $this->lastname,
 			'firstname' => $this->firstname,
 			'password'  => $this->password,
@@ -192,7 +191,7 @@ class User {
 	public function setLastname(string $lastname)  { $this->lastname = $lastname; }
 	public function setEmail(string $email) { $this->email = $email; }
 
-	private function setCreated(string $created, $format = DB::DATETIME_FORMAT) : bool {
+	public function setCreated(string $created, $format = DB::DATETIME_FORMAT) : bool {
 		if ( !validateDate($created, $format) ) {
 			return false;
 		}
@@ -239,7 +238,7 @@ class User {
 	/******************************* GETTERS *******************************/
 	/***********************************************************************/
 
-	public function getId() : int {return $this->id;}
+	public function getId()                 {return $this->id;}
 	public function getNickname() : string 	{return $this->nickname;}
 	public function getPassword() : string 	{return $this->password;}
 	public function getFirstname(): string  {return $this->firstname;}

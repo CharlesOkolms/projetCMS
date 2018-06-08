@@ -40,7 +40,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#articleSubmenu" data-toggle="collapse" aria-expanded="false">Article</a>
+                <a href="#articleSubmenu" data-toggle="collapse" aria-expanded="false">Articles</a>
                 <ul class="collapse list-unstyled" id="articleSubmenu">
                     <li><a href="?page=articles_list">Les Articles</a></li>
                     <li><a href="?page=article_add">Créer un Article</a></li>
@@ -50,7 +50,11 @@
                 <a href="?page=pictures_list">Médias</a>
             </li>
             <li>
-                <a href="?page=users_list">Utilisateurs</a>
+                <a href="#utilisateurSubmenu" data-toggle="collapse" aria-expanded="false">Utilisateur</a>
+                <ul class="collapse list-unstyled" id="utilisateurSubmenu">
+                    <li><a href="?page=users_list">Les Utilisateur</a></li>
+                    <li><a href="?page=user_add">Créer un utilisateur</a></li>
+                </ul>
             </li>
             <li>
                 <a href="?page=config">Paramètres</a>

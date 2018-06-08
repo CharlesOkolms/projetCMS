@@ -160,3 +160,60 @@ h1 {
 }
 
 
+
+
+/*  AJOUT UTILISATEUR */
+#user_add {
+    width: 90%;
+    margin-left: auto;
+    margin-top: 15px;
+}
+
+
+
+#user_add input[type="text"] {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#user_add input[type="password"] {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#droit_utilisateur {
+    float: left;
+    width: 90%;
+    margin-top: 8px;
+}
+
+
+#user_add input[type="checkbox"] {
+    margin-top: 8px;
+}
+
+#user_add input[type="submit"] {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
+}
