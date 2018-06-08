@@ -18,11 +18,10 @@
 	<div><span class="lbl">E-mail :</span> <span class="value"><?=$user->getEmail()?></span>	</div>
 </div>
 
-<pre>
 <?php
-    print_r($gallery);
+    var_dump($users);
 
-    print_r($article);
+//    print_r($article);
 
 
     ?>
