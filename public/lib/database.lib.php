@@ -60,7 +60,9 @@ class DB {
 
 	/**
 	 * Permet de préparer et executer une requete SQL de type SELECT et d'en récupérer directement le résultat sous
-	 * forme de tableau associatif. Exemple d'appel : $usersList = DB::getInstance()->query('Select * from user where
+	 * forme de tableau associatif.
+	 *
+	 * Exemple : $usersList = DB::getInstance()->query('Select * from user where
 	 * id > :id', array(':id'=>12), DB::FETCH_ALL);
 	 *
 	 * @param string $sql      : Requête SQL (uniquement SELECT) à executer, avec des points d'interrogation "?" ou des
@@ -109,7 +111,7 @@ class DB {
 		$pdostatement = $this->getDb()->prepare($sql);
 		$executed     = $pdostatement->execute($values);
 		if ( !$executed ) {
-			return $this->getDb()->errorInfo(); // si execute renvoie false, on retourne les erreurs MySQL
+			return $pdostatement->errorInfo(); // si execute renvoie false, on retourne les erreurs MySQL
 		}
 
 		switch ($type) {
