@@ -253,11 +253,15 @@ class User {
 	public function isAdmin() 	 : bool 	{return $this->admin;}
 
 
-	/**
+	/** Recherche et retourne la liste des utilisateurs sous forme de tableau associatif. On peut préciser un role pour chercher uniquement les auteurs, par exemple.
+	 * @param string $right droit des utilisateurs recherchés : $right = 'writer' ou 'publisher' ou 'admin'
 	 * @return array
 	 */
-	public static function getAll() : array {
-
+	public static function getAll($right = '') : array {
+		$clause = ' ;';
+		if($right !== ''){
+			$clause = ' WHERE '.strtolower($right).' = 1 ;';
+		}
 		$sql = 'SELECT 
 						id_user,
 						nickname,
@@ -270,7 +274,7 @@ class User {
 						created,
 						last_updated AS updated,
 						id_user_updater AS updater
-                FROM user';
+                FROM user '.$clause;
 
 		$req = DB::getInstance()->query($sql, [], DB::FETCH_ALL);
 		$users = [];
