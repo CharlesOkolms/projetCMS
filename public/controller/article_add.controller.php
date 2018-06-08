@@ -2,7 +2,7 @@
 
 if(!empty($_POST['article_add']) && $CURRENT_USER->isWriter()){
 	$title = strval($_POST['title']);
-	$content = strval($_POST['article']);
+	$content = strval($_POST['content']);
 
 	$article = new Article();
 	$article->setContent($content);
