@@ -8,81 +8,83 @@
         border-bottom: 2px solid black;
     }
 
-    .card-text {
-        margin-left: 3%;
-        margin-right: 3%;
-        margin-top: 3%;
+    #pageContent {
+        margin-left: 6%;
+    }
+
+    .rowBen {
+        display: flex;
     }
 
     .well {
-        margin-left: 3%;
-        margin-top: -10%;
+        width:390px;
+        height:250px;
+        margin-bottom: 10%;
     }
+
+    .navbar-header {
+        text-align: center;
+    }
+
+    .secondWell {
+        margin-left: 10%;
+    }
+
 </style>
 
-<!--
-<div class="row">
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                <h4>&nbsp;&nbsp;Pages & Articles récents</h4>
-            </div>
-            <div class="card-body">
-                <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Première page</p>
-                <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Seconde page</p>
-                <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Troisième page</p>
+<div class="rowBen">
+    <div class="firstWell">
+        <div class="well">
+            <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pages & Articles récents</a>
+                    </div>
+                    <p>&nbsp;</p>
+                    &nbsp;&nbsp;<p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Première page</p>
+                    <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Seconde page</p>
+                    <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Troisième page</p>
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                <h4>&nbsp;&nbsp;Vos pages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vos articles</h4>
-            </div>
-            <div class="card-body">
-                <p class="card-text card-h1">&nbsp;Numero un</p>
-                <p class="card-text card-h2">&nbsp;With supporting text below as a natural lead-in to additional content.eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>
-            </div>
+    <div class="secondWell">
+        <div class="well">
+            <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vos pages</a>
+                    </div>
+                    <p>&nbsp;</p>
+                &nbsp;&nbsp;&nbsp;&nbsp;<p class="card-text card-h1">&nbsp;Numero un</p>
+                    <p class="card-text card-h2">&nbsp;With supporting text below</p>
+                </div>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                <h4>&nbsp;&nbsp;Pages & Articles récents</h4>
-            </div>
-            <div class="card-body">
-                <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Première page</p>
-                <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Seconde page</p>
-                <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Troisième page</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                <h4>&nbsp;&nbsp;Vos pages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vos articles</h4>
-            </div>
-            <div class="card-body">
-                <p class="card-text card-h1">&nbsp;Numero un</p>
-                <p class="card-text card-h2">&nbsp;With supporting text below as a natural lead-in to additional content.eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>
+<br/>
+
+<div class="rowBen">
+    <div class="firstWell">
+        <div class="well">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comptes administrateurs</a>
+                </div>
+                <p>&nbsp;</p>
+                &nbsp;&nbsp;<p class="card-text"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;Charles</p>
+                <p class="card-text"><span class="glyphicon glyphicon-star"></span>&nbsp;Maxence</p>
+                <p class="card-text"><span class="glyphicon glyphicon-star"></span>&nbsp;Thomas</p>
+                <p class="card-text"><span class="glyphicon glyphicon-star"></span>&nbsp;Benjamin</p>
             </div>
         </div>
     </div>
-</div>
--->
-<div class="well">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">WebSiteName</a>
+    <div class="secondWell">
+        <div class="well">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Statistiques principales</a>
+                </div>
+                <p>&nbsp;</p>
+            </div>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Page 1</a></li>
-            <li><a href="#">Page 2</a></li>
-            <li><a href="#">Page 3</a></li>
-        </ul>
     </div>
 </div>
