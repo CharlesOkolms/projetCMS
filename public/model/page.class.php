@@ -169,7 +169,10 @@ class Page {
 	public function setTemplate(int $template)		{$this->template = $template;}
 	public function setCreator(int $creator)		{$this->creator = $creator;}
 
-
+	/** Permet de retrouver l'identifiant BDD d'une page à partir de son slug
+	 * @param $slug	string	Slug de la page à chercher
+	 * @return int Id de la page
+	 */
 	public static function findPageId($slug) : int {
 		$select = 'select id_page from page where LOWER(slug) = LOWER(:slug)';
 		$val['slug'] = $slug;
