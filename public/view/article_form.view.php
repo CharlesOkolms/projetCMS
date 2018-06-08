@@ -16,7 +16,8 @@
     ClassicEditor
         .create( document.querySelector( '#editor' ), {
             // The language code is defined in the https://en.wikipedia.org/wiki/ISO_639-1 standard.
-            language: 'fr'
+            language: 'fr',
+            //toolbar: [ 'bold', 'italic', 'link' ]
         } )
         .then( editor => {
         console.log( editor );
