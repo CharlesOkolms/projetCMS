@@ -49,13 +49,12 @@
     <div class="secondWell">
         <div class="well">
             <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vos pages</a>
-                    </div>
-                    <p>&nbsp;</p>
-                &nbsp;&nbsp;&nbsp;&nbsp;<p class="card-text card-h1">&nbsp;Numero un</p>
-                    <p class="card-text card-h2">&nbsp;With supporting text below</p>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vos pages</a>
                 </div>
+                <p>&nbsp;</p>&nbsp;&nbsp;&nbsp;&nbsp<p class="card-text card-h1">&nbsp;Numero un</p>
+                <p class="card-text card-h2">&nbsp;With supporting text below</p>
+            </div>
         </div>
     </div>
 </div>

@@ -4,11 +4,11 @@ if($CURRENT_USER->isAdmin()){
 
 	$liste = User::getAll();
 
-//	include view('user_list');
+	include view('user_list');
 	// en attendant la vue, un var_dump :
-	var_dump($liste);
+	//var_dump($liste);
 
 }
 else {
-	echo "Seuls les admins peuvent voir les utilisateurs.";
+    echo "<h1> Accès Interdit </h1><p>Seuls les admins peuvent voir les utilisateurs.</p>";
 }
