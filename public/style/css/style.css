@@ -69,13 +69,19 @@ h1#page_title{
 
 
 
+#pageContent{
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    margin-top: 100px;
+}
 
 
 /*  AJOUTER ARTICLE */
 #article_add {
     width: 90%;
     margin-left: auto;
-    margin-top: 150px;
+    /*margin-top: 150px;*/
 }
 
 
@@ -149,14 +155,14 @@ h1#page_title{
 
 
 /*  LISTE ARTICLE */
-#liste_article #article_list{
+/*#liste_article {
     position:absolute;
     border-collapse: collapse;
     width: 90%;
     margin-top: -15%;
     left: 50%;
     transform: translateX(-50%);
-}
+}*/
 
 
 
@@ -237,14 +243,14 @@ h1#page_title{
 }
 
 /* LISTE UTILISATEURS */
-#user_list #user_table{
+/*#user_list #user_table{
     position:absolute;
     border-collapse: collapse;
     width: 90%;
-    margin-top: -15%;
+    margin-top: -30%;
     left: 50%;
     transform: translateX(-50%);
-}
+}*/
 #user_list td, #user_list th, #article_list td, #article_list th {
     border: 1px solid #ddd;
     padding: 8px;
@@ -262,7 +268,7 @@ h1#page_title{
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #134a7e;
+    background-color: #13578d;
     color: white;
 }
 

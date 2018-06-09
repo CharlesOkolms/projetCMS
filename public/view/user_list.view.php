@@ -45,10 +45,12 @@ $liste = User::getAll();
                 <input type="checkbox"
                     <?php if($user->isAdmin()){ ?>
                         checked
-                    <?php } ?> />
+                    <?php } if (!$CURRENT_USER->isSuperAdmin()){?>
+                        disabled readonly
+                    <?php } ?>/>
             </td>
             <td>
-
+                <button></button>
             </td>
         </tr>
         <?php
