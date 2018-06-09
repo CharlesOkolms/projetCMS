@@ -251,6 +251,14 @@ class User {
 	public function isPublisher(): bool 	{return $this->publisher;}
 	public function isAdmin() 	 : bool 	{return $this->admin;}
 
+	public function isSuperAdmin() : bool {
+		$query = 'SELECT id_superadmin FROM meta';
+		$id_superadmin = DB::getInstance()->query($query,[],DB::FETCH_ONE);
+		if(intval($id_superadmin) == intval($this->getId())){
+			return true;
+		}
+		return false;
+	}
 
 	/** Recherche et retourne la liste des utilisateurs sous forme de tableau associatif. On peut préciser un role pour chercher uniquement les auteurs, par exemple.
 	 * @param string $right droit des utilisateurs recherchés : $right = 'writer' ou 'publisher' ou 'admin'
