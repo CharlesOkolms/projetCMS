@@ -271,18 +271,24 @@ class article{
     public function isPremium()     : bool      { return $this->premium; }
 
 
-    public static function getAll($page = false, $with_content = true){
-		$val = [];
+	/** Renvoie en array la liste des articles sous forme de tableaux associatifs.
+	 *
+	 * @param bool $page			id de la page contenant les articles à retourner. False par défaut.
+	 * @param bool $with_content	booléen définissant si on retourne également le contenu complet des articles ou non. False par défaut.
+	 * @return array
+	 */
+	public static function getAll($page = false, $with_content = false) {
+		$val       = [];
 		$suppquery = ';';
-		$contenu = '';
-		$clause = 'WHERE deleted IS NULL '; // pour les concatenations
-		if($with_content){
+		$contenu   = '';
+		$clause    = 'WHERE deleted IS NULL '; // pour les concatenations
+		if ( $with_content ) {
 			$contenu = ', content, headerphoto, attachment ';
 		}
-    	if($page){
+		if ( $page ) {
 			$suppquery = "INNER JOIN page_article pa ON pa.id_article = article.id_article";
-			$clause .= ' AND pa.id_page = :page ';
-			$val = ['page' => $page];
+			$clause    .= ' AND pa.id_page = :page ';
+			$val       = ['page' => $page];
 		}
 		$liste = DB::getInstance()->query('SELECT id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.' 
         										FROM article'.$suppquery.$clause.' ;', $val, DB::FETCH_ALL);

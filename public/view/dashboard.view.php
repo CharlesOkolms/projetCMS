@@ -69,10 +69,23 @@
                     <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comptes administrateurs</a>
                 </div>
                 <p>&nbsp;</p>
-                &nbsp;&nbsp;<p class="card-text"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;Charles</p>
-                <p class="card-text"><span class="glyphicon glyphicon-star"></span>&nbsp;Maxence</p>
-                <p class="card-text"><span class="glyphicon glyphicon-star"></span>&nbsp;Thomas</p>
-                <p class="card-text"><span class="glyphicon glyphicon-star"></span>&nbsp;Benjamin</p>
+                <?php
+                foreach ($arrayAdmins as $unPetitAdmin)
+                {
+                    if($unPetitAdmin->isSuperAdmin())
+                    {
+                        ?>
+                        &nbsp;&nbsp;<p class="card-text"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;<?= $unPetitAdmin->getFirstname(); ?></p>
+                        <?php
+                    }
+                    else
+                    {
+                        ?>
+                        <p class="card-text"><span class="glyphicon glyphicon-star"></span>&nbsp;<?= $unPetitAdmin->getFirstname(); ?></p>
+                        <?php
+                    }
+                }
+                ?>
             </div>
         </div>
     </div>
