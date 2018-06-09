@@ -59,6 +59,16 @@ h1#page_title{
     border-top-right-radius: 0;
 }
 
+#identite{
+    text-align: right;
+}
+
+#deconexion{
+    margin-top: 10px;
+}
+
+
+
 
 
 /*  AJOUTER ARTICLE */

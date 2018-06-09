@@ -83,7 +83,14 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<h1 id="page_title"><?=title()?></h1>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="?action=logout">Déconnexion <span class="glyphicon glyphicon-off text-danger"></span></a></li>
+                        <li>
+                            <div id="identite">
+                                <?php echo $CURRENT_USER->getNickname() ?>
+                            </div>
+                            <div id="deconexion">
+                                <a href="?action=logout">Déconnexion <span class="glyphicon glyphicon-off text-danger"></span></a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
