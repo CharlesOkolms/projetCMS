@@ -10,12 +10,11 @@ $liste = User::getAll();
 
 ?>
 
-<div>
-    <table class="table">
+<div id="user_list">
+    <table id="user_table" class="table">
         <thead>
         <tr>
-            <th scope="col">Prénom</th>
-            <th scope="col">Nom</th>
+            <th scope="col">Utilisateur</th>
             <th scope="col">Rédacteur</th>
             <th scope="col">Publicateur</th>
             <th scope="col">Administrateur</th>
@@ -29,8 +28,7 @@ $liste = User::getAll();
         ?>
         <tbody>
         <tr>
-            <th scope="row"><?php echo $user->getFirstname(); ?></th>
-            <td><?php echo $user->getLastname(); ?></td>
+            <td><?php echo $user->getFirstname()." ".$user->getLastname(); ?></td>
             <td>
                 <input type="checkbox"
                        <?php if($user->isWriter()){ ?>
@@ -59,6 +57,7 @@ $liste = User::getAll();
         </tbody>
     </table>
 </div>
+
 <script>
 
 </script>
