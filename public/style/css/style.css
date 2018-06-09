@@ -139,10 +139,13 @@ h1#page_title{
 
 
 /*  LISTE ARTICLE */
-#liste_article {
+#liste_article #article_list{
+    position:absolute;
+    border-collapse: collapse;
     width: 90%;
-    margin-left: auto;
-    margin-top: 500px;
+    margin-top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 
@@ -221,4 +224,34 @@ h1#page_title{
 
     width: 90%;
     margin-top: 8px;
+}
+
+/* LISTE UTILISATEURS */
+#user_list #user_table{
+    position:absolute;
+    border-collapse: collapse;
+    width: 90%;
+    margin-top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#user_list td, #user_list th, #article_list td, #article_list th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#user_list tr:nth-child(even), #article_list tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#user_list tr:hover,#article_list tr:hover {
+    background-color: #ddd;
+}
+
+#user_list th, #article_list th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #134a7e;
+    color: white;
 }
