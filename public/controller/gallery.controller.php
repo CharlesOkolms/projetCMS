@@ -1,6 +1,6 @@
 <?php
 
 
-	$list = Picture::getAll();
+	$pictures_list = Picture::getAll();
 
 	include view('gallery');
