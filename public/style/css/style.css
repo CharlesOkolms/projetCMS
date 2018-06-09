@@ -67,11 +67,19 @@ h1#page_title{
     margin-top: 10px;
 }
 
+/* NAVBAR */
+.wrapper > #content {
+	padding: 20px 0 0 0; /* pour remplacer le padding 20px de sidebar.css */
+}
+.wrapper > #content > nav{
+	position:fixed;
+	width:96%;
+	margin:0 2%;
+}
 
-
+/* CONTENU DE LA VUE */
 #pageContent{
     width: 90%;
-    height: 90%;
     margin: auto;
     margin-top: 100px;
 }
