@@ -1,7 +1,6 @@
 <?php
 
 if(!empty($_POST['page_add']) && $CURRENT_USER->isAdmin()){
-	var_dump($_POST);
 	$title = strval($_POST['title']);
 	$style = strval($_POST['style']);
 	$template = strval($_POST['template']);
