@@ -271,16 +271,23 @@ class article{
     public function isPremium()     : bool      { return $this->premium; }
 
 
-    public static function getAll($page = false){
+    public static function getAll($page = false, $with_content = true){
 		$val = [];
 		$suppquery = ';';
+		$contenu = '';
+		$clause = 'WHERE deleted IS NULL '; // pour les concatenations
+		if($with_content){
+			$contenu = ', content, headerphoto, attachment ';
+		}
     	if($page){
-			$suppquery = "inner join page_article pa on pa.id_article = article.id_article WHERE pa.id_page = :page ;";
+			$suppquery = "INNER JOIN page_article pa ON pa.id_article = article.id_article";
+			$clause .= ' AND pa.id_page = :page ';
 			$val = ['page' => $page];
 		}
-        $liste = DB::getInstance()->query('select * from article'.$suppquery ,$val , DB::FETCH_ALL);
+		$liste = DB::getInstance()->query('SELECT id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.' 
+        										FROM article'.$suppquery.$clause.' ;', $val, DB::FETCH_ALL);
 		return $liste;
-    }
+	}
 
 }
 

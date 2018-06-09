@@ -260,7 +260,7 @@ class User {
 		return false;
 	}
 
-	/** Recherche et retourne la liste des utilisateurs sous forme de tableau associatif. On peut préciser un role pour chercher uniquement les auteurs, par exemple.
+	/** Recherche et retourne la liste des utilisateurs sous forme de tableau d'objets User. On peut préciser un role pour chercher uniquement les auteurs, par exemple.
 	 * @param string $right droit des utilisateurs recherchés : $right = 'writer' ou 'publisher' ou 'admin'
 	 * @return array
 	 */
