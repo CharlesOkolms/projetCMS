@@ -21,7 +21,6 @@
 <script>
 
     CKEDITOR.replace('editor');
-    //var data = CKEDITOR.instances.editor.getData();
 
     $('#editor').click(function() {
         document.getElementById("editor").insertAdjacentHTML('beforeend', 'name="content"');

@@ -255,3 +255,48 @@ h1#page_title{
     background-color: #134a7e;
     color: white;
 }
+
+
+
+/* AJOUT DE PAGE */
+#page_add {
+    width: 90%;
+    margin-left: auto;
+}
+
+
+#page_add input[type="text"] {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#page_add #page_add_liste {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
+    padding: 0px 18px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#page_add input[type="submit"] {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
+}

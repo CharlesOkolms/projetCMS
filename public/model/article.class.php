@@ -42,7 +42,7 @@ class article{
      *
      * @return bool : Retourne TRUE en cas de succès, FALSE si aucun id n'est indiqué dans l'objet.
      */
-    private function load() : bool {
+    public function load() : bool {
         if ( empty($this->getId()) ) {
             return false;
         }
