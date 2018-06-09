@@ -142,7 +142,7 @@ class User {
 		$values = ['email' => $email];
 		$user   = DB::getInstance()->query($sql, $values, DB::FETCH_ONE);
 
-		if ( password_verify($password, $user['password']) ) {
+		if (!empty($user['password']) && password_verify($password, $user['password']) ) {
 			$this->id = $user['id_user'];
 			$this->load();
 			return true;

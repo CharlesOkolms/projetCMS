@@ -23,8 +23,10 @@ const CONTROLLERS = array(
 	 * @var array Tableau associatif contenant la liste des noms de fichiers des vues.
 	 */
 const VIEWS = array(
-	'test' => 'test.view.php'
-); // à mettre à jour à chaque ajout de page ou d'element à afficher
+	'test' => 'test.view.php',
+	'connexion' => 'connexion.view.php'
+); // à mettre à jour à chaque ajout de page ou d'element à afficher si le nom est different
+
 
 const TITLES = array(
 	'user_add' => 'Ajouter un utilisateur',
@@ -45,12 +47,17 @@ const TITLES = array(
 
 
 $page = (!empty($_GET['page'])) ? strtolower($_GET['page']) : 'accueil';
-
-	/**
-	 * @var string Nom de la page courante.
-	 */
+/**
+ * @var string Nom de la page courante.
+ */
 define('CURRENT_PAGE', $page);
 
+$action = (!empty($_GET['action'])) ? strtolower($_GET['action']) : '';
+/**
+ * @var string Nom de l'action en cours, s'il y a.
+ */
+define('CURRENT_ACTION', $action);
+var_dump($_SESSION);
 if(!empty($_SESSION['user'])){
 	define('CURRENT_USER_ID', intval($_SESSION['user']));
 	$CURRENT_USER = new User(intval($_SESSION['user']));
