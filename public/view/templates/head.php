@@ -13,7 +13,7 @@
 <head>
 
 	<title>CMS - <?=title()?></title>
-
+    <meta charset="utf-8">
 
     <!--Import style-->
     <link type="text/css" rel="stylesheet" href="style/css/bootstrap.min.css"  media="screen,projection"/>
@@ -25,11 +25,5 @@
 <!--    <script src="style/js/ckeditor.js"></script>    -->
     <script src="style/js/translations/fr.js"></script>
     <script src="style/js/ckeditor/ckeditor.js"></script>
-
-
-    <script src="../ckeditor.js"></script>
-    <script src="js/sample.js"></script>
-    <!--Let browser know website is optimized for mobile-->
-    <meta charset="utf-8">
 
 </head>
