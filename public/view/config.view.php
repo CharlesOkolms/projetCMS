@@ -6,7 +6,6 @@
 
     .pConfig {
         margin-left: 35%;
-
     }
 
     .rowBen1 {
@@ -36,12 +35,26 @@
 
 <div class="form-group rowBen1">
     <p class="pConfig">Super-admin</p>
+    <!-- Ici, début de la liste des admins nourrie par la base -->
     <div class="col-md-5">
-    <select class="form-control inputBen1" id="superAdmin">
-        <option value="1" selected>Charles</option>
-        <option value="2">Benjamin</option>
-        <option value="3">Maxence</option>
-        <option value="4">Thomas</option>
-    </select>
+        <select class="form-control inputBen1" id="superAdmin">
+            <?php
+            foreach ($arrayAdmins as $unPetitAdmin)
+            {
+                if($unPetitAdmin->isSuperAdmin())
+                {
+                    ?>
+                    <option value="<?= $unPetitAdmin->getId(); ?>" disabled selected><?= $unPetitAdmin->getFirstname(); ?></option>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <option value="<?= $unPetitAdmin->getId(); ?>"><?= $unPetitAdmin->getFirstname(); ?></option>
+                    <?php
+                }
+            }
+            ?>
+        </select>
     </div>
 </div>
