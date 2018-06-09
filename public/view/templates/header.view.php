@@ -22,28 +22,43 @@
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li><a href="?pages=pages_list">Les Pages</a></li>
-                    <li><a href="?page=page_add">Créer une Page</a></li>
+                    <?php
+                    if($CURRENT_USER->isWriter() || $CURRENT_USER->isAdmin()){ ?>
+                        <li><a href="?page=page_add">Créer une Page</a></li>
+                    <?php } ?>
                 </ul>
             </li>
             <li>
                 <a href="#articleSubmenu" data-toggle="collapse" aria-expanded="false">Articles</a>
                 <ul class="collapse list-unstyled" id="articleSubmenu">
                     <li><a href="?page=articles_list">Les Articles</a></li>
-                    <li><a href="?page=article_add">Créer un Article</a></li>
+                    <?php
+                    if($CURRENT_USER->isWriter() || $CURRENT_USER->isAdmin()){ ?>
+                        <li><a href="?page=article_add">Créer un Article</a></li>
+                    <?php } ?>
                 </ul>
             </li>
             <li>
                 <a href="?page=gallery">Galerie</a>
             </li>
+
+            <?php
+            if($CURRENT_USER->isAdmin()){ ?>
+                <li>
+                    <a href="#utilisateurSubmenu" data-toggle="collapse" aria-expanded="false">Utilisateur</a>
+                    <ul class="collapse list-unstyled" id="utilisateurSubmenu">
+
+                            <li><a href="?page=users_list">Les Utilisateur</a></li>
+                            <li><a href="?page=user_add">Créer un utilisateur</a></li>
+                    </ul>
+                </li>
+            <?php } ?>
+
             <li>
-                <a href="#utilisateurSubmenu" data-toggle="collapse" aria-expanded="false">Utilisateur</a>
-                <ul class="collapse list-unstyled" id="utilisateurSubmenu">
-                    <li><a href="?page=users_list">Les Utilisateur</a></li>
-                    <li><a href="?page=user_add">Créer un utilisateur</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="?page=config">Paramètres</a>
+                <?php
+                if($CURRENT_USER->isAdmin()){ ?>
+                    <a href="?page=config">Paramètres</a>
+                <?php } ?>
             </li>
         </ul>
 
