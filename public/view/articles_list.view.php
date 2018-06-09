@@ -9,7 +9,6 @@
 ?>
 
 <div id="liste_article">
-    <h1>Nos Articles</h1>
     <button type="button" class="btn btn-primary navbar-btn">Ajouter</button>
     <table class="table">
         <thead>
