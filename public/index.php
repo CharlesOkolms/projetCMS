@@ -30,8 +30,5 @@ else {                          // user connecté, page d'acueil demandée : go 
     goToPage('dashboard');
 }
 
-?>
-</body>
-<?php
 require('./view/templates/end.php');
 ?>

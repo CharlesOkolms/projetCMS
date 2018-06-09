@@ -164,22 +164,44 @@ class Page {
 	/** Set le titre de la page, ainsi que son slug (automatiquement)
 	 * @param string $title
 	 */
-	public function setTitle(string $title)  		{$this->title = $title;$this->slug = create_slug($title);}
+	public function setTitle(string $title)  		{$this->title = $title;$this->setSlug(create_slug($title));}
 	public function setStyle(int $style)    		{$this->style = $style;}
 	public function setTemplate(int $template)		{$this->template = $template;}
 	public function setCreator(int $creator)		{$this->creator = $creator;}
+	private function setSlug(string $slug)			{$this->slug = $slug;}
 
 	/** Permet de retrouver l'identifiant BDD d'une page à partir de son slug
-	 * @param $slug	string	Slug de la page à chercher
+	 *
+	 * @param $slug    string    Slug de la page à chercher
 	 * @return int Id de la page
 	 */
 	public static function findPageId($slug) : int {
-		$select = 'select id_page from page where LOWER(slug) = LOWER(:slug)';
+		$select      = 'SELECT id_page FROM page WHERE LOWER(slug) = LOWER(:slug)';
 		$val['slug'] = $slug;
-		$page = DB::getInstance()->query($select,$val,DB::FETCH_ONE);
-		if(!empty($page['id_page'])){
+		$page        = DB::getInstance()->query($select, $val, DB::FETCH_ONE);
+		if ( !empty($page['id_page']) ) {
 			return $page['id_page'];
 		}
 		return false;
 	}
+
+	/** Renvoie en array la liste des pages sous forme d'objets Page.
+	 *
+	 * @return array Tableau d'objets Page
+	 */
+	public static function getAll() {
+		$liste = DB::getInstance()->query(
+			'SELECT id_page AS id, title, slug, id_user_creator AS creator, id_template AS template
+        		  FROM page ;', [], DB::FETCH_ALL);
+		$pages = [];
+		foreach ( $liste as $page ) {
+			$pages[$page['id']] = new Page();
+			$pages[$page['id']]->set($page);
+
+		}
+		return $pages;
+	}
+
+
+
 }
