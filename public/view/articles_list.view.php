@@ -29,9 +29,10 @@
             <?php
             foreach ($liste as $article) {
                 //var_dump($article);
-                $redac = new User($article["id_user_writer"]);
-                if($article["id_user_publisher"] != null) {
-                    $publi = new User($article["id_user_publisher"]);
+                //var_dump($article["writer"]);
+                $redac = new User(intval($article["writer"]));
+                if($article["publisher"] != null) {
+                    $publi = new User(intval($article["publisher"]));
                 }
                 ?>
                 <tr>
@@ -57,7 +58,7 @@
                     </td>
                     <td>
                         <?php
-                        if($article["id_user_publisher"] != null) {
+                        if($article["publisher"] != null) {
                             echo $publi->getFirstname() . " " . $redac->getLastname();
                         }
                         ?>
