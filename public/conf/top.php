@@ -57,7 +57,7 @@ $action = (!empty($_GET['action'])) ? strtolower($_GET['action']) : '';
  * @var string Nom de l'action en cours, s'il y a.
  */
 define('CURRENT_ACTION', $action);
-var_dump($_SESSION);
+
 if(!empty($_SESSION['user'])){
 	define('CURRENT_USER_ID', intval($_SESSION['user']));
 	$CURRENT_USER = new User(intval($_SESSION['user']));
