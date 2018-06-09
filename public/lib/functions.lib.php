@@ -164,3 +164,10 @@ function controller($name = false) : string {
 	}
 	return PATH_CONTROLLER.'null.php';
 }
+
+function title($page = false){
+	if($page){
+		return TITLES[$page];
+	}
+	return TITLES[CURRENT_PAGE];
+}

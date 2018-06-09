@@ -11,6 +11,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+	<title>CMS - <?=title()?></title>
+
+
     <!--Import style-->
     <link type="text/css" rel="stylesheet" href="style/css/bootstrap.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="style/css/style.css"  media="screen,projection"/>

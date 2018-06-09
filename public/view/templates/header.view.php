@@ -1,17 +1,3 @@
-<!--<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">WebSiteName</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Page 1</a></li>
-            <li><a href="#">Page 2</a></li>
-            <li><a href="#">Page 3</a></li>
-        </ul>
-    </div>
-</nav>-->
-
 <div class="wrapper">
     <!-- Sidebar Holder -->
     <nav id="sidebar">
@@ -47,7 +33,7 @@
                 </ul>
             </li>
             <li>
-                <a href="?page=pictures_list">Médias</a>
+                <a href="?page=gallery">Galerie</a>
             </li>
             <li>
                 <a href="#utilisateurSubmenu" data-toggle="collapse" aria-expanded="false">Utilisateur</a>
@@ -80,8 +66,8 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<h1 id="page_title"><?=title()?></h1>
                     <ul class="nav navbar-nav navbar-right">
-
                         <li><a href="?action=logout">Déconnexion <span class="glyphicon glyphicon-off text-danger"></span></a></li>
                     </ul>
                 </div>

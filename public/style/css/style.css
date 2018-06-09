@@ -23,6 +23,11 @@ body {
 h1 {
     text-align: center;
 }
+h1#page_title{
+	width:75%;
+	margin:auto;
+	display:inline-block;
+}
 
 .form-signin {
     width: 100%;

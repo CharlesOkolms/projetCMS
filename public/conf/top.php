@@ -26,6 +26,24 @@ const VIEWS = array(
 	'test' => 'test.view.php'
 ); // à mettre à jour à chaque ajout de page ou d'element à afficher
 
+const TITLES = array(
+	'user_add' => 'Ajouter un utilisateur',
+	'picture_add' => 'Ajouter une image',
+	'page_add' => 'Ajouter une page',
+	'article_add' => 'Ajouter un article',
+
+	'users_list' => 'Liste des utilisateurs',
+	'articles_list' => 'Liste des articles',
+	'pages_list' => 'Liste des pages',
+	'gallery' => "Galerie d'images",
+	'accueil' => 'Accueil',
+	'connexion' => 'Connexion',
+	'dashboard' => 'Tableau de bord',
+	'config' => 'Paramètres Méta'
+);
+
+
+
 $page = (!empty($_GET['page'])) ? strtolower($_GET['page']) : 'accueil';
 
 	/**
