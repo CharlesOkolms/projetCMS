@@ -5,7 +5,6 @@
 
 
 <div class="user_add_block" id="user_add">
-    <h1>Création d'un utilisateur</h1>
     <form method="POST"  enctype="multipart/form-data">
         <input type="text" name="nickname" placeholder="Pseudo" />
         <input type="text" name="firstname" placeholder="Prénom" />

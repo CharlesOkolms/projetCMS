@@ -9,9 +9,6 @@ $liste = User::getAll();
 
 
 ?>
-<div>
-    <h1>Nos Utilisateurs</h1>
-</div>
 
 <div>
     <table class="table">

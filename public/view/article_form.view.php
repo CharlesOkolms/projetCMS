@@ -5,7 +5,6 @@
 
 
 <div id="article_add">
-    <h1>Création d'un article</h1>
     <form method="POST"  enctype="multipart/form-data">
         <input type="text" name="title" placeholder="Titre" />
         <input type="text" name="headerphoto" placeholder="Photo de Header (lien url)" />

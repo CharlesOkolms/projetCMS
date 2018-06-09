@@ -1,7 +1,6 @@
 <?php
 
 ?>
-<h1>Ajouter une image</h1>
 <form method="POST"  enctype="multipart/form-data">
 	<input type="text" name="title" placeholder="Titre" required />
 	<textarea title="description" name="description" required></textarea>
