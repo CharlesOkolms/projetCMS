@@ -33,6 +33,7 @@ const TITLES = array(
 	'picture_add' => 'Ajouter une image',
 	'page_add' => 'Ajouter une page',
 	'article_add' => 'Ajouter un article',
+	'article_update' => 'Modifier un article',
 
 	'users_list' => 'Liste des utilisateurs',
 	'articles_list' => 'Liste des articles',

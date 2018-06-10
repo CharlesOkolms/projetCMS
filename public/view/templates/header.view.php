@@ -21,7 +21,7 @@
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li><a href="?pages=pages_list">Les Pages</a></li>
+                    <li><a href="?page=pages_list">Les Pages</a></li>
                     <?php
                     if($CURRENT_USER->isWriter() || $CURRENT_USER->isAdmin()){ ?>
                         <li><a href="?page=page_add">Créer une Page</a></li>
