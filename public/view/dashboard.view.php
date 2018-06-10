@@ -42,9 +42,27 @@
                         <a class="navbar-brand" href="#">Pages & Articles récents</a>
                     </div>
                     <p>&nbsp;</p>
-                    &nbsp;&nbsp;<p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Première page</p>
-                    <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Seconde page</p>
-                    <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Troisième page</p>
+                <?php
+                $liste = Page::getAll();
+                $countI = 0;
+                foreach ($liste as $page)
+                {
+                    if ($countI == 0)
+                    {
+                        ?>
+                        &nbsp;&nbsp;<p class="card-text"><span
+                                    class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle();; ?></p>
+                        <?php
+                        $countI = 1;
+                    }
+                    else
+                    {
+                        ?>
+                        <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle();; ?></p>
+                        <?php
+                    }
+                }
+                ?>
             </div>
         </div>
     </div>
