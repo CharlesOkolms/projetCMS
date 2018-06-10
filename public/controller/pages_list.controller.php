@@ -1,13 +1,12 @@
 <?php
 
-if($CURRENT_USER->isAdmin()){
-
+if($CURRENT_USER->isAdmin())
+{
 	$liste = Page::getAll();
     //var_dump($liste);
 	include view('pages_list');
-
-
 }
-else {
+else
+{
 	echo "Seuls les admins peuvent voir les utilisateurs.";
 }
