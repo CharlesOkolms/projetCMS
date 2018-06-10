@@ -12,6 +12,8 @@
         margin-left: 6%;
     }
 
+    .navbar-brand{float:none;}
+
     .rowBen {
         display: flex;
     }
@@ -37,7 +39,7 @@
         <div class="well">
             <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pages & Articles récents</a>
+                        <a class="navbar-brand" href="#">Pages & Articles récents</a>
                     </div>
                     <p>&nbsp;</p>
                     &nbsp;&nbsp;<p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;Première page</p>
@@ -50,7 +52,7 @@
         <div class="well">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vos pages</a>
+                    <a class="navbar-brand" href="#">Vos pages</a>
                 </div>
                 <p>&nbsp;</p>&nbsp;&nbsp;&nbsp;&nbsp<p class="card-text card-h1">&nbsp;Numero un</p>
                 <p class="card-text card-h2">&nbsp;With supporting text below</p>
@@ -66,26 +68,23 @@
         <div class="well">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comptes administrateurs</a>
+                    <a class="navbar-brand" href="#">Comptes administrateurs</a>
                 </div>
                 <p>&nbsp;</p>
-                <?php
-                foreach ($arrayAdmins as $unPetitAdmin)
-                {
-                    if($unPetitAdmin->isSuperAdmin())
-                    {
-                        ?>
-                        &nbsp;&nbsp;<p class="card-text"><span class="glyphicon glyphicon-star-empty"></span>&nbsp;<?= $unPetitAdmin->getFirstname(); ?></p>
-                        <?php
-                    }
-                    else
-                    {
-                        ?>
-                        <p class="card-text"><span class="glyphicon glyphicon-star"></span>&nbsp;<?= $unPetitAdmin->getFirstname(); ?></p>
-                        <?php
-                    }
-                }
-                ?>
+				<?php
+				foreach ( $arrayAdmins as $unPetitAdmin ) {
+					if ( $unPetitAdmin->isSuperAdmin() ) { ?>
+                        <p class="card-text"><span
+                                    class="glyphicon glyphicon-star-empty"></span>&nbsp;<?=$unPetitAdmin->getFirstname();?>
+                        </p> <?php
+					}
+					else { ?>
+                        <p class="card-text"><span
+                                    class="glyphicon glyphicon-star"></span>&nbsp;<?=$unPetitAdmin->getFirstname();?>
+                        </p> <?php
+					}
+				}
+				?>
             </div>
         </div>
     </div>
@@ -93,7 +92,7 @@
         <div class="well">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Statistiques principales</a>
+                    <a class="navbar-brand" href="#">Statistiques principales</a>
                 </div>
                 <p>&nbsp;</p>
             </div>
