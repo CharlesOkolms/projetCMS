@@ -25,5 +25,6 @@
 <!--    <script src="style/js/ckeditor.js"></script>    -->
     <script src="style/js/translations/fr.js"></script>
     <script src="style/js/ckeditor/ckeditor.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>

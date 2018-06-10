@@ -10,7 +10,7 @@
 
 <div id="liste_article">
     <div>
-        <button type="button" class="btn btn-primary navbar-btn">Ajouter</button>
+        <a href="?page=article_add" type="button" class="btn btn-primary navbar-btn">Ajouter</a>
     </div>
     <div>
         <table class="table" id="article_list">
@@ -64,9 +64,9 @@
                         ?>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary navbar-btn">
+                        <a href="?page=article_update&id=<?php echo $article["id_article"];?>" type="button" class="btn btn-primary navbar-btn">
                             <li class="glyphicon glyphicon-edit"></li>
-                        </button>
+                        </a>
                     </td>
                     <td>
                         <button type="button" class="btn btn-danger navbar-btn">
