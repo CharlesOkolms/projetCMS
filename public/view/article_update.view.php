@@ -14,7 +14,7 @@
 
         <input title="article_content" name="article" type="hidden">
         <input type="file" name="attachment" placeholder="Piece jointe" />
-        <input title="Save the article" type="submit" name="article_update" value="Ajouter" class="btn btn-primary navbar-btn" />
+        <input title="Save the article" type="submit" name="article_update" value="Editer" class="btn btn-primary navbar-btn" />
     </form>
 </div>
 

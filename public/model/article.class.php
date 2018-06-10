@@ -71,7 +71,7 @@ class article{
     /**
     * Enregistre l'article dans la base de données
     *
-    * @return TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
+    * @return mixed TRUE en cas de succès, sinon le résultat de PDO::errorInfo() en trois champs :
     *               0 => SQLSTATE ,    1 => ErrorCode ,    2 => Message
     */
     public function insertIntoDatabase() {
@@ -132,7 +132,7 @@ class article{
     /**
     * Met à jour l'article en base de donées avec les données inscrites dans l'objet courant.
     *
-    * @return    TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+    * @return  mixed  TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
     */
     public function updateDatabase() {
 
@@ -142,9 +142,7 @@ class article{
 				        , headerphoto   = :headerphoto
 				        , attachment    = :attachment
 				        , premium       = :premium
-				        , written       = :written
 				        , published     = :published
-				        , deleted       = :deleted
 				WHERE     id_article    = :id';
 
 
@@ -153,10 +151,9 @@ class article{
             'title'         => $this->getTitle(),
             'content'       => $this->getContent(),
             'headerphoto'   => $this->getHeaderPhoto(),
+            'attachment'   => $this->getAttachment(),
             'premium'       => $this->isPremium(),
-            'written'       => $this->getWritten(),
-            'published'     => $this->getPublished(),
-            'deleted'       => $this->getDeleted()
+            'published'     => $this->getPublished()
         );
 
         $req = DB::getInstance()->action($sql, $values);
@@ -261,8 +258,8 @@ class article{
     public function getId()                     { return $this->id; }
     public function getTitle()      : string    { return $this->title; }
     public function getContent()    : string    { return $this->content; }
-    public function getAttachment() : string    { return $this->attachment; }
-    public function getHeaderphoto(): string    { return $this->headerphoto; }
+    public function getAttachment()			    { return $this->attachment; }
+    public function getHeaderphoto()		    { return $this->headerphoto; }
     public function getWriter()     : int       { return $this->writer; }
     public function isWritten()     : bool      { return $this->written; }
     public function getWritten()    : string    { return $this->written; }
@@ -271,7 +268,7 @@ class article{
     public function isPremium()     : bool      { return $this->premium; }
 
 
-	/** Renvoie en array la liste des articles sous forme de tableaux associatifs.
+	/** Renvoie en array la liste des articles sous forme de tableaux associatifs : id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher
 	 *
 	 * @param bool $page			id de la page contenant les articles à retourner. False par défaut.
 	 * @param bool $with_content	booléen définissant si on retourne également le contenu complet des articles ou non. False par défaut.
@@ -290,10 +287,9 @@ class article{
 			$clause    .= ' AND pa.id_page = :page ';
 			$val       = ['page' => $page];
 		}
-		$liste = DB::getInstance()->query('SELECT id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.' 
+		$liste = DB::getInstance()->query('SELECT id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.'
         										FROM article'.$suppquery.$clause.' ;', $val, DB::FETCH_ALL);
 		return $liste;
 	}
 
 }
-

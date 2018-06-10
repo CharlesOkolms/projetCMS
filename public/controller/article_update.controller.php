@@ -4,7 +4,7 @@ if(!empty($_POST['article_update']) && $CURRENT_USER->isWriter()){
 	$title = strval($_POST['title']);
 	$content = strval($_POST['content']);
 
-	$article = new Article();
+	$article = new Article(intval($_GET['id']));
 	$article->setContent($content);
 	$article->setTitle($title);
 	$article->setWritten(date("Y-m-d H:i:s"));
@@ -12,9 +12,9 @@ if(!empty($_POST['article_update']) && $CURRENT_USER->isWriter()){
 	$res = $article->updateDatabase();
 }
 if($CURRENT_USER->isWriter()){
-    $article = new Article($_GET['id']);
+    $article = new Article(intval($_GET['id']));
     //var_dump($article);
 	include view('article_update');
 }else{
-	echo "Vous n'avez pas les droits pour créer un article.";
+	echo "Vous n'avez pas les droits pour écrire un article.";
 }
