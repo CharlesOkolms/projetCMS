@@ -50,7 +50,7 @@
                         <?php } ?>/>
                 </td>
                 <td>
-                    <button type="submit" name="user_update" class="btn btn-success ModifDroit">Modifier</button>
+                    <button type="submit" name="user_update" class="btn btn-success ModifDroit" value="Modifier">Modifier</button>
                 </td>
             </form>
         </tr>

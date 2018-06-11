@@ -2,14 +2,12 @@
 
 if(!empty($_POST['user_update']) && $CURRENT_USER->isAdmin()){
     $modifuser = new User(intval($_POST["id_user"]));
-    if(!empty($_POST["rights"]["writer"])) {
-        $modifuser->setWriter(true);
-    }
-    if(!empty($_POST["rights"]["publisher"])) {
-        $modifuser->setPublisher(true);
-    }
-    if(!empty($_POST["rights"]["admin"])) {
-        $modifuser->setAdmin(true);
+    var_dump($_POST["rights"]);
+    $modifuser->setWriter(0);
+    $modifuser->setPublisher(0);
+    $modifuser->setAdmin(0);
+    foreach ($_POST["rights"] as $droit){
+        $modifuser->{'set'.ucfirst(strtolower($droit))}(1);
     }
     $modifuser->updateDatabase();
 }
