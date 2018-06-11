@@ -5,8 +5,6 @@
  * Date: 21/05/2018
  * Time: 17:29
  */
-$liste = User::getAll();
-
 
 ?>
 
@@ -21,37 +19,40 @@ $liste = User::getAll();
             <th scope="col">Modifier</th>
         </tr>
         </thead>
+        <tbody>
         <?php
             foreach ($liste as $user){
                 //var_dump((bool) $user->isWritter());
 
         ?>
-        <tbody>
         <tr>
-            <td><?php echo $user->getFirstname()." ".$user->getLastname(); ?></td>
-            <td>
-                <input type="checkbox"
-                       <?php if($user->isWriter()){ ?>
-                           checked
-                       <?php }?>/>
-            </td>
-            <td>
-                <input type="checkbox"
-                    <?php if($user->isPublisher()){ ?>
-                        checked
-                    <?php }?>/>
-            </td>
-            <td>
-                <input type="checkbox"
-                    <?php if($user->isAdmin()){ ?>
-                        checked
-                    <?php } if (!$CURRENT_USER->isSuperAdmin()){?>
-                        disabled readonly
-                    <?php } ?>/>
-            </td>
-            <td>
-                <button></button>
-            </td>
+            <form method="post">
+                <td><?=$user->getFirstname()." ".$user->getLastname()?></td>
+                <input type="hidden" value="<?=$user->getId(); ?>" name="id_user"/>
+                <td>
+                    <input type="checkbox" class="writer" id="<?="w".$user->getId()?>" value="writer" name="rights[]"
+                           <?php if($user->isWriter()){ ?>
+                               checked
+                           <?php }?>/>
+                </td>
+                <td>
+                    <input type="checkbox" class="publisher" id="<?="p".$user->getId()?>" value="publisher" name="rights[]"
+                        <?php if($user->isPublisher()){ ?>
+                            checked
+                        <?php }?>/>
+                </td>
+                <td>
+                    <input type="checkbox" class="admin" id="<?="a".$user->getId()?>" value="admin" name="rights[]"
+                        <?php if($user->isAdmin()){ ?>
+                            checked
+                        <?php } if (!$CURRENT_USER->isSuperAdmin()){?>
+                            disabled readonly
+                        <?php } ?>/>
+                </td>
+                <td>
+                    <button type="submit" name="user_update" class="btn btn-success ModifDroit">Modifier</button>
+                </td>
+            </form>
         </tr>
         <?php
             }
@@ -61,5 +62,17 @@ $liste = User::getAll();
 </div>
 
 <script>
-
+    /*$(document).ready(function() {
+        $('.ModifDroit').click(function () {
+            var id = $(this).data('id');
+            var admin = $('#'+'a'+id).prop('checked');
+            var writer = $('#'+'w'+id).prop('checked');
+            var publisher = $('#'+'p'+id).prop('checked');
+            var url = '/user_list.controller.php';
+            $.post(url, function(data){
+            });
+            alert('Success'+writer+publisher+admin);
+            return false;
+        })
+    })*/
 </script>
