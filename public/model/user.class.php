@@ -4,7 +4,7 @@ class User {
 
 	protected $id;
 	protected $nickname = '';
-	protected $password = '';
+	protected $password;
 	protected $firstname = '';
 	protected $lastname = '';
 	protected $email = '';
@@ -186,7 +186,7 @@ class User {
 
 	private function setId(int $id) { $this->id = $id; }
 	public function setNickname(string $nickname) { $this->nickname = $nickname; }
-	public function setPassword(string $password) { $this->password = $password; }
+	public function setPassword(string $password) { $this->password = password_hash($password,PASSWORD_DEFAULT); }
 	public function setFirstname(string $firstname) { $this->firstname = $firstname; }
 	public function setLastname(string $lastname)  { $this->lastname = $lastname; }
 	public function setEmail(string $email) { $this->email = $email; }
@@ -240,7 +240,7 @@ class User {
 
 	public function getId()                 {return $this->id;}
 	public function getNickname() : string 	{return $this->nickname;}
-	public function getPassword() : string 	{return $this->password;}
+	private function getPassword() : string {return $this->password;}
 	public function getFirstname(): string  {return $this->firstname;}
 	public function getLastname() : string 	{return $this->lastname;}
 	public function getEmail() 	 : string 	{return $this->email;}
