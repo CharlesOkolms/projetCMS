@@ -1,9 +1,9 @@
 <?php
 $articles = Article::getAll($idPage, true);
-var_dump($articles);
+
 ?>
 
-<div class="articles_list">
+<div class="articles_view">
 
 		<?php
 		foreach($articles as $article){

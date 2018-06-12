@@ -1,6 +1,5 @@
 <?php
-$articles = Article::getAll($idPage, true);
-var_dump($articles);
+$articles = Article::getAll($idPage, false);
 ?>
 
 <div class="articles_list">
@@ -8,7 +7,7 @@ var_dump($articles);
 	<?php
 	foreach($articles as $article){
 		?>
-		<article><?=$article['content']?></article>
+		<article><?=$article['title']?></article>
 
 		<?php
 	} ?>
