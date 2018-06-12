@@ -43,14 +43,14 @@
                 </td>
                 <td>
                     <input type="checkbox" class="admin" id="<?="a".$user->getId()?>" value="admin" name="rights[]"
-                        <?php if($user->isAdmin()){ ?>
+                        <?php if($user->isAdmin() && $user->isSuperAdmin()){ ?>
                             checked
                         <?php } if (!$CURRENT_USER->isSuperAdmin()){?>
                             disabled readonly
                         <?php } ?>/>
                 </td>
                 <td>
-                    <button type="submit" name="user_update" class="btn btn-success ModifDroit" value="Modifier">Modifier</button>
+                    <button type="submit" name="user_update" class="btn btn-success ModifDroit" value="Modifier"><i class="glyphicon glyphicon-check"></i></button>
                 </td>
             </form>
         </tr>
