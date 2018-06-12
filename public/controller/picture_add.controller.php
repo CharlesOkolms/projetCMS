@@ -39,7 +39,6 @@ if ( !empty($_POST['picture_add']) && !empty($_FILES)) {
 		}
 		else {
 			echo '<p>Ajout raté !</p><br>';
-			var_dump($res); // $statement->errorInfo();
 		}
 
 	}

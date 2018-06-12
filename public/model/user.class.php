@@ -129,6 +129,40 @@ class User {
 	}
 
 
+    /**
+     * Met à jour l'utilisateur en base de donées avec les données inscrites dans l'objet courant.
+     *
+     * @return   mixed  TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+     */
+    public function updateDatabasePerso() {
+
+        $sql = 'UPDATE user
+				SET nickname = :nick, firstname = :first, lastname = :last, email = :email, password = :pass
+				WHERE id_user = :id';
+
+        $values = array(
+            'id'    => $this->getId(),
+            'nick'  => $this->getNickname(),
+            'first' => $this->getFirstname(),
+            'last'  => $this->getLastname(),
+            'email' => $this->getEmail(),
+            'pass'  => $this->getPassword()
+        );
+
+        $req = DB::getInstance()->action($sql, $values);
+
+        if ( $req === 1 ) {
+            return true;
+        }
+        // alors c'est une erreur MySQL
+        $error = ['SQLSTATE'     => $req[0],
+            'errorCode'    => $req[1],
+            'errorMessage' => $req[2]];
+        return $error;
+
+    }
+
+
 	/**
 	 * Fonction permettant de connecter un utilisateur. Si la connexion est possible, charge les données dans l'objet
 	 * courant.
@@ -240,7 +274,7 @@ class User {
 
 	public function getId()                 {return $this->id;}
 	public function getNickname() : string 	{return $this->nickname;}
-	private function getPassword() : string {return $this->password;}
+	public function getPassword() : string {return $this->password;}
 	public function getFirstname(): string  {return $this->firstname;}
 	public function getLastname() : string 	{return $this->lastname;}
 	public function getEmail() 	 : string 	{return $this->email;}

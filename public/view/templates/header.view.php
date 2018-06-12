@@ -89,7 +89,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <div id="identite">
-                                <?php echo $CURRENT_USER->getNickname() ?>
+                                <a href="?page=user_update"><?php echo $CURRENT_USER->getNickname() ?></a>
                             </div>
                             <div id="deconexion">
                                 <a href="?action=logout">Déconnexion <span class="glyphicon glyphicon-off text-danger"></span></a>

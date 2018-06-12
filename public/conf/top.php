@@ -30,6 +30,7 @@ const VIEWS = array(
 
 const TITLES = array(
 	'user_add' => 'Ajouter un utilisateur',
+	'user_update' => 'Modifier un utilisateur',
 	'picture_add' => 'Ajouter une image',
 	'page_add' => 'Ajouter une page',
 	'page_update' => 'Modifier une page',
