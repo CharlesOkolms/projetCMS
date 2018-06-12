@@ -1,7 +1,7 @@
 <?php
 
 /* Fichiers de configuration */
-require_once('./conf/settings.php');            // Configuration de l'accès à la base de données
+require_once(CMS_FOLDER.'conf/settings.php');            // Configuration de l'accès à la base de données
 
 /* Librairies */
 require_once(PATH_LIB.'database.lib.php');    // Classe de la base de données

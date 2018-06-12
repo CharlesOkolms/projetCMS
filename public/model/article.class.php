@@ -289,7 +289,6 @@ class article{
 		}
 		$query = 'SELECT article.id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.'
         										FROM article '.$suppquery.$clause.' ;';
-		echo $query;
 		$liste = DB::getInstance()->query($query, $val, DB::FETCH_ALL);
 		return $liste;
 	}

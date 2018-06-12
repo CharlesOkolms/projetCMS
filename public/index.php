@@ -1,5 +1,6 @@
 <?php
 session_start();
+const CMS_FOLDER = './';
 require_once('./conf/top.php');
 require(PATH_VIEW.'templates/head.php');
 
