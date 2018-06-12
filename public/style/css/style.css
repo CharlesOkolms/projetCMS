@@ -324,3 +324,60 @@ h1#page_title{
     width: 90%;
     margin-top: 8px;
 }
+
+
+
+
+/*  AJOUTER PICTURE */
+#picture_add {
+    width: 90%;
+    margin-left: auto;
+    /*margin-top: 150px;*/
+}
+
+
+#picture_add input[type="text"] {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#picture_add textarea {
+    float: left;
+    height: 80px;
+
+    width: 90%;
+    margin-top: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+
+#picture_add input[type="file"] {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
+}
+
+
+#picture_add input[type="submit"] {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
+}
