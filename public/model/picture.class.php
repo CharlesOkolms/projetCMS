@@ -210,10 +210,13 @@ class Picture {
 	 */
     public static function getAll() : array {
 		$liste = DB::getInstance()->query('select id_picture as id, picture.* from picture WHERE deleted IS NULL ;', [], DB::FETCH_ALL);
-		return $liste;
+		$pictures = [];
+		foreach ( $liste as $picture ) {
+			$pictures[$picture['id']] = new Picture();
+			$pictures[$picture['id']]->set($picture);
+		}
+		return $pictures;
 	}
-
-
-
+	
 
 }

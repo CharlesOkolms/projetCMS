@@ -36,6 +36,9 @@ const TITLES = array(
 	'article_add' => 'Ajouter un article',
 	'article_update' => 'Modifier un article',
 
+	'template_add' => 'Ajouter un template',
+	'style_add' => 'Ajouter un style',
+
 	'users_list' => 'Liste des utilisateurs',
 	'articles_list' => 'Liste des articles',
 	'pages_list' => 'Liste des pages',
