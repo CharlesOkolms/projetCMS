@@ -4,7 +4,11 @@
     }
 
     .inputBen1 {
-        margin-left: 15%;
+        margin-left: 25%;
+    }
+
+    .pConfig2 {
+        margin-left: -20%;
     }
 </style>
 
@@ -15,7 +19,7 @@
 
 <div class="form-group rowBen1">
     <p class="pConfig">Titre du site</p>
-    <div class="col-md-2">
+    <div class="col-md-3">
         <input class="form-control inputBen1" id="title" placeholder="Titre du site">
     </div>
 </div>
@@ -39,7 +43,10 @@
 			} ?>
         </select>
         <br/>
-        <input type="file" name="attachment" placeholder="Piece jointe" />
+        <div class="rowBen1">
+            <p class="pConfig2">Logo</p>
+            <input class="inputBen1" type="file" name="attachment" placeholder="Piece jointe" />
+        </div>
         <br/>
         <input title="Save" type="submit" name="config_save" value=Sauvegarder class="btn btn-primary navbar-btn" />
     </div>
