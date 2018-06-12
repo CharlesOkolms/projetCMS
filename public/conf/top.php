@@ -32,6 +32,7 @@ const TITLES = array(
 	'user_add' => 'Ajouter un utilisateur',
 	'picture_add' => 'Ajouter une image',
 	'page_add' => 'Ajouter une page',
+	'page_update' => 'Modifier une page',
 	'article_add' => 'Ajouter un article',
 	'article_update' => 'Modifier un article',
 

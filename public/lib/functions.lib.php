@@ -37,12 +37,11 @@ function randomString(int $l) {
  */
 function create_slug(string $string) {
 	if ( !empty($string) ) {
-		$string = remove_accents($string); // remplacer les accents par les lettres normales
+		$string = remove_accents(trim($string)); // remplacer les accents par les lettres normales
 		$slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $string); // remplacer les espaces et autres caractères chelous par des tirets
 		$slug = strtolower($slug); // on passe ne minuscule
 		return $slug;
 	}
-
 }
 
 /** Pris et adapté de la fonction de WordPress, via :

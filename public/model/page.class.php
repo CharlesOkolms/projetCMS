@@ -144,7 +144,7 @@ class Page {
 	}
 
 
-	public function getId() 		: int 		{return (int)$this->id;}
+	public function getId() 		: int 		{return intval($this->id);}
 	public function getTitle()		: string 	{return $this->title;}
 	public function getStyle()		: int 		{return $this->style;}
 	public function getTemplate() 	: int 		{return $this->template;}
@@ -190,9 +190,8 @@ class Page {
 	 * @return array Tableau d'objets Page
 	 */
 	public static function getAll() {
-		$liste = DB::getInstance()->query(
-			'SELECT id_page AS id, title, slug, id_user_creator AS creator, id_template AS template
-        		  FROM page ;', [], DB::FETCH_ALL);
+		$liste = DB::getInstance()->query('SELECT id_page AS id, title, slug, id_user_creator AS creator, id_template AS template
+        		                                FROM page ;', [], DB::FETCH_ALL);
 		$pages = [];
 		foreach ( $liste as $page ) {
 			$pages[$page['id']] = new Page();

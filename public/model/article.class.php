@@ -278,17 +278,19 @@ class article{
 		$val       = [];
 		$suppquery = ';';
 		$contenu   = '';
-		$clause    = 'WHERE deleted IS NULL '; // pour les concatenations
+		$clause    = ' WHERE article.deleted IS NULL '; // pour les concatenations
 		if ( $with_content ) {
 			$contenu = ', content, headerphoto, attachment ';
 		}
 		if ( $page ) {
-			$suppquery = "INNER JOIN page_article pa ON pa.id_article = article.id_article";
-			$clause    .= ' AND pa.id_page = :page ';
+			$suppquery = " INNER JOIN page_article pa ON pa.id_article = article.id_article AND pa.id_page = :page";
+//			$clause    .= ' AND pa.id_page = :page ';
 			$val       = ['page' => $page];
 		}
-		$liste = DB::getInstance()->query('SELECT id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.'
-        										FROM article'.$suppquery.$clause.' ;', $val, DB::FETCH_ALL);
+		$query = 'SELECT article.id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.'
+        										FROM article '.$suppquery.$clause.' ;';
+		echo $query;
+		$liste = DB::getInstance()->query($query, $val, DB::FETCH_ALL);
 		return $liste;
 	}
 
