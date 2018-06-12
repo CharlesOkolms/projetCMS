@@ -39,16 +39,20 @@
                 </ul>
             </li>
             <li>
-                <a href="?page=gallery">Galerie</a>
+                <a href="#gallerySubmenu" data-toggle="collapse" aria-expanded="false">Galerie</a>
+                <ul class="collapse list-unstyled" id="gallerySubmenu">
+                    <li><a href="?page=gallery">La galerie</a></li>
+                    <li><a href="?page=picture_add">Ajouter une photo</a></li>
+                </ul>
             </li>
 
             <?php
             if($CURRENT_USER->isAdmin()){ ?>
                 <li>
-                    <a href="#utilisateurSubmenu" data-toggle="collapse" aria-expanded="false">Utilisateur</a>
+                    <a href="#utilisateurSubmenu" data-toggle="collapse" aria-expanded="false">Utilisateurs</a>
                     <ul class="collapse list-unstyled" id="utilisateurSubmenu">
 
-                            <li><a href="?page=users_list">Les Utilisateur</a></li>
+                            <li><a href="?page=users_list">Les Utilisateurs</a></li>
                             <li><a href="?page=user_add">Créer un utilisateur</a></li>
                     </ul>
                 </li>
