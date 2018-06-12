@@ -19,6 +19,7 @@
     }
 
     .well {
+        overflow: hidden;
         width:390px;
         height:250px;
         margin-bottom: 10%;
@@ -39,7 +40,7 @@
         <div class="well">
             <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Pages & Articles récents</a>
+                        <a class="navbar-brand" href="#">Pages récentes</a>
                     </div>
                     <p>&nbsp;</p>
                 <?php
@@ -50,15 +51,14 @@
                     if ($countI == 0)
                     {
                         ?>
-                        &nbsp;&nbsp;<p class="card-text"><span
-                                    class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle();; ?></p>
+                        &nbsp;&nbsp;<p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle(); ?></p>
                         <?php
                         $countI = 1;
                     }
                     else
                     {
                         ?>
-                        <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle();; ?></p>
+                        <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle(); ?></p>
                         <?php
                     }
                 }
@@ -70,10 +70,30 @@
         <div class="well">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Vos pages</a>
+                    <a class="navbar-brand" href="#">Vos articles</a>
                 </div>
-                <p>&nbsp;</p>&nbsp;&nbsp;&nbsp;&nbsp<p class="card-text card-h1">&nbsp;Numero un</p>
-                <p class="card-text card-h2">&nbsp;With supporting text below</p>
+                <p>&nbsp;</p>
+                <?php
+                $lesArticles = Article::getAll();
+                $tonIdAdmin = $lesArticles[CURRENT_USER_ID]['writer'];
+                $countI = 0;
+                foreach ($lesArticles as $unArticle)
+                {
+                    if ($countI == 0)
+                    {
+                        ?>
+                        &nbsp;&nbsp;&nbsp;<p class="card-text card-h1">&nbsp;<?= $lesArticles[$tonIdAdmin]['title']; ?></p>
+                        <?php
+                        $countI = 1;
+                    }
+                    else
+                    {
+                        ?>
+                        <p class="card-text card-h2">&nbsp;<?= $lesArticles[$tonIdAdmin]['title']; ?></p>
+                        <?php
+                    }
+                }
+                ?>
             </div>
         </div>
     </div>
