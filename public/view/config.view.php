@@ -3,6 +3,11 @@
         display: Flex;
     }
 
+    .rowBen2 {
+        display: Flex;
+        margin-top: -1.55%;
+    }
+
     .inputBen1 {
         margin-left: 25%;
     }
@@ -43,12 +48,34 @@
 			} ?>
         </select>
         <br/>
+        <br/>
         <div class="rowBen1">
             <p class="pConfig2">Logo</p>
             <input class="inputBen1" type="file" name="attachment" placeholder="Piece jointe" />
         </div>
         <br/>
+    </div>
+</div>
+
+<br/>
+
+<div class="form-group rowBen2">
+    <p class="pConfig">Page d'accueil</p>
+    <!-- Ici, début de la liste des pages nourrie par la base -->
+    <div class="col-md-2">
+        <select title="Choix de la page d'accueil" class="form-control inputBen1" id="pageAccueil">
+            <?php
+            $liste = Page::getAll();
+            $countI = 0;
+            foreach ($liste as $page)
+            {
+                ?>
+                <option value="<?=$page->getId();?>"><?=$page->getTitle();?></option>
+                <?php
+            }
+            ?>
+        </select>
+        <br/>
         <input title="Save" type="submit" name="config_save" value=Sauvegarder class="btn btn-primary navbar-btn" />
     </div>
-
 </div>
