@@ -12,7 +12,7 @@ if(!empty($_POST['page_add']) && $CURRENT_USER->isAdmin()){
 	$page->setStyle($style);
 	$res = $page->insertIntoDatabase();
 }
-else if($CURRENT_USER->isAdmin()){
+if($CURRENT_USER->isAdmin()){
 	include view('page_form');
 }else{
 	echo "Vous n'avez pas les droits pour créer une page.";
