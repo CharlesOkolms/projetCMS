@@ -12,17 +12,31 @@ function module($module_name){
     return 'public/front/module/'.$module_name.'.php';
 }
 
-if(CURRENT_PAGE !== 'accueil'){
-	// chercher en BDD les articles liés à la page
-    $idPage = Page::findPageId(CURRENT_PAGE);
-    $page = new Page($idPage);
-	require_once(FRONT_FOLDER.'head.php');
-	require_once(FRONT_FOLDER.'template/'.$page->getTemplate().'.php');
-	//var_dump(Article::getAll($idPage));
-}
+if ( empty($_GET['article']) ) {
 
+	if ( CURRENT_PAGE == 'accueil' ) {
+		$meta   = new Meta();
+		$idPage = $meta->getHomepage();
+		define('TITLE', 'Accueil');
+		$page = new Page($idPage);
+	}
+    else{
+		// chercher en BDD les articles liés à la page
+		$idPage = Page::findPageId(CURRENT_PAGE);
+		$page   = new Page($idPage);
+		define('TITLE', $page->getTitle());
+	}
+
+	require_once(FRONT_FOLDER.'template/'.$page->getTemplate().'.php');
+}
+else { // on a demandé un article
+	$id_art  = intval($_GET['article']);
+	$article = new Article($id_art);
+	define('TITLE', $article->getTitle());
+	require_once(FRONT_FOLDER.'template/article.php');
+}
 ?>
 </body>
 <?php
-require('./view/templates/end.php');
+require(CMS_FOLDER.'view/templates/end.php');
 ?>

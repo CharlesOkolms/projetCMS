@@ -1,0 +1,10 @@
+body{
+    background-color: rgba(255,128,128,0.1);
+}
+a {
+    color:darkred;
+}
+.row > .column  .title {
+    color: white;
+    background-color:darkred;
+}

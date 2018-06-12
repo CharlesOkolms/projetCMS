@@ -15,6 +15,10 @@ class Picture {
 	protected $filename;
 	protected $uploaded = null;
 	protected $uploader;
+	protected $updated;
+	protected $updator;
+	protected $deleted;
+	protected $deleter;
 
 
 
@@ -158,6 +162,18 @@ class Picture {
                 case 'id_picture':
                     $property = 'Id';
                     break;
+                case 'id_user_uploader':
+                    $property = 'Uploader';
+                    break;
+                case 'id_user_updator':
+                    $property = 'Updator';
+                    break;
+                case 'id_user_deleter':
+                    $property = 'Deleter';
+                    break;
+                case 'deleted':
+                    $property = 'Deleted';
+                    break;
                 case 'last_updated':
                     $property = 'Updated';
                     break;
@@ -175,6 +191,10 @@ class Picture {
 	public function setDescription	(string $description) 	{ $this->description = $description; }
 	public function setExtension	(string $extension) 	{ $this->extension = strval($extension); }
 	public function setFilename		(string $filename)		{ $this->filename = $filename; }
+	private function setUpdated		($datetime)		{ $this->updated = $datetime; }
+	private function setUpdator		($updator)		{ $this->updator = $updator; }
+	private function setDeleted		($deleted)		{ $this->deleted = $deleted; }
+	private function setDeleter		($deleter)		{ $this->deleter = $deleter; }
 
 	public function setUploaded(string $uploaded, $format = DB::DATETIME_FORMAT) : bool {
 		if ( !validateDate($uploaded, $format) ) {
@@ -217,6 +237,6 @@ class Picture {
 		}
 		return $pictures;
 	}
-	
+
 
 }

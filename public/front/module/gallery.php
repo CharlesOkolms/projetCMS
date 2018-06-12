@@ -2,10 +2,11 @@
 
 	$gallery = Picture::getAll();
 
- ?>
+?>
+<div class="gallery">
+    <div class="title">Galerie d'images</div>
+    <div id="gallery_carousel">
 
- <div id="gallery_carousel">
-
-<?php var_dump($gallery);?>
-
- </div>
+		<?php var_dump($gallery); ?>
+    </div>
+</div>
