@@ -14,4 +14,12 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+	<meta property="og:title" content="<?=TITLE?>" />
+	<meta property="og:description" content="Site d'exemple avec notre CMS !" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://charlesokolms.fr/projetCMS" />
+	<meta property="og:image" content="<?=(!empty($meta->getLogo()))?FRONT_FOLDER.$meta->getLogo():'';?>" />
+	<meta property="og:image:width" content="400" />
+	<meta property="og:image:height" content="400" />
+
 </head>
