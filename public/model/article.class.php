@@ -24,6 +24,8 @@ class article{
     protected $deleted      = null  ;
     protected $premium      = false ;
 
+    protected $page;
+
 
     /**
      * article constructor.
@@ -64,7 +66,19 @@ class article{
         $values = array('article_id' => $this->getId());
         $result = DB::getInstance()->query($sql, $values, DB::FETCH_ONE);
 
-        $this->set($result); // modifie cet objet à l'aide de l'objet récupéré en BDD
+		$this->set($result); // modifie cet objet à l'aide de l'objet récupéré en BDD
+
+
+		$sql    = 'SELECT id_page FROM page_article WHERE id_article = :id';
+		$values = array(
+			'id' => $this->getId()
+		);
+		$req    = DB::getInstance()->query($sql, $values, DB::FETCH_ONE);
+		$this->setPage($req['id_page']);
+
+		if (empty($req)){
+			return false;
+		}
 
         return true;
     }
@@ -145,29 +159,46 @@ class article{
 				        , attachment    = :attachment
 				        , premium       = :premium
 				        , published     = :published
+				        , id_user_publisher = :publisher
+				        , deleted = :deleted
+				        , id_user_deleter = :deleter
 				WHERE     id_article    = :id';
 
 
-        $values = array(
-            'id'            => $this->getId(),
-            'title'         => $this->getTitle(),
-            'content'       => $this->getContent(),
-            'headerphoto'   => $this->getHeaderPhoto(),
-            'attachment'   => $this->getAttachment(),
-            'premium'       => $this->isPremium(),
-            'published'     => $this->getPublished()
-        );
+		$values = array(
+			'id'          => $this->getId(),
+			'title'       => $this->getTitle(),
+			'content'     => $this->getContent(),
+			'headerphoto' => $this->getHeaderPhoto(),
+			'attachment'  => $this->getAttachment(),
+			'premium'     => $this->isPremium(),
+			'published'   => $this->getPublished(),
+			'publisher'   => $this->getPublisher(),
+			'deleted'     => $this->getDeleted(),
+			'deleter'     => $this->getDeleter()
+		);
 
         $req = DB::getInstance()->action($sql, $values);
 
-        if ( $req === 1 ) {
-            return true;
-        }
-        // alors c'est une erreur MySQL
-        $error = ['SQLSTATE'     => $req[0],
-            'errorCode'    => $req[1],
-            'errorMessage' => $req[2]];
-        return $error;
+
+		if ( $req !== 1 ) {
+			// alors c'est une erreur MySQL
+			$error = ['SQLSTATE'     => $req[0],
+					  'errorCode'    => $req[1],
+					  'errorMessage' => $req[2]];
+			return $error;
+		}
+
+		$sql = 'INSERT INTO page_article VALUES (:id, :id_page)';
+
+
+		$values = array(
+			'id'      => $this->getId(),
+			'id_page' => $this->getPage()
+		);
+
+		$req = DB::getInstance()->action($sql, $values);
+
 
     }
 
@@ -208,7 +239,7 @@ class article{
     public function setWriter       (int $writer)     { $this->writer = intval($writer);   }
 	public function setPublisher	($publisher) : void {$this->publisher = $publisher;}
 	public function setDeleter		($deleter) : void	{$this->deleter = $deleter;}
-
+	public function setPage			(int $page) 		{$this->page = $page;}
     public function setWritten      (string $written, $format = DB::DATETIME_FORMAT) : bool {
         if ( !validateDate($written, $format) ) {
             return false;
@@ -260,13 +291,14 @@ class article{
     public function getAttachment()			    { return $this->attachment; }
     public function getHeaderphoto()		    { return $this->headerphoto; }
     public function getWriter()     : int       { return $this->writer; }
-	public function getPublisher() 				{return $this->publisher;}
-	public function getDeleter() 				{return $this->deleter;}
+	public function getPublisher() 				{ return $this->publisher;}
+	public function getDeleter() 				{ return $this->deleter;}
     public function isWritten()     : bool      { return $this->written; }
     public function getWritten()    : string    { return $this->written; }
     public function getPublished()              { return $this->published; }
     public function getDeleted()                { return $this->deleted; }
     public function isPremium()     : bool      { return $this->premium; }
+	public function getPage() 					{ return $this->page; }
 
 
 	/** Renvoie en array la liste des articles sous forme de tableaux associatifs : id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher
