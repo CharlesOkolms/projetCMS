@@ -1,39 +1,3 @@
-<style>
-    .card {
-        border-radius: 3px;
-        border: 2px solid black;
-    }
-
-    .card-header {
-        border-bottom: 2px solid black;
-    }
-
-    #pageContent {
-        margin-left: 6%;
-    }
-
-    .navbar-brand{float:none;}
-
-    .rowBen {
-        display: flex;
-    }
-
-    .well {
-        overflow: hidden;
-        width:390px;
-        height:250px;
-        margin-bottom: 10%;
-    }
-
-    .navbar-header {
-        text-align: center;
-    }
-
-    .secondWell {
-        margin-left: 10%;
-    }
-
-</style>
 
 <div class="rowBen">
     <div class="firstWell">
@@ -48,18 +12,15 @@
                 $countI = 0;
                 foreach ($liste as $page)
                 {
-                    if ($countI == 0)
+                    ?>
+                    <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle(); ?></p>
+                    <?php
+
+                    $countI ++;
+
+                    if ($countI == 5)
                     {
-                        ?>
-                        &nbsp;&nbsp;<p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle(); ?></p>
-                        <?php
-                        $countI = 1;
-                    }
-                    else
-                    {
-                        ?>
-                        <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle(); ?></p>
-                        <?php
+                        break;
                     }
                 }
                 ?>
@@ -70,7 +31,7 @@
         <div class="well">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Vos articles</a>
+                    <a class="navbar-brand" href="#">Les articles récents</a>
                 </div>
                 <p>&nbsp;</p>
                 <?php
@@ -79,19 +40,18 @@
                 $countI = 0;
                 foreach ($lesArticles as $unArticle)
                 {
-                    if ($countI == 0)
+
+                    ?>
+                    <p class="card-text card-h2"><a href="./../index.php?article=<?= $countI ?>"><?= $lesArticles[$countI]['title']; ?></a></p>
+                    <?php
+
+                    $countI ++;
+
+                    if ($countI == 5)
                     {
-                        ?>
-                        &nbsp;&nbsp;&nbsp;<p class="card-text card-h1">&nbsp;<?= $lesArticles[$tonIdAdmin]['title']; ?></p>
-                        <?php
-                        $countI = 1;
+                        break;
                     }
-                    else
-                    {
-                        ?>
-                        <p class="card-text card-h2">&nbsp;<?= $lesArticles[$tonIdAdmin]['title']; ?></p>
-                        <?php
-                    }
+
                 }
                 ?>
             </div>
