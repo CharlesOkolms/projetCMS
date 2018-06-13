@@ -5,7 +5,7 @@ include __DIR__.'/../head.php';
 <div id="header">
 	<img src="<?=FRONT_FOLDER?>sitelogo.png"/>
 	<h1 id="sitename">Nom du site</h1>
-	<?php include module('menu');?>
+	<?php include module('menu_horizontal');?>
 </div>
 <div id="content" class="container-fluid">
 	<div class="row">
