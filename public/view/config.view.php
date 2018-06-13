@@ -1,15 +1,10 @@
-<div id="article_add">
+<div id="config">
     <form method="POST"  enctype="multipart/form-data">
-        <p>Titre du site</p>
-        <div class="col-lg-2">
-            <input type="text" name="title" placeholder="Titre du site" />
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <p>Super-administrateur</p>
-        <div class="col-lg-2">
-            <select title="Choix du superadmin" class="form-control" id="superAdmin">
+        <input type="text" name="title" placeholder="Titre du site" />
+
+
+            <label id="div_label" for="mon_id">Super-administrateur : </label>
+            <select title="Choix du superadmin" class="form-control" id="superAdmin" >
                 <?php
                 foreach ( $arrayAdmins as $unPetitAdmin )
                 {
@@ -28,48 +23,24 @@
                 }
                 ?>
             </select>
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <div class="col-lg-8">
-            <p class="pConfig2">Logo</p>
-            <input type="file" name="logo" placeholder="Piece jointe" />
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <p>Page d'accueil</p>
-        <div class="col-lg-2">
-            <select title="Choix de la page d'accueil" class="form-control" id="pageAccueil">
-                <?php
-                $liste = Page::getAll();
-                $countI = 0;
-                foreach ($liste as $page)
-                {
-                    ?>
-                    <option value="<?=$page->getId();?>"><?=$page->getTitle();?></option>
-                    <?php
-                }
+
+        <label id="div_label" for="pageAccueil">Page d'accueil : </label>
+        <select title="Choix de la page d'accueil" class="form-control" id="pageAccueil">
+            <?php
+            $liste = Page::getAll();
+            $countI = 0;
+            foreach ($liste as $page)
+            {
                 ?>
-            </select>
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <div class="col-lg-2">
-            <input title="Save the article" type="submit" name="article_add" value="Ajouter" class="btn btn-primary navbar-btn" />
-        </div>
+                <option value="<?=$page->getId();?>"><?=$page->getTitle();?></option>
+                <?php
+            }
+            ?>
+        </select>
+
+        <label id="div_label" for="pieceJointe">Piece jointe : </label>
+        <input type="file" name="logo" placeholder="Piece jointe" id="pieceJointe"/>
+        <input title="Save the article" type="submit" name="article_add" value="Modifier" class="btn btn-primary navbar-btn" />
+
     </form>
 </div>
-
-<script>
-
-    CKEDITOR.replace('editor');
-
-    $('#editor').click(function() {
-        document.getElementById("editor").insertAdjacentHTML('beforeend', 'name="content"');
-    });
-</script>
