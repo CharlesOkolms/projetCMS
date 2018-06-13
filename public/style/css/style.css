@@ -338,7 +338,7 @@ h1#page_title{
 }
 
 
-#page_add #page_add_liste {
+#page_add #page_add_liste, #page_publi_article {
     float: left;
     height: 40px;
 
