@@ -1,3 +1,3 @@
 <div id="footer" class="row">
-	(c) BCCP CMS
+	(c) TMCB CMS
 </div>
