@@ -26,6 +26,13 @@ class Meta{
 		return true;
 	}
 
+	public function updateDatabase(){
+		$sql = 'update meta set title = :title, id_superadmin = :user';
+		$res = DB::getInstance()->query($sql, ['title'=>$this->getTitle(), 'user' => $this->getSuperadmin()]);
+
+		return true;
+	}
+
 	private function set(array $array) {
 		foreach ( $array as $prop => $value ) {
 			switch ($prop) {
