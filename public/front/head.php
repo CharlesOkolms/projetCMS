@@ -22,4 +22,14 @@
 	<meta property="og:image:width" content="400" />
 	<meta property="og:image:height" content="400" />
 
+
+    <link type="text/css" rel="stylesheet" href="public/style/css/jcarousel.connected-carousels.css"  media="screen,projection"/>
+    <script type="text/javascript" src="public/style/js/jcarousel.connected-carousels.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.8/jquery.jcarousel-autoscroll.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.8/jquery.jcarousel-control.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.8/jquery.jcarousel-core.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.8/jquery.jcarousel-pagination.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.8/jquery.jcarousel-scrollintoview.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.8/jquery.jcarousel.js"></script>
+
 </head>
