@@ -91,7 +91,7 @@ class Page {
 	 * @param int $user_id
 	 * @return   mixed  TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
 	 */
-	public function updateDatabase(int $user_id) {
+	public function updateDatabase() {
 		$sql = 'UPDATE page SET title = :title, id_template = :template, id_style = :style
 				WHERE id_page = :id';
 
@@ -114,6 +114,36 @@ class Page {
 		return $error;
 
 	}
+
+
+
+    /**
+     * Met à jour la galerie en base de donées avec les données inscrites dans l'objet courant.
+     *
+     * @param int $user_id
+     * @return   mixed  TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
+     */
+    public function updateDatabase_2() {
+        $sql = 'UPDATE page SET title = :title
+				WHERE id_page = :id';
+
+        $values = array(
+            'id'          => $this->getId(),
+            'title'       => $this->getTitle()
+        );
+
+        $req = DB::getInstance()->action($sql, $values);
+
+        if ( $req === 1 ) {
+            return true;
+        }
+        // alors c'est une erreur MySQL
+        $error = ['SQLSTATE'     => $req[0],
+            'errorCode'    => $req[1],
+            'errorMessage' => $req[2]];
+        return $error;
+
+    }
 
 
 	/***********************************************************************/

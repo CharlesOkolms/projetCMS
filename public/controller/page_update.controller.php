@@ -1,12 +1,15 @@
 <?php
 
 if(!empty($_POST['page_update']) && $CURRENT_USER->isWriter()){
-	$title = strval($_POST['title']);
-	$content = strval($_POST['content']);
+    $title = strval($_POST['title']);
+    $style = strval($_POST['style']);
+    $template = strval($_POST['template']);
 
-	$article = new Page(intval($_GET['id']));
-	$page->setContent($content);
+    $page = new Page(intval($_GET['id']));
 	$page->setTitle($title);
+    $page->setTemplate($template);
+    $page->setStyle($style);
+
 	$res = $page->updateDatabase();
 }
 if($CURRENT_USER->isWriter()){
