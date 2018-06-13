@@ -6,7 +6,7 @@ const DB_NAME = 'charlescoulon_bccpcms';
 const DB_USER = '155773_bccpcms';
 const DB_PWD  = 'bccpcms';
 
-// Liens relatifs à public/index.php
+// Liens relatifs à cms/index.php
 const PATH_ROOT       = CMS_FOLDER.'';				// lien de base dans lequel il y a l'index
 const PATH_LIB        = CMS_FOLDER.'lib/';			// lien relatif des librairies php
 const PATH_MODEL      = CMS_FOLDER.'model/';			// lien relatif des modeles

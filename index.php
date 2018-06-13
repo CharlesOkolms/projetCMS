@@ -1,7 +1,7 @@
 <?php
 session_start();
-const CMS_FOLDER = 'public/';
-const FRONT_FOLDER = 'public/front/';
+const CMS_FOLDER = 'cms/';
+const FRONT_FOLDER = 'cms/front/';
 require_once(CMS_FOLDER.'conf/top.php');
 //require('./view/templates/head.php');
 ?>
