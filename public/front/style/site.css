@@ -4,6 +4,16 @@
 
 }
 
+
 #sitepage div.column{
-	border:1px solid grey;
+	border:0px solid grey;
+}
+
+
+#menu {
+	width: 100%;
+}
+
+h1#sitename {
+	text-align: center;
 }

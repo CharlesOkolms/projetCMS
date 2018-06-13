@@ -3,13 +3,14 @@
 $pages = Page::getAll();
 ?>
 
-<nav class="main_menu">
-	<ul>
-		<?php
-		foreach($pages as $page){ ?>
-		<li><?=$page->getTitle()?></li>
 
-		<?php
-		} ?>
-	</ul>
+
+<nav class="main_menu">
+    <div class="container" id="menu">
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+		    <?php foreach($pages as $page){ ?>
+                <li><a href="#"><?=$page->getTitle()?></a></li>
+            <?php } ?>
+        </ul>
+    </div>
 </nav>

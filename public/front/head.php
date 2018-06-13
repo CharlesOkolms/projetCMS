@@ -11,4 +11,7 @@
 	<?php if(!is_string($page)){ ?>
 	    <link type="text/css" rel="stylesheet" href="<?=FRONT_FOLDER.'style/'.$page->getStyle()?>.css"  media="screen,projection"/>
 	<?php } ?>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
