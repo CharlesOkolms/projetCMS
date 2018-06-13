@@ -24,7 +24,12 @@
                     <li><a href="?page=pages_list">Les Pages</a></li>
                     <?php
                     if($CURRENT_USER->isWriter() || $CURRENT_USER->isAdmin()){ ?>
-                        <li><a href="?page=page_add">Créer une Page</a></li>
+                    <li><a href="?page=page_add">Créer une Page</a></li>
+                    <?php } ?>
+                    <?php
+                    if($CURRENT_USER->isAdmin()){ ?>
+                        <li><a href="?page=template_add">Créer un Template</a></li>
+                        <li><a href="?page=style_add">Créer un Style</a></li>
                     <?php } ?>
                 </ul>
             </li>
