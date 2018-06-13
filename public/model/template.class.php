@@ -38,7 +38,8 @@ class Template{
 		}
 
 		$sql = 'SELECT	  id_template
-                        , name, id_user_creator as creator
+                        , name
+                        , id_user_creator as creator
 		        FROM      template
 				WHERE     id_template = :id';
 
@@ -135,9 +136,6 @@ class Template{
 
 	public function setId       (int $id)          { $this->id = $id;        }
 	public function setName    (string $name)    { $this->name = $name;  }
-
-	public function getCreator() : int {return $this->creator;}
-
 	public function setCreator(string $creator) {$this->creator = $creator;}
 
 
@@ -149,7 +147,7 @@ class Template{
 
 	private function getId()                { return $this->id; }
 	public  function getName(): string     { return $this->name; }
-
+	public function getCreator() : int {return $this->creator;}
 
 	/** Liste des templates en forme de array associatif
 	 * @return array
