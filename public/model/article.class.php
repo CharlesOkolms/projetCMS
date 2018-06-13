@@ -315,7 +315,7 @@ class article{
 //			$clause    .= ' AND pa.id_page = :page ';
 			$val       = ['page' => $page];
 		}
-		$query = 'SELECT article.id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.', deleted, deleter
+		$query = 'SELECT article.id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.', deleted, id_user_deleter as deleter
         										FROM article '.$suppquery.$clause.' ;';
 		$liste = DB::getInstance()->query($query, $val, DB::FETCH_ALL);
 		return $liste;
