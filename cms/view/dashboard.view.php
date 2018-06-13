@@ -11,7 +11,7 @@
                 $liste = Page::getAll();
                 $countI = 0;
                 foreach ($liste as $page){ ?>
-                    <p class="card-text"><span class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle(); ?></p>
+                    <p class="card-text"><a href="./../index.php?page=<?=$page->getSlug() ?>"><span class="glyphicon glyphicon-file"></span>&nbsp;<?= $page->getTitle(); ?></a></p>
                     <?php
 					$countI ++;
                     if ($countI == 5){
@@ -33,7 +33,7 @@
                 $tonIdAdmin = $lesArticles[CURRENT_USER_ID]['writer'];
                 $countI = 0;
                 foreach ($lesArticles as $unArticle) { ?>
-                    <p class="card-text card-h2"><a href="./../index.php?article=<?= $countI ?>"><?= $lesArticles[$countI]['title']; ?></a></p>
+                    <p class="card-text card-h2"><a href="./../index.php?article=<?=$lesArticles[$countI]['id_article'] ?>"><?= $lesArticles[$countI]['title']; ?></a></p>
                     <?php
                     $countI ++;
                     if ($countI == 5) {
@@ -63,8 +63,7 @@
                         </p> <?php
 					}
 					else { ?>
-                        <p class="card-text"><span
-                                    class="glyphicon glyphicon-star"></span>&nbsp;<?=$unPetitAdmin->getFirstname();?>
+                        <p class="card-text"><span class="glyphicon glyphicon-star"></span>&nbsp;<?=$unPetitAdmin->getFirstname();?>
                         </p> <?php
 					}
 				}
