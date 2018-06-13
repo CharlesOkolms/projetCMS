@@ -8,7 +8,7 @@ include __DIR__.'/../head.php';
             <div class="column col-md-2 col-md-offset-1">
                 <?php include module('articles_list');?>
             </div>
-            <div class="column col-md-7 col-md-offset-1 well">
+            <div class="column col-md-7 col-md-offset-1">
                 <?php include module('articles_view');?>
             </div>
         </div>
