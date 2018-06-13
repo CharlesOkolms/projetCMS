@@ -13,7 +13,7 @@ $articles = Article::getAll($idPage, true);
 		{
 			?>
             <div class="well">
-			    <article><h4><?=$article['title'];?></h4><br/><?=$article['content'];?></article>
+			    <article><h4></h4><?=$article['title'];?><br/><?=$article['content'];?></article>
             </div>
 		    <?php
 		}
