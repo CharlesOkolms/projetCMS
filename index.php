@@ -9,7 +9,7 @@ require_once(CMS_FOLDER.'conf/top.php');
 <?php
 
 function module($module_name){
-    return 'public/front/module/'.$module_name.'.php';
+    return 'cms/front/module/'.$module_name.'.php';
 }
 $meta   = new Meta();
 define('SITE_TITLE',$meta->getTitle());
