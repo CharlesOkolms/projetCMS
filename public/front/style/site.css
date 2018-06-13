@@ -1,9 +1,8 @@
-/* body *{display:initial}*/
-
-#sitepage #content {
-
+#header a{
+	display:block;
+	margin:auto;
 }
-
+#header a img {max-height:125px;max-width:125px;margin:auto;}
 
 #sitepage div.column{
 	border:0px solid grey;
