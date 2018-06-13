@@ -1,11 +1,9 @@
 <?php
 
 if(!empty($_POST['page_update']) && $CURRENT_USER->isWriter()){
-	$title = strval($_POST['title']);
-	$content = strval($_POST['content']);
+    $title = strval($_POST['title']);
 
-	$article = new Page(intval($_GET['id']));
-	$page->setContent($content);
+    $page = new Page(intval($_GET['id']));
 	$page->setTitle($title);
 	$res = $page->updateDatabase();
 }

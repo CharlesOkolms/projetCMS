@@ -91,15 +91,13 @@ class Page {
 	 * @param int $user_id
 	 * @return   mixed  TRUE en cas de succès, sinon un tableau contenant 'SQLSTATE', 'errorCode', 'errorMessage'.
 	 */
-	public function updateDatabase(int $user_id) {
-		$sql = 'UPDATE page SET title = :title, id_template = :template, id_style = :style
+	public function updateDatabase() {
+		$sql = 'UPDATE page SET title = :title
 				WHERE id_page = :id';
 
 		$values = array(
 			'id'          => $this->getId(),
-			'title'       => $this->getTitle(),
-			'template' => $this->getTemplate(),
-			'style' => $this->getStyle()
+			'title'       => $this->getTitle()
 		);
 
 		$req = DB::getInstance()->action($sql, $values);
