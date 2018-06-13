@@ -2,7 +2,6 @@
 
 if(!empty($_POST['user_update']) && $CURRENT_USER->isAdmin()){
     $modifuser = new User(intval($_POST["id_user"]));
-    var_dump($_POST["rights"]);
     $modifuser->setWriter(0);
     $modifuser->setPublisher(0);
     $modifuser->setAdmin(0);
@@ -17,7 +16,6 @@ if($CURRENT_USER->isAdmin()){
 
 	include view('user_list');
 	// en attendant la vue, un var_dump :
-	//var_dump($liste);
 
 }
 else {

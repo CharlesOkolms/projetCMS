@@ -21,7 +21,17 @@
                 <th scope="col">Date de publication</th>
                 <th scope="col">Rédacteur</th>
                 <th scope="col">Publicateur</th>
-                <th scope="col">Modification</th>
+                <th scope="col">
+                    <?php
+                        if ($CURRENT_USER->isWriter()) {
+                            ?>Modification</th>
+                    <?php } ?>
+                    <?php
+                        if ($CURRENT_USER->isPublisher()) {
+                            ?>Publication</th>
+                    <?php } ?>
+
+
                 <th scope="col">Suppression</th>
             </tr>
             </thead>

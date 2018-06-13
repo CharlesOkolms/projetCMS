@@ -64,7 +64,6 @@ class Style{
         $values = array ( 'name' => $this->getName());
 
         $req = DB::getInstance()->action($sql, $values); // return lastInsertId() ou errorInfo()
-        var_dump($req);
         if ( is_string($req) ) { // on a recuperé l'id
             $this->setId((int)$req);
             return true;
