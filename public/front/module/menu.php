@@ -7,7 +7,7 @@ $pages = Page::getAll();
     <div class="container" id="menu">
         <ul class="nav nav-pills nav-stacked" role="tablist">
             <?php foreach($pages as $page){ ?>
-                <li><a href="#"><?=$page->getTitle()?></a></li>
+                <li><a href="?page=<?= $page->getSlug();?>"><?=$page->getTitle();?></a></li>
             <?php } ?>
         </ul>
     </div>

@@ -13,7 +13,7 @@ $pages = Page::getAll();
                     {
                         ?>
                         <li>
-                            <a href="#"><b><?= $page->getTitle();?></b></a>
+                            <a href="?page=<?= $page->getSlug();?>"><b><?= $page->getTitle();?></b></a>
                         </li>
                         <?php
                     }
