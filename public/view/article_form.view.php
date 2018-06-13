@@ -9,7 +9,7 @@
         <input type="text" name="title" placeholder="Titre" />
         <input type="text" name="headerphoto" placeholder="Photo de Header (lien url)" />
         <div id="editor_wysiwyg">
-            <textarea name="content" id="editor" rows="5" cols="87"></textarea>
+            <textarea title="content" name="content" id="editor" rows="5" cols="87"></textarea>
         </div>
 
         <input title="article_content" name="article" type="hidden">

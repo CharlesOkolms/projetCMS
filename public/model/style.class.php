@@ -8,8 +8,8 @@
  */
 
 class Style{
-    protected $id              ;
-    protected $name   = ''    ;
+	protected $id;
+	protected $name;
 
 
     /**
@@ -58,18 +58,13 @@ class Style{
      */
     public function insertIntoDatabase() {
 
-        if ( !empty($this->getId()) ) {
-            return ['message' => "id_style déjà existant"];
-        }
-
         $sql = 'INSERT INTO style (name)
 			    VALUES  (:name );';
-
 
         $values = array ( 'name' => $this->getName());
 
         $req = DB::getInstance()->action($sql, $values); // return lastInsertId() ou errorInfo()
-
+        var_dump($req);
         if ( is_string($req) ) { // on a recuperé l'id
             $this->setId((int)$req);
             return true;
@@ -143,15 +138,18 @@ class Style{
 
 
 
-    /*********************/
+
+	/*********************/
     /****** GETTERS ******/
     /*********************/
 
-    private function getId()                { return $this->id; }
+    public  function getId()                { return $this->id; }
     public  function getName(): string     { return $this->name; }
 
 
-
+	/** Liste des styles en forme de array associatif
+	 * @return array
+	 */
 	public static function getAll(){
 		$liste = DB::getInstance()->query('select * from style', [], DB::FETCH_ALL);
 		return $liste;

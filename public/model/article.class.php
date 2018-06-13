@@ -73,14 +73,12 @@ class article{
 		$values = array(
 			'id' => $this->getId()
 		);
-		$req    = DB::getInstance()->query($sql, $values, DB::FETCH_ONE);
-		$this->setPage($req['id_page']);
-
-		if (empty($req)){
-			return false;
+		if(!empty($req)){
+			$req    = DB::getInstance()->query($sql, $values, DB::FETCH_ONE);
+			$this->setPage($req['id_page']);
+			return true;
 		}
-
-        return true;
+		return false;
     }
 
 
@@ -152,7 +150,7 @@ class article{
     */
     public function updateDatabase() {
 
-        $sql = 'UPDATE    article
+		$sql = 'UPDATE    article
 				SET       title         = :title
 				        , content       = :content
 				        , headerphoto   = :headerphoto
@@ -160,7 +158,7 @@ class article{
 				        , premium       = :premium
 				        , published     = :published
 				        , id_user_publisher = :publisher
-				        , deleted = :deleted
+				        , deleted       = :deleted
 				        , id_user_deleter = :deleter
 				WHERE     id_article    = :id';
 
@@ -190,7 +188,6 @@ class article{
 		}
 
 		$sql = 'INSERT INTO page_article VALUES (:id, :id_page)';
-
 
 		$values = array(
 			'id'      => $this->getId(),
@@ -270,10 +267,8 @@ class article{
         if ( !validateDate($deleted, $format) ) {
             return false;
         }
-        else {
-            $deleted = DateTime::createFromFormat($format, $deleted);
-            $deleted = $deleted->format(DB::DATETIME_FORMAT);
-        }
+		$deleted = DateTime::createFromFormat($format, $deleted);
+		$deleted = $deleted->format(DB::DATETIME_FORMAT);
         $this->deleted = $deleted;
         return true;
     }
@@ -320,7 +315,7 @@ class article{
 //			$clause    .= ' AND pa.id_page = :page ';
 			$val       = ['page' => $page];
 		}
-		$query = 'SELECT article.id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.'
+		$query = 'SELECT article.id_article, title, premium, written, id_user_writer AS writer, published, id_user_publisher AS publisher '.$contenu.', deleted, deleter
         										FROM article '.$suppquery.$clause.' ;';
 		$liste = DB::getInstance()->query($query, $val, DB::FETCH_ALL);
 		return $liste;
