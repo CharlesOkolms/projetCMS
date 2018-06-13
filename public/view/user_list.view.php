@@ -43,10 +43,10 @@
                 </td>
                 <td>
                     <input type="checkbox" class="admin" id="<?="a".$user->getId()?>" value="admin" name="rights[]"
-                        <?php if($user->isAdmin() && $user->isSuperAdmin()){ ?>
+                        <?php if($user->isAdmin()){ ?>
                             checked
-                        <?php } if (!$CURRENT_USER->isSuperAdmin()){?>
-                            disabled readonly
+                        <?php } if (!$CURRENT_USER->isSuperAdmin() || $user->isSuperAdmin()){?>
+                            readonly
                         <?php } ?>/>
                 </td>
                 <td>
