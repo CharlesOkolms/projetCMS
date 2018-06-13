@@ -294,20 +294,20 @@ h1#page_title{
     left: 50%;
     transform: translateX(-50%);
 }*/
-#user_list td, #user_list th, #article_list td, #article_list th {
+#user_list td, #user_list th, #article_list td, #article_list th, #page_list td, #page_list th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#user_list tr:nth-child(even), #article_list tr:nth-child(even){
+#user_list tr:nth-child(even), #article_list tr:nth-child(even), #page_list tr:nth-child(even){
     background-color: #f2f2f2;
 }
 
-#user_list tr:hover,#article_list tr:hover {
+#user_list tr:hover,#article_list tr:hover, #page_list tr:hover {
     background-color: #ddd;
 }
 
-#user_list th, #article_list th {
+#user_list th, #article_list th, #page_list th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -497,14 +497,14 @@ h1#page_title{
 
 
 /*  AJOUT TEMPLATE */
-#template_add {
+#template_add, #style_add {
     width: 90%;
     margin-left: auto;
     /*margin-top: 150px;*/
 }
 
 
-#template_add input[type="text"] {
+#template_add, #style_add input[type="text"] {
     float: left;
     height: 40px;
 
@@ -517,7 +517,7 @@ h1#page_title{
     box-sizing: border-box;
 }
 
-#template_add textarea {
+#template_add, #style_add textarea {
     float: left;
     height: 80px;
     resize: none;
@@ -532,7 +532,7 @@ h1#page_title{
 }
 
 
-#template_add input[type="submit"] {
+#template_add, #style_add input[type="submit"] {
     float: left;
     height: 40px;
 
