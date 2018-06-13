@@ -4,7 +4,9 @@ $articles = Article::getAll($idPage, true);
 ?>
 
 <div class="articles_view">
-	<div class="title">Articles</div>
+    <div class="card-header">
+	    <div class="title">Articles</div>
+    </div>
 		<?php
 		foreach($articles as $article){
 
