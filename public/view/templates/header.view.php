@@ -65,7 +65,7 @@
 
             <li>
                 <?php
-                if($CURRENT_USER->isAdmin()){ ?>
+                if($CURRENT_USER->isSuperAdmin()){ ?>
                     <a href="?page=config">Paramètres</a>
                 <?php } ?>
             </li>

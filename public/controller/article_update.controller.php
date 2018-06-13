@@ -13,7 +13,6 @@ if(!empty($_POST['article_update']) && $CURRENT_USER->isWriter()){
 }
 if($CURRENT_USER->isWriter()){
     $article = new Article(intval($_GET['id']));
-    //var_dump($article);
 	include view('article_update');
 }else{
 	echo "Vous n'avez pas les droits pour écrire un article.";

@@ -51,15 +51,15 @@ class Meta{
 	}
 
 	public function getId() {return $this->id;}
-	private function setId($id) : void {$this->id = $id;}
+	public function setId($id)  {$this->id = $id;}
 	public function getTitle() {return $this->title;}
-	public function setTitle($title) : void {$this->title = $title;}
+	public function setTitle($title)  {$this->title = $title;}
 	public function getLogo() : string {return $this->logo;}
-	public function setLogo(string $logo) : void {$this->logo = $logo;}
+	public function setLogo(string $logo)  {$this->logo = $logo;}
 	public function getHomepage() : int {return $this->homepage;}
-	public function setHomepage(int $homepage) : void {$this->homepage = $homepage;}
+	public function setHomepage(int $homepage)  {$this->homepage = $homepage;}
 	public function getSuperadmin() {return $this->superadmin;}
-	public function setSuperadmin($superadmin) : void {$this->superadmin = $superadmin;}
+	public function setSuperadmin($superadmin)  {$this->superadmin = $superadmin;}
 
 
 

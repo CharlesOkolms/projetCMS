@@ -287,7 +287,7 @@ class User {
 
 	public function isSuperAdmin() : bool {
 		$query = 'SELECT id_superadmin FROM meta';
-		$id_superadmin = DB::getInstance()->query($query,[],DB::FETCH_ONE);
+		$id_superadmin = DB::getInstance()->query($query,[],DB::FETCH_ONE)['id_superadmin'];
 		if(intval($id_superadmin) == intval($this->getId())){
 			return true;
 		}

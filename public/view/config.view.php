@@ -1,10 +1,10 @@
 <div id="config">
     <form method="POST"  enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Titre du site" />
+        <input type="text" name="title" placeholder="Titre du site" value="<?php echo $meta->getTitle();?>"/>
 
 
             <label id="div_label" for="mon_id">Super-administrateur : </label>
-            <select title="Choix du superadmin" class="form-control" id="superAdmin" >
+            <select title="Choix du superadmin" class="form-control" id="superAdmin" name="nomSuperAdmin">
                 <?php
                 foreach ( $arrayAdmins as $unPetitAdmin )
                 {
@@ -25,7 +25,7 @@
             </select>
 
         <label id="div_label" for="pageAccueil">Page d'accueil : </label>
-        <select title="Choix de la page d'accueil" class="form-control" id="pageAccueil">
+        <select title="Choix de la page d'accueil" class="form-control" id="pageAccueil" name="pageAccueil">
             <?php
             $liste = Page::getAll();
             $countI = 0;
@@ -40,7 +40,7 @@
 
         <label id="div_label" for="pieceJointe">Piece jointe : </label>
         <input type="file" name="logo" placeholder="Piece jointe" id="pieceJointe"/>
-        <input title="Save the article" type="submit" name="article_add" value="Modifier" class="btn btn-primary navbar-btn" />
+        <input title="Save the article" type="submit" name="config_add" value="Modifier" class="btn btn-primary navbar-btn" />
 
     </form>
 </div>
