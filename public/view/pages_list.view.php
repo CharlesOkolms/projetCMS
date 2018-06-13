@@ -47,7 +47,7 @@
                     </td>
                     <td>
                         <form method="POST"  enctype="multipart/form-data">
-                            <input type="hidden" value="<?php echo $page["id_page"]; ?>" name="idPage"/>
+                            <input type="hidden" value="<?php echo $page->getId() ?>" name="idPage"/>
                             <button type="submit" name="page_deleted" class="btn btn-danger navbar-btn" value="1">
                                 <li class="glyphicon glyphicon-trash"></li>
                             </button>
