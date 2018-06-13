@@ -10,7 +10,7 @@
 class Template{
 	protected $id ;
 	protected $name = '';
-	protected $creator = ''; // id du createur
+	protected $creator; // id du createur
 
 
 	/**
@@ -59,20 +59,15 @@ class Template{
 	 */
 	public function insertIntoDatabase() {
 
-		if ( !empty($this->getId()) ) {
-			return ['message' => "id_style déjà existant"];
-		}
-
 		$sql = 'INSERT INTO template (name, id_user_creator)
 			    VALUES  (:name, :user );';
 
-
-		$values = array ( 'name' => $this->getName(), 'id' => CURRENT_USER_ID);
+		$values = array ( 'name' => $this->getName(), 'user' => CURRENT_USER_ID);
 
 		$req = DB::getInstance()->action($sql, $values); // return lastInsertId() ou errorInfo()
 
 		if ( is_string($req) ) { // on a recuperé l'id
-			$this->setId((int)$req);
+			$this->setId(intval($req));
 			return true;
 		}
 
@@ -141,6 +136,10 @@ class Template{
 	public function setId       (int $id)          { $this->id = $id;        }
 	public function setName    (string $name)    { $this->name = $name;  }
 
+	public function getCreator() : int {return $this->creator;}
+
+	public function setCreator(string $creator) : void {$this->creator = $creator;}
+
 
 
 
@@ -149,10 +148,12 @@ class Template{
 	/*********************/
 
 	private function getId()                { return $this->id; }
-	public  function getLabel(): string     { return $this->name; }
+	public  function getName(): string     { return $this->name; }
 
 
-
+	/** Liste des templates en forme de array associatif
+	 * @return array
+	 */
 	public static function getAll(){
 		$liste = DB::getInstance()->query('select * from template', [], DB::FETCH_ALL);
 		return $liste;
