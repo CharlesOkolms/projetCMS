@@ -138,7 +138,7 @@ class Template{
 
 	public function getCreator() : int {return $this->creator;}
 
-	public function setCreator(string $creator) : void {$this->creator = $creator;}
+	public function setCreator(string $creator) {$this->creator = $creator;}
 
 
 

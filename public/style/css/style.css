@@ -85,6 +85,41 @@ h1#page_title{
 }
 
 
+/* DASHBOARD */
+.card {
+    border-radius: 3px;
+    border: 2px solid black;
+}
+
+.card-header {
+    border-bottom: 2px solid black;
+}
+
+#pageContent {
+    margin-left: 6%;
+}
+
+.navbar-brand{float:none;}
+
+.rowBen {
+    display: flex;
+}
+
+.well {
+    overflow: hidden;
+    width:390px;
+    height:250px;
+    margin-bottom: 10%;
+}
+
+.navbar-header {
+    text-align: center;
+}
+
+.secondWell {
+    margin-left: 10%;
+}
+
 /*  AJOUTER ARTICLE */
 #article_add {
     width: 90%;
@@ -456,4 +491,51 @@ h1#page_title{
     width: 90%;
     margin-top: 20px;
     font-weight:normal;
+}
+
+
+
+
+/*  AJOUT TEMPLATE */
+#template_add {
+    width: 90%;
+    margin-left: auto;
+    /*margin-top: 150px;*/
+}
+
+
+#template_add input[type="text"] {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#template_add textarea {
+    float: left;
+    height: 80px;
+    resize: none;
+
+    width: 90%;
+    margin-top: 8px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#template_add input[type="submit"] {
+    float: left;
+    height: 40px;
+
+    width: 90%;
+    margin-top: 8px;
 }
