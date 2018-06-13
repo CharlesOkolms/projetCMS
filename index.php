@@ -11,11 +11,12 @@ require_once(CMS_FOLDER.'conf/top.php');
 function module($module_name){
     return 'public/front/module/'.$module_name.'.php';
 }
+$meta   = new Meta();
+define('SITE_TITLE',$meta->getTitle());
 
 if ( empty($_GET['article']) ) {
 
 	if ( CURRENT_PAGE == 'accueil' ) {
-		$meta   = new Meta();
 		$idPage = $meta->getHomepage();
 		define('TITLE', 'Accueil');
 		$page = new Page($idPage);

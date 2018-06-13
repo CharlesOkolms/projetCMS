@@ -15,7 +15,9 @@ class article{
     protected $headerphoto  = ''    ;
 	protected $attachment   = '';
 
-	protected $writer       = '';
+	protected $writer;
+	protected $publisher;
+	protected $deleter;
 
 	protected $written      = false;
 	protected $published    = NULL;
@@ -60,7 +62,7 @@ class article{
 				WHERE   id_article = :article_id';
 
         $values = array('article_id' => $this->getId());
-        $result = DB::getInstance()->query($sql, $values, false);
+        $result = DB::getInstance()->query($sql, $values, DB::FETCH_ONE);
 
         $this->set($result); // modifie cet objet à l'aide de l'objet récupéré en BDD
 
@@ -170,8 +172,6 @@ class article{
     }
 
 
-
-
     /*********************/
     /****** SETTERS ******/
     /*********************/
@@ -199,8 +199,6 @@ class article{
     }
 
 
-
-
     private function setId          (int $id)                { $this->id = $id;                   }
     public  function setTitle       (string $title)          { $this->title = $title;             }
     public  function setContent     (string $content)        { $this->content = $content;         }
@@ -208,6 +206,8 @@ class article{
     public  function setAttachment  ($attachment)     { $this->attachment = $attachment;   }
     public  function setPremium     (bool $premium)   { $this->premium = $premium;         }
     public function setWriter       (int $writer)     { $this->writer = intval($writer);   }
+	public function setPublisher	($publisher) : void {$this->publisher = $publisher;}
+	public function setDeleter		($deleter) : void	{$this->deleter = $deleter;}
 
     public function setWritten      (string $written, $format = DB::DATETIME_FORMAT) : bool {
         if ( !validateDate($written, $format) ) {
@@ -250,7 +250,6 @@ class article{
 
 
 
-
     /*********************/
     /****** GETTERS ******/
     /*********************/
@@ -261,6 +260,8 @@ class article{
     public function getAttachment()			    { return $this->attachment; }
     public function getHeaderphoto()		    { return $this->headerphoto; }
     public function getWriter()     : int       { return $this->writer; }
+	public function getPublisher() 				{return $this->publisher;}
+	public function getDeleter() 				{return $this->deleter;}
     public function isWritten()     : bool      { return $this->written; }
     public function getWritten()    : string    { return $this->written; }
     public function getPublished()              { return $this->published; }
