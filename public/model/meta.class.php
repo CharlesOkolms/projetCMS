@@ -27,8 +27,8 @@ class Meta{
 	}
 
 	public function updateDatabase(){
-		$sql = 'update meta set title = :title, id_superadmin = :user';
-		$res = DB::getInstance()->query($sql, ['title'=>$this->getTitle(), 'user' => $this->getSuperadmin()]);
+		$sql = 'update meta set title = :title, id_superadmin = :user, logo = :logo';
+		$res = DB::getInstance()->query($sql, ['title'=>$this->getTitle(), 'user' => $this->getSuperadmin(), 'logo' => $this->getLogo()]);
 
 		return true;
 	}
@@ -54,8 +54,8 @@ class Meta{
 	public function setId($id)  {$this->id = $id;}
 	public function getTitle() {return $this->title;}
 	public function setTitle($title)  {$this->title = $title;}
-	public function getLogo() : string {return $this->logo;}
-	public function setLogo(string $logo)  {$this->logo = $logo;}
+	public function getLogo() {return $this->logo;}
+	public function setLogo($logo)  {$this->logo = $logo;}
 	public function getHomepage() : int {return $this->homepage;}
 	public function setHomepage(int $homepage)  {$this->homepage = $homepage;}
 	public function getSuperadmin() {return $this->superadmin;}

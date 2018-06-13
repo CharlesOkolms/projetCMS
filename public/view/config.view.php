@@ -4,22 +4,13 @@
 
 
             <label id="div_label" for="mon_id">Super-administrateur : </label>
-            <select title="Choix du superadmin" class="form-control" id="superAdmin" name="nomSuperAdmin">
+            <select title="Choix du superadmin" class="form-control" id="superAdmin" name="superAdmin">
                 <?php
                 foreach ( $arrayAdmins as $unPetitAdmin )
                 {
-                    if ( $unPetitAdmin->isSuperAdmin() )
-                    {
-                        ?>
-                        <option value="<?=$unPetitAdmin->getId();?>" disabled selected><?=$unPetitAdmin->getFirstname();?></option>
-                        <?php
-                    }
-                    else
-                    {
-                        ?>
-                        <option value="<?=$unPetitAdmin->getId();?>"><?=$unPetitAdmin->getFirstname();?></option>
-                        <?php
-                    }
+                   ?>
+                    <option value="<?=$unPetitAdmin->getId();?>" <?=($unPetitAdmin->isSuperAdmin())?'selected':''?> ><?=$unPetitAdmin->getFirstname().' '.$unPetitAdmin->getLastname();?></option>
+                    <?php
                 }
                 ?>
             </select>
@@ -38,8 +29,8 @@
             ?>
         </select>
 
-        <label id="div_label" for="pieceJointe">Piece jointe : </label>
-        <input type="file" name="logo" placeholder="Piece jointe" id="pieceJointe"/>
+        <label id="div_label" for="logo">Logo : </label>
+        <input type="file" name="logo" placeholder="Logo" id="pieceJointe"/>
         <input title="Save the article" type="submit" name="config_add" value="Modifier" class="btn btn-primary navbar-btn" />
 
     </form>
