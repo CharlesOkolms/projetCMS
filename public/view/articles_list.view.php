@@ -23,13 +23,16 @@
                 <th scope="col">Publicateur</th>
                 <th scope="col">
                     <?php
-                        if ($CURRENT_USER->isWriter()) {
+                        if ($CURRENT_USER->isPublisher() && $CURRENT_USER->isWriter()) {
+                        ?>Modification / Publication</th>
+                    <?php }
+                        else if ($CURRENT_USER->isWriter()) {
                             ?>Modification</th>
-                    <?php } ?>
-                    <?php
-                        if ($CURRENT_USER->isPublisher()) {
+                    <?php }
+                        else if ($CURRENT_USER->isPublisher()) {
                             ?>Publication</th>
                     <?php } ?>
+
 
 
                 <th scope="col">Suppression</th>

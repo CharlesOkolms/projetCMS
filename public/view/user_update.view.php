@@ -10,7 +10,8 @@
         <input type="text" name="firstname" placeholder="Prénom" value="<?php echo $user->getFirstname();?>"/>
         <input type="text" name="lastname" placeholder="Nom" value="<?php echo $user->getLastname();?>"/>
         <input type="text" name="email" placeholder="Email" value="<?php echo $user->getEmail();?>"/>
-        <input type="password" name="password" placeholder="Mot de passe" >
+        <input type="password" name="password" placeholder="Ancien mot de passe" >
+        <input type="password" name="password" placeholder="Nouveau mot de passe" >
 
         <input title="Save the user" type="submit" name="user_update" value="Modifier" class="btn btn-primary navbar-btn" />
     </form>
