@@ -26,6 +26,9 @@ if(!empty($_POST['article_published']) && $CURRENT_USER->isPublisher()){
 
 if($CURRENT_USER->isWriter()){
     $article = new Article(intval($_GET['id']));
+    if($CURRENT_USER->isPublisher()){
+        $pages = Page::getAll();
+    }
 	include view('article_update');
 }else if($CURRENT_USER->isPublisher()){
     $pages = Page::getAll();
