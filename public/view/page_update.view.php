@@ -20,7 +20,7 @@
             }
             ?>
         </select>
-        <select title="select the style" name="style" id="page_add_liste">
+        <select title="select   the style" name="style" id="page_add_liste">
             <?php
             foreach(Style::getAll() as $style){
                 echo '<option value="'.$style['id_style'].'">'.$style['name'].'</option>';

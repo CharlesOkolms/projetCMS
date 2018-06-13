@@ -504,7 +504,7 @@ h1#page_title{
 }
 
 
-#template_add, #style_add input[type="text"] {
+#template_add input[type="text"], #style_add input[type="text"] {
     float: left;
     height: 40px;
 
@@ -517,7 +517,7 @@ h1#page_title{
     box-sizing: border-box;
 }
 
-#template_add, #style_add textarea {
+#template_add textarea, #style_add textarea {
     float: left;
     height: 80px;
     resize: none;
@@ -532,10 +532,12 @@ h1#page_title{
 }
 
 
-#template_add, #style_add input[type="submit"] {
+#template_add input[type="submit"], #style_add input[type="submit"] {
     float: left;
     height: 40px;
 
     width: 90%;
     margin-top: 8px;
 }
+
+
